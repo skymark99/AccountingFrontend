@@ -1,0 +1,11 @@
+@mixin flex($type) {
+  display: flex;
+  align-items: center;
+  @if $type == "center" {
+    justify-content: center;
+  } @else if $type == "between" {
+    justify-content: space-between;
+  } @else {
+    @warn "Unknown centering type: #{$type}";
+  }
+}
