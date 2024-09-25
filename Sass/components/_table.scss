@@ -1,0 +1,242 @@
+%shared-table-styles {
+  .table-head {
+    background-color: $light-green;
+    text-wrap: nowrap;
+    font-size: 1.2rem;
+    color: $mid-gray;
+    th {
+      padding: 0.5rem;
+      width: 8rem;
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .transaction-name-column {
+      width: 17% !important;
+    }
+    .date-name-column {
+      width: 10% !important;
+    }
+    .amount-name-column {
+      width: 8% !important;
+    }
+    .remark-name-column {
+      width: 17% !important;
+    }
+    .type-name-column {
+      width: 12% !important;
+    }
+    .branch-name-column {
+      width: 15% !important;
+    }
+    .header-checkbox-cell {
+      text-align: center;
+      vertical-align: middle;
+      width: 6% !important;
+    }
+
+    .header-check {
+      text-align: center;
+      transform: scale(1.2);
+      vertical-align: middle;
+    }
+  }
+
+  .long-table-head {
+    background-color: $light-green;
+    text-wrap: nowrap;
+    font-size: 1.2rem !important;
+    color: $mid-gray;
+    padding: 0.5rem;
+    transition: none;
+    @include respond(tablets) {
+      font-size: 10px;
+    }
+    @include respond(bigTablets) {
+      font-size: 10px;
+    }
+
+    th {
+      text-align: left;
+      font-weight: 500 !important;
+      transition: none;
+    }
+
+    .header-checkbox-cell {
+      text-align: center;
+      vertical-align: middle;
+      transition: none;
+      animation: none;
+    }
+
+    .header-check {
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+
+  tbody {
+    .table-items-container {
+      background-color: $white;
+      border-bottom: 1px solid rgb(173, 167, 167);
+      height: 5rem;
+    }
+
+    .table-checkbox-cell {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .table-check {
+      margin: 2.5rem 0;
+    }
+    .table-no-check {
+      padding-left: 1.5rem;
+    }
+    .reminder-no-check {
+      padding-left: 2.5rem;
+    }
+    .row_line {
+      margin-top: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .table-items {
+      position: relative;
+      overflow: visible;
+      h4 {
+        font-weight: 500;
+        font-size: 1.3rem;
+        line-height: 6rem;
+      }
+
+      h5 {
+        font-weight: 500;
+        font-size: 1.3rem;
+        @include respond(tablets) {
+          font-size: 1rem;
+        }
+      }
+
+      .sub-property {
+        display: block;
+        text-wrap: nowrap;
+        font-size: 1.2rem;
+        color: $mid-gray;
+        @include respond(tablets) {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .long-table-items {
+      text-align: left;
+      height: 100%;
+      vertical-align: middle;
+
+      h4 {
+        font-weight: 500;
+        font-size: 1.3rem;
+        line-height: 6rem;
+        @include respond(tablets) {
+          font-size: 11px;
+        }
+        @include respond(bigTablets) {
+          font-size: 11px;
+        }
+      }
+      h5 {
+        font-weight: 500;
+        font-size: 1.3rem;
+        display: inline-block;
+        width: 80%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @include respond(tablets) {
+          font-size: 11px;
+        }
+        @include respond(bigTablets) {
+          font-size: 11px;
+        }
+      }
+
+      .sub-property {
+        display: block;
+        font-size: 1.2rem;
+        color: $mid-gray;
+        display: inline-block;
+        width: 80%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        @include respond(tablets) {
+          font-size: 11px;
+        }
+        @include respond(bigTablets) {
+          font-size: 11px;
+        }
+      }
+
+      .transaction-name {
+        width: 80%;
+      }
+    }
+
+    .no-data-4pack {
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.3rem;
+      color: $mid-gray;
+      height: 24.3rem;
+    }
+  }
+}
+
+.table-container {
+  min-height: calc(6 * 5rem);
+}
+
+.branchwise-table-container {
+  min-height: calc(6 * 5rem);
+  width: 89%;
+  @include respond(tablets, bigTablets) {
+    width: 97%;
+  }
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed; // Ensures consistent width between th and td
+  @include respond(tablets, bigTablets) {
+    width: 103%;
+  }
+  @extend %shared-table-styles;
+
+  th,
+  td {
+    height: 5rem; // Ensures consistent height between th and td
+    padding: 0.5rem; // Consistent padding for th and td
+  }
+}
+
+.long-table {
+  border-collapse: collapse;
+  width: 90%;
+  table-layout: fixed; // Ensures consistent width between th and td
+  @include respond(tablets) {
+    width: 100%;
+  }
+  @include respond(bigTablets) {
+    width: 100%;
+  }
+  @extend %shared-table-styles;
+
+  th,
+  td {
+    height: 5rem; // Ensures consistent height between th and td
+    padding: 0.5rem; // Consistent padding for th and td
+  }
+}

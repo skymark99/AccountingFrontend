@@ -1,0 +1,370 @@
+.daybook {
+  @include respond(smallPhone) {
+    display: none;
+  }
+  @include respond(tablets, bigTablets) {
+    padding: 3rem;
+  }
+
+  // &__catagory-selectors {
+  //   @include flex(center);
+  //   flex-direction: column;
+  //   gap: 0;
+  // }
+
+  &__body {
+    // width: 90%;
+    height: 100%;
+    margin-bottom: 5rem;
+    margin-left: $body-margin-2;
+    display: grid;
+    grid-template-columns: 1fr 25rem;
+    grid-template-rows: 8rem 1fr;
+    grid-template-areas:
+      "header header"
+      "data actions";
+
+    @include respond(tablets, bigTablets) {
+      width: 100%;
+      margin-left: 0rem;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "header"
+        "actions"
+        "data";
+    }
+    margin-bottom: 0rem;
+    // height: 5%;
+  }
+
+  &__navigation {
+    border-bottom: 2px solid $light-gray;
+    height: 3.5rem;
+    min-width: 22rem;
+    text-wrap: nowrap;
+    position: relative;
+    span {
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+    span:not(:last-child) {
+      margin-right: 2.5rem;
+    }
+  }
+  .income {
+    margin-right: 1rem !important;
+  }
+
+  &__header {
+    grid-row: 1;
+    grid-column: 1;
+    @include flex(between);
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+
+    @include respond(tablets, bigTablets) {
+      width: 100%;
+    }
+  }
+  &__data {
+    // grid-area: data;
+    grid-row: 2;
+    grid-column: 1;
+    &-footer {
+      width: 100%;
+      @include flex(between);
+      margin-top: 0.2rem;
+    }
+  }
+  &__actions {
+    grid-row: 2;
+    grid-column: 2;
+    text-align: center;
+    @include flex(between);
+    flex-direction: column;
+    @include respond(tablets, bigTablets) {
+      grid-row: unset;
+      flex-direction: row;
+    }
+    .items-selected {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 6rem;
+      @include respond(tablets, bigTablets) {
+        margin-bottom: 0rem;
+        display: none;
+      }
+    }
+    .items-selected span {
+      font-size: 1.2rem;
+      width: 10rem;
+      height: 2rem;
+    }
+    .items-selected-tablet {
+      display: none;
+
+      @include respond(tablets, bigTablets) {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0rem;
+      }
+    }
+
+    .items-selected-tablet span {
+      @include respond(tablets, bigTablets) {
+        font-size: 1.2rem;
+        width: 10rem;
+        height: 2rem;
+      }
+    }
+  }
+
+  &__actions-btns {
+    margin: 0 auto;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @include respond(tablets, bigTablets) {
+      margin: 0 auto;
+      width: fit-content;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+  &__actions-btns-daybook {
+    margin: 0 auto;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    // daybook actions
+    @include respond(tablets, bigTablets) {
+      flex-direction: row;
+      margin-right: -0.2rem;
+    }
+  }
+  &__secondary-btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.search__container {
+  flex: 1;
+  @include flex(center);
+}
+.select__container {
+  @include flex(center);
+}
+
+// DaybookForm.scss
+
+.form-head {
+  text-align: center;
+  font-size: 1.7rem;
+  color: $primary-gray;
+}
+.daybook-form-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  font-family: "Poppins", "Roboto", "Open Sans" !important;
+}
+
+.daybook-form {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 8px;
+
+  .form-section {
+    margin-bottom: 1rem;
+    span {
+      font-size: 1.3rem;
+      margin: 3px;
+      color: $btn-red;
+    }
+    h5 {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      color: $mid-gray;
+    }
+
+    .form-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+
+      .form-group {
+        flex: 1;
+        min-width: calc(33.33% - 1rem);
+        margin-bottom: 0;
+        text-align: center;
+        .branch-group {
+          @include flex(between);
+        }
+
+        .type-options {
+          display: flex;
+          gap: 4rem;
+          width: 20%;
+          padding-bottom: 0.4rem;
+          padding-top: 0.8rem;
+        }
+
+        .type-option {
+          display: flex;
+          margin-left: 0.5rem;
+          gap: 0.5rem;
+        }
+
+        &-error {
+          font-size: 1.3rem;
+          color: $delete-color;
+        }
+        label {
+          display: block;
+          margin-bottom: 0.5rem;
+          font-weight: 400;
+          font-family: "Poppins", "Roboto", "Open Sans" !important;
+        }
+
+        input,
+        textarea,
+        select {
+          width: 100%;
+          padding: 1rem;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          font-size: 1.3rem;
+          transition: border-color 0.3s ease;
+          font-family: "Poppins", "Roboto", "Open Sans" !important;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+          border-color: $target;
+          outline: none;
+          font-family: "Poppins", "Roboto", "Open Sans" !important;
+        }
+
+        textarea {
+          height: 40px;
+          resize: vertical;
+          font-family: "Poppins", "Roboto", "Open Sans" !important;
+        }
+      }
+    }
+  }
+  .form-btn-group {
+    @include flex(center);
+    gap: 1rem;
+    font-family: "Poppins", "Roboto", "Open Sans" !important;
+  }
+  .form-submit {
+    padding: 1.1rem 2rem;
+    width: 12rem;
+  }
+  .selected {
+    background-color: $selection-color !important;
+  }
+}
+// .type-option-container {
+//   display: none;
+//   opacity: 0;
+// }
+.branch-label {
+  font-weight: 500;
+  @include flex(center);
+  margin: 1rem;
+  font-family: "Poppins", "Roboto", "Open Sans" !important;
+}
+.grid-container {
+  display: grid;
+  gap: 0 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  font-family: "Poppins", "Roboto", "Open Sans" !important;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-item {
+    label {
+      display: block;
+    }
+    .amount-field {
+      display: flex;
+      flex-direction: column;
+      input {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1.3rem;
+        transition: border-color 0.3s ease;
+      }
+
+      input:focus {
+        border-color: $target;
+        outline: none;
+      }
+      span {
+        font-size: 1.3rem;
+        margin-top: 3px;
+      }
+    }
+  }
+}
+
+.daybook-truncated {
+  display: inline-block;
+  position: relative;
+  max-width: 30rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.daybook-tooltip {
+  visibility: hidden;
+  background-color: $lightest-gray;
+  color: $dark-gray;
+  text-align: center;
+  padding: 2px;
+  border-radius: 4px;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s;
+  bottom: 100%;
+  left: 50%;
+  padding: 1rem 2rem;
+
+  transform: translateX(-50%);
+  white-space: normal;
+  box-sizing: border-box;
+}
+
+.daybook-truncated:hover .daybook-tooltip {
+  visibility: visible;
+  opacity: 1;
+  z-index: 2;
+}
+
+.daybook-particulars,
+.daybook-date-time,
+.daybook-amount,
+.daybook-remark,
+.daybook-debited,
+.daybook-credited,
+.daybook-branch {
+  padding: 5px;
+}

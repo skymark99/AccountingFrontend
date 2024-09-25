@@ -1,0 +1,91 @@
+.sideBar {
+  width: 16%;
+  height: 100vh;
+  min-width: 10rem;
+  padding: $side-bar-padding;
+  background-color: $backgroud-color;
+  display: flex;
+  flex-direction: column;
+  @include respond(smallPhone) {
+    display: none;
+  }
+  @include respond(tablets) {
+    display: none;
+  }
+  @include respond(bigTablets) {
+    display: none;
+  }
+
+  &__nav {
+    flex: 1;
+    margin-top: $side-bar-contents-margin;
+
+    & li {
+      cursor: pointer;
+      padding: $li-padding;
+      border-radius: $border-radius;
+      color: $primary-gray;
+      vertical-align: bottom;
+      font-size: 14px;
+      display: flex;
+      gap: 1.5rem;
+      text-wrap: nowrap;
+      align-items: center;
+    }
+  }
+
+  &__user {
+    height: 11.8rem;
+    display: flex;
+    justify-content: center;
+
+    .profile-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border-radius: 5px;
+
+      &__image {
+        width: 80px;
+        height: 80px;
+        border-radius: 3px;
+        margin-right: 20px;
+        margin: 0 auto;
+      }
+
+      &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      &__align {
+        display: flex;
+        justify-content: flex-start; /* Align items to the start */
+        align-items: center; /* Vertically center the items */
+        gap: 1rem; /* Gap between the name and the icon */
+      }
+
+      &__name {
+        font-size: 1em;
+        font-weight: 500;
+      }
+
+      &__icon {
+        width: 24px;
+        height: 14px;
+        border: 1px solid #000;
+        border-radius: 2px;
+        padding: 2px;
+      }
+
+      &__email {
+        font-size: 1.2rem;
+        color: #666;
+        text-align: center;
+      }
+    }
+  }
+}

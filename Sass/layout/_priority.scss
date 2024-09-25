@@ -1,0 +1,47 @@
+.branch-wise-filter {
+  @include flex(center);
+  justify-content: right !important;
+}
+.row_line {
+  text-wrap: nowrap !important;
+}
+
+.balance-sheet-table-head:first-child th:first-child {
+  width: 27%;
+}
+
+.balance-sheet-data-items h4 {
+  &:not(:first) {
+    text-align: center;
+  }
+  line-height: 2rem !important;
+}
+.header-catagory-selectors {
+  @include flex(center);
+  gap: 1rem;
+}
+.header-catagory-selectors .catagory-selector {
+  height: 100%;
+  width: 15rem;
+}
+.header-catagory-selectors select {
+  border: 1px solid $primary-color;
+  font-size: 1.4rem;
+  font-weight: 500;
+
+  color: $primary-color;
+}
+.header-catagory-selectors .styled-select {
+  height: 100%;
+  padding: 0;
+}
+
+.daybook-log {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Adjust as needed */
+}
+
+.form-submit-btns {
+  margin-top: 5rem;
+}

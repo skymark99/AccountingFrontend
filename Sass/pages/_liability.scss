@@ -1,0 +1,154 @@
+.liability {
+  @include respond(smallPhone) {
+    display: none;
+  }
+  @include respond(tablets, bigTablets) {
+    padding: 3rem;
+  }
+}
+
+.liability-header {
+  display: flex;
+  width: 98%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  @include respond(tablets, bigTablets) {
+    width: 100%;
+  }
+}
+
+/*apply date selector and filter  */
+.filter-section {
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+}
+
+/* Liability body  */
+// Define a mixin for the shared styles
+@mixin shared-body-styles {
+  .entry_card_group {
+    grid-row: 2;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .right_card_group {
+    display: none;
+
+    @include respond(desktop) {
+      grid-row: 2;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      position: relative;
+      height: 87%;
+
+      .items-selected {
+        display: flex;
+        flex-direction: column;
+
+        @include respond(tablets, bigTablets) {
+          margin-bottom: 0rem;
+          display: none;
+        }
+      }
+
+      .items-selected span {
+        font-weight: 400;
+        font-size: 1.2rem;
+        width: 10rem;
+        height: 2rem;
+      }
+    }
+  }
+
+  .child-btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .btn-design {
+    background-color: $primary-color;
+    color: $white;
+    width: 16rem;
+    text-align: center;
+  }
+
+  .btn2-design {
+    background-color: $primary-color;
+    color: $white;
+  }
+}
+
+// Apply the mixin to both .liability_body and .branchwise_body
+.liability_body {
+  margin-left: 5rem;
+  display: grid;
+  grid-template-columns: 1fr 25rem;
+  grid-template-rows: 8rem 1fr;
+
+  @include respond(tablets, bigTablets) {
+    margin-left: 0rem;
+    grid-template-columns: 1fr;
+  }
+
+  @include shared-body-styles;
+}
+
+.branchwise_body {
+  margin-left: 5rem;
+  display: grid;
+  grid-template-columns: 1fr 0rem;
+  grid-template-rows: 8rem 1fr;
+
+  @include respond(tablets, bigTablets) {
+    margin-left: 0rem;
+    grid-template-columns: 1fr;
+  }
+
+  @include shared-body-styles;
+}
+
+.horizontal-actions {
+  display: none;
+
+  @include respond(tablets, bigTablets) {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.entry_card_data {
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  // height: 47.2rem;
+  height: 48.3rem;
+  margin-right: 2rem;
+  @include respond(tablets, bigTablets) {
+    height: 52rem;
+  }
+}
+
+.liability_footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2.5rem;
+  width: 100%;
+  @include respond(tablets, bigTablets) {
+    width: 100%;
+  }
+}
