@@ -16,6 +16,7 @@ import {
   fetchBranchTransaction,
   fetchBranchYearlyPnl,
 } from "../../../../Global-Variables/features/BranchWisePnlSlice/branchWIsePnlSlice";
+import { fetchBankDetails } from "../../../../Global-Variables/fetch/details";
 
 const DaybookEditForm = () => {
   const { selected } = useSelector((state) => state.daybook);
@@ -131,6 +132,7 @@ const DaybookEditForm = () => {
       dispatch(fetchBranchTransaction());
       dispatch(fetchBranchChart());
       dispatch(fetchBranchYearlyPnl());
+      dispatch(fetchBankDetails());
 
       toast.success("Successfully", {
         duration: 3000,
@@ -261,7 +263,7 @@ const DaybookEditForm = () => {
                 <option value="HDFC">HDFC</option>
                 <option value="RAK">RAK</option>
                 <option value="ICICI">ICICI</option>
-                <option value="RBI">RBI</option>
+                <option value="RBI">RBL</option>
                 <option value="CASH">CASH</option>
               </select>
               {errors.bank && (

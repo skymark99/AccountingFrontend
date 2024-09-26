@@ -19,6 +19,7 @@ import {
   fetchBranchTransaction,
   fetchBranchYearlyPnl,
 } from "../../../../Global-Variables/features/BranchWisePnlSlice/branchWIsePnlSlice";
+import { fetchBankDetails } from "../../../../Global-Variables/fetch/details";
 
 const DaybookForm = () => {
   const dispatch = useDispatch();
@@ -130,6 +131,7 @@ const DaybookForm = () => {
       dispatch(fetchBranchTransaction());
       dispatch(fetchBranchChart());
       dispatch(fetchBranchYearlyPnl());
+      dispatch(fetchBankDetails());
 
       setSelectedBranches([]);
       resetDayBook(dispatch);
