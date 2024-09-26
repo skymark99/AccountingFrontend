@@ -138,6 +138,7 @@
   // height: 47.2rem;
   height: 48.3rem;
   margin-right: 2rem;
+  position: relative;
   @include respond(tablets, bigTablets) {
     height: 52rem;
   }

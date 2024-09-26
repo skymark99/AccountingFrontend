@@ -9,6 +9,8 @@ import {
   getCalcBudget,
   refreshBudgetPlanner,
 } from "../../../Global-Variables/features/BudgetPlannerSlice/budgetPlannerSlice";
+import BudgetPlannerSelector from "./BudgetPlannerSelector";
+import PrimaryBlueBtn from "../../../Components/Buttons/PrimaryBlueBtn";
 
 function BudgetPlannerHeaderRight({
   editingIndex,
@@ -20,6 +22,7 @@ function BudgetPlannerHeaderRight({
   updatationData,
   onSetCurrentTotal,
   currentTotal,
+  isEditing,
 }) {
   const [open, setOpen] = useState(false);
   const showModal = () => setOpen(true);
@@ -44,6 +47,7 @@ function BudgetPlannerHeaderRight({
   return (
     <>
       <div className="bp-sub-btn-container">
+        <BudgetPlannerSelector disabled={isEditing} />
         {openBtn && (
           <>
             <button onClick={handleDiscard} className="btn discard-btn">
@@ -59,7 +63,7 @@ function BudgetPlannerHeaderRight({
             <select
               className="bp-select"
               value={currentTotal}
-              onChange={(e) => onSetCurrentTotal(e.target.value)}
+              onChange={onSetCurrentTotal}
             >
               <option value="One month">One month</option>
               <option value="Three month">Three month</option>
@@ -68,11 +72,7 @@ function BudgetPlannerHeaderRight({
             <IoIosArrowDown className="bp-select-icon" />
           </div>
         </div>
-        {/* 
-        <button className="bp-btn">Calculate</button> */}
-        <button onClick={showModal} className="bp-btn bp-btn-property">
-          New Property
-        </button>
+        <PrimaryBlueBtn onClick={showModal}>New Property</PrimaryBlueBtn>
       </div>
       <Modal open={open} onCancel={handleCancel} footer={null}>
         <h4 className="form-head">Budget Planner</h4>

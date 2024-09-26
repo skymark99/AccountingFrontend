@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import BudegetPlannerRow from "./BudegetPlannerRow";
 import Loader from "../../../Components/Loader/Loader";
 import { NoData } from "../../../assets/images";
+import PrimaryBlueBtn from "../../../Components/Buttons/PrimaryBlueBtn";
 
 const BudgetPlannerHeader = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -19,16 +20,23 @@ const BudgetPlannerHeader = () => {
   const [currentEventNames, setCurrentEventNames] = useState([]);
   const [currentTotal, setCurrentTotal] = useState("One Month");
 
+  const [total, setTotal] = useState(0);
+
   const updatationData = useRef({});
 
   useEffect(() => {
     if (branchData.length > 0) {
       const newAmounts = branchData.map((item) => item.amount);
       const newEventNames = branchData.map((item) => item.name);
+      setTotal(newAmounts.reduce((acc, curr) => acc + curr, 0));
       setAmounts(newAmounts);
       setEventNames(newEventNames);
     }
   }, [branchData]);
+
+  const handleTotalChange = (e) => {
+    setCurrentTotal(e.target.value);
+  };
 
   const handleAmountChange = (index, e) => {
     const newAmounts = [...amounts];
@@ -70,8 +78,19 @@ const BudgetPlannerHeader = () => {
   return (
     <div className="bp-table-card">
       <div className="bp-btn-container">
-        <BudgetPlannerSelector disabled={isEditing} />
+        <div>
+          <PrimaryBlueBtn
+            style={{
+              fontSize: "1.6rem",
+              fontWeight: "600",
+              padding: "1rem 3rem",
+            }}
+          >
+            {total}
+          </PrimaryBlueBtn>
+        </div>
         <BudgetPlannerHeaderRight
+          isEditing={isEditing}
           amount={amounts[editingIndex]}
           eventName={eventNames[editingIndex]}
           editingIndex={editingIndex}
@@ -81,8 +100,9 @@ const BudgetPlannerHeader = () => {
           handleDiscard={handleDiscard}
           selectedItem={data[editingIndex]}
           updatationData={updatationData.current}
-          onSetCurrentTotal={setCurrentTotal}
+          onSetCurrentTotal={handleTotalChange}
           currentTotal={currentTotal}
+          setTotal={setTotal}
         />
       </div>
 

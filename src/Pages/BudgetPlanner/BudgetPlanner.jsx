@@ -1,9 +1,7 @@
-import { useEffect } from "react";
 import Navbar from "../../Components/Navbar";
 import BudgetPlannerHeader from "./BudgetPlannerHeader/BudgetPlannerHeader";
-import { useDispatch, useSelector } from "react-redux";
-import { getCalcBudget } from "../../Global-Variables/features/BudgetPlannerSlice/budgetPlannerSlice";
 import { useBudgetPlanner } from "../../Hooks/useBudgetPlanner/useBudgetPlanner";
+import { useState } from "react";
 
 function BudgetPlanner() {
   useBudgetPlanner();
