@@ -46,7 +46,6 @@ export const fetchLiability = createAsyncThunk(
       const response = await axios.get(`${URL}${endpoint}`, {
         withCredentials: true,
       });
-      console.log(response.data.docs);
       return response.data.docs;
     } catch (error) {
       if (axios.isCancel(error)) {
