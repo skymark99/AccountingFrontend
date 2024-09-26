@@ -38,7 +38,7 @@ export const fetchTransactions = createAsyncThunk(
       const response = await axios.get(`${URL}${endpoint}`, {
         withCredentials: true,
       });
-
+      console.log(response.data.docs, "response.data.docs");
       return response.data.docs;
     } catch (error) {
       if (error.name === "CanceledError") {
@@ -61,6 +61,7 @@ const initialState = {
   temp: 1,
   error: null,
   loading: false,
+  initialStatus: "",
 };
 
 // Transactions slice with reducers and extra reducers for async actions
@@ -113,6 +114,8 @@ const transactionSlice = createSlice({
       .addCase(fetchTransactions.fulfilled, (state, action) => {
         state.loading = false;
         state.transactions = action.payload;
+        console.log(action.payload, "action.payload");
+        state.initialStatus = "Success";
         state.length = action.payload.length;
       })
       .addCase(fetchTransactions.rejected, (state, action) => {

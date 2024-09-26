@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import DashBoardLeft from "./DashboardLeft/DashBoardLeft";
 import DashBoardRight from "./DashboardRight/DashBoardRight";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchDashboardData } from "../../Global-Variables/features/dashBoardSlice/dashBoardSlice";
 import Navbar from "../../Components/Navbar";
-import ErrorBoundary from "../../Utils/ErrorBoundary";
 
 const monthNames = [
   "January",
@@ -27,9 +26,14 @@ function Dashboard() {
 
   const dispatch = useDispatch();
 
+  const { initialStatus } = useSelector((state) => state.dashboard);
+
   useEffect(() => {
-    dispatch(fetchDashboardData());
-  }, [dispatch]);
+    if (initialStatus !== "Success") {
+      console.log("working");
+      dispatch(fetchDashboardData());
+    }
+  }, [dispatch, initialStatus]);
 
   return (
     <div className="body dashboard">

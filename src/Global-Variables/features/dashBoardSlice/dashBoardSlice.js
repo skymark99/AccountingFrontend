@@ -27,6 +27,7 @@ export const fetchDashboardData = createAsyncThunk(
 );
 
 const initialState = {
+  initialStatus: "",
   income: 0,
   expense: 0,
   profit: 0,
@@ -35,7 +36,7 @@ const initialState = {
   topPerformer: "",
   topPerformerProfit: 0,
   totalOutstanding: 0,
-  loading: true,
+  loading: false,
   error: null,
 };
 
@@ -110,6 +111,7 @@ const dashBoardSlice = createSlice({
         state.profit = data.profit;
         state.topPerformer = data.topPerformer;
         state.topPerformerProfit = data.topPerformerProfit;
+        state.initialStatus = action.payload.status;
       })
       .addCase(fetchDashboardData.rejected, (state, action) => {
         state.loading = false;

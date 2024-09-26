@@ -4,7 +4,6 @@ import { Toaster } from "react-hot-toast";
 import { useAuthLoader } from "./Hooks/Auth/useAuthLoader";
 import { useFetchCategories } from "./Hooks/Catagories/useFetchCatagories";
 import { useDispatch, useSelector } from "react-redux";
-import { Modal } from "antd";
 import ResetPasswordModal from "./Layout/ResetPasswordForm/ResetPasswordModal";
 import { setIsNewPassword } from "./Global-Variables/features/auth/authSlice";
 

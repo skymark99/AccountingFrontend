@@ -10,16 +10,14 @@ import { fetchBalanceSheet } from "../../Global-Variables/features/BalancesheetS
 import { TbPlayerTrackNext, TbPlayerTrackPrev } from "react-icons/tb";
 import { fetchTotal } from "../../Global-Variables/features/liabilitySlice/liabilitySlice";
 import ThertiaryBtn from "../../Components/Buttons/ThertiaryBtn";
+import { useBalanceSheet } from "../../Hooks/balanceSheetHook/useBalanceSheet";
 
 function BalanceSheet() {
   const [currentPage, setCurrentPage] = useState(0);
   const { data } = useSelector((state) => state.balanceSheet);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchBalanceSheet());
-    dispatch(fetchTotal());
-  }, [dispatch]);
+  useBalanceSheet();
 
   const handleNext = () => {
     setCurrentPage(6);

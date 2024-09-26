@@ -11,11 +11,14 @@ function CurrentBalance() {
   const { totalBalance, loading, error, percentageHike } = useSelector(
     (state) => state.bank
   );
+  const { initialStatus } = useSelector((state) => state.dashboard);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchBankDetails());
-  }, [dispatch, totalBalance]);
+    if (initialStatus !== "Success") {
+      dispatch(fetchBankDetails());
+    }
+  }, [dispatch, totalBalance, initialStatus]);
 
   return (
     <div className="balance-card">

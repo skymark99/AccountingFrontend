@@ -17,6 +17,7 @@ export function useTransactions() {
     selectedCatagory: category,
     selectedParticular: particular,
     query,
+    initialStatus,
   } = useSelector((state) => state.daybook);
 
   const prevPageRef = useRef(page);
@@ -28,6 +29,7 @@ export function useTransactions() {
   const preQueryRef = useRef(query);
 
   useEffect(() => {
+    if (initialStatus === "Success") return;
     // Fetch data on initial mount and when dependencies change
     if (
       prevPageRef.current !== page ||
@@ -60,6 +62,7 @@ export function useTransactions() {
     category,
     particular,
     query,
+    initialStatus,
   ]); // Depend on data length to trigger on initial mount
 
   return [loading, error, data];
