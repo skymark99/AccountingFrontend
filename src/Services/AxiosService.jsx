@@ -4,7 +4,6 @@ const URL = import.meta.env.VITE_URL;
 
 // Daybook
 export const create_daybook = async (formData) => {
-  console.log(formData, "formdate");
   return (
     await axios.post(`${URL}/v1/transaction`, formData, {
       withCredentials: true,

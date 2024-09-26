@@ -14,9 +14,7 @@ function CurrentBalance() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!totalBalance) {
-      dispatch(fetchBankDetails());
-    }
+    dispatch(fetchBankDetails());
   }, [dispatch, totalBalance]);
 
   return (

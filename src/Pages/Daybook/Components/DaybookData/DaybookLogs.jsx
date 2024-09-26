@@ -13,8 +13,6 @@ const DaybookLog = () => {
   const dispatch = useDispatch();
   const containerRef = useRef(null);
 
-  console.log(logs, "logs");
-
   useEffect(() => {
     if (user?._id) {
       dispatch(fetchLogs({ userId: user._id }));

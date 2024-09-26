@@ -33,7 +33,7 @@ function DashboardReminder() {
     if (reminders.length <= 0) {
       dispatch(fetchReminders("/v1/reminders"));
     }
-  }, [dispatch, reminders]);
+  }, [dispatch, reminders.length]);
 
   const dateFormatter = (dateStr) => {
     const date = new Date(dateStr);
