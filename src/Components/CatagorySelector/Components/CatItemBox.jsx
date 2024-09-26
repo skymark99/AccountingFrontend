@@ -28,7 +28,6 @@ function CatItemBox({ value, onClick, setStopDropdown, setCurValue, id }) {
 
     try {
       const response = await editCatagory(id, { name: localCurValue });
-      console.log(response, "response");
       setCurValue(response.envelop.data.name); // Set updated value after saving
       setPastValue(localCurValue); // Update the past value to the new saved value
       dispatch(fetchCatagory()); // Refetch the categories

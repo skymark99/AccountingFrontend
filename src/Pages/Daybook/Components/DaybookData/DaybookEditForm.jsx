@@ -173,8 +173,6 @@ const DaybookEditForm = () => {
     }
     const curPart = particularFinder(catagories, particular, catagory);
 
-    console.log(data.type, "type");
-
     // Constructing the final data object
     const formData = {
       purpose: data.purpose,

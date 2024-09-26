@@ -150,7 +150,6 @@ const liabilitySlice = createSlice({
           const { startDate: yesterday } = calculateDateRange(1);
           startDate = new Date(yesterday);
           endDate = new Date(yesterday);
-          console.log(startDate, endDate, "Yesterday");
           break;
         }
         case "Last 30 Days": {
