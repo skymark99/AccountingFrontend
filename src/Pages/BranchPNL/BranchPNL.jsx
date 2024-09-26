@@ -185,7 +185,7 @@ function BranchPNL() {
                 <GraphSkelton />
               ) : (
                 <>
-                  <span className="graph-head">Monthly PNL of Calicut</span>
+                  <span className="graph-head">Monthly PNL of {curBranch}</span>
                   <MonthlyPNLChart labels={labels} datasets={datasets} />;
                 </>
               )}
