@@ -200,6 +200,7 @@ const DaybookEditForm = () => {
       catagory: catagory,
       particular: curPart._id,
     };
+    console.log(formData, "formData");
     // Here you would typically send the formData to your backend using an API call.
     await handleCreateTransaction(formData);
   };
@@ -263,7 +264,7 @@ const DaybookEditForm = () => {
                 <option value="HDFC">HDFC</option>
                 <option value="RAK">RAK</option>
                 <option value="ICICI">ICICI</option>
-                <option value="RBI">RBL</option>
+                <option value="RBL">RBL</option>
                 <option value="CASH">CASH</option>
               </select>
               {errors.bank && (
