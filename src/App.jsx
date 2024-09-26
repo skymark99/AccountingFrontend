@@ -21,7 +21,6 @@ function App() {
     dispatch(setIsNewPassword(false));
   };
 
-  console.log(isNewPassword, "isNewPassword");
 
   return (
     <div className="container">

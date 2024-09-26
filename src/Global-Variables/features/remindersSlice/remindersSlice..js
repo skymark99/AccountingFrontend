@@ -39,8 +39,6 @@ export const fetchReminders = createAsyncThunk(
       const response = await axios.get(`${URL}${endpoint}`, {
         withCredentials: true,
       });
-      console.log(endpoint, "endpoint");
-      console.log(response.data.docs, "response");
       return response.data.docs;
     } catch (error) {
       if (axios.isCancel(error)) {
@@ -61,7 +59,7 @@ const initialState = {
   page: 1,
   currentPage: 1,
   startPage: 0,
-  loading: true,
+  loading: false,
   error: null,
   selectedDate: "All",
   dateOptions: ["All", "Today", "Yesterday", "Last 30 Days", "Last 60 Days"],

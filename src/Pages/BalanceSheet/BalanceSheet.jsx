@@ -14,7 +14,6 @@ import ThertiaryBtn from "../../Components/Buttons/ThertiaryBtn";
 function BalanceSheet() {
   const [currentPage, setCurrentPage] = useState(0);
   const { data } = useSelector((state) => state.balanceSheet);
-  console.log(data, "data");
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -82,7 +82,6 @@ const BranchPNL_Header = ({ width }) => {
   const handleQuery = (e) => {
     dispatch(setBranchQuery(e.target.value));
   };
-  console.log(query, "query");
   return (
     <>
       {/* scss styles used from liability & common */}

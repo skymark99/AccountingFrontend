@@ -79,8 +79,7 @@ export function addCurrentTimeToDate(inputDate) {
   date.setMinutes(currentTime.getMinutes());
   date.setSeconds(currentTime.getSeconds());
   date.setMilliseconds(currentTime.getMilliseconds());
-  console.log(date, "date");
-  console.log(date.toISOString(), "date.toISOString()");
+
   return date.toISOString(); // Return the date in ISO 8601 format
 }
 

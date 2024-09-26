@@ -81,7 +81,6 @@ const DaybookForm = () => {
     }
 
     const curPart = particularFinder(catagories, particular, catagory);
-    console.log(curPart);
 
     // Constructing the final data object
     const formData = {

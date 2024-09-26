@@ -19,8 +19,6 @@ function DeleteEvent({ id }) {
       toast.error("Error while deleting event");
     }
   };
-  console.log(id, "id");
-
   return (
     <Popconfirm
       title="Delete the plan"
