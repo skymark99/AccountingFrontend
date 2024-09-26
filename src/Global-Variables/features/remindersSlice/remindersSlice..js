@@ -39,8 +39,6 @@ export const fetchReminders = createAsyncThunk(
       const response = await axios.get(`${URL}${endpoint}`, {
         withCredentials: true,
       });
-      console.log(endpoint, "endpoint");
-      console.log(response.data.docs, "response");
       return response.data.docs;
     } catch (error) {
       if (axios.isCancel(error)) {
