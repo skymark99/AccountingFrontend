@@ -3,15 +3,14 @@ import Navbar from "../../Components/Navbar";
 import BudgetPlannerHeader from "./BudgetPlannerHeader/BudgetPlannerHeader";
 import { useDispatch, useSelector } from "react-redux";
 import { getCalcBudget } from "../../Global-Variables/features/BudgetPlannerSlice/budgetPlannerSlice";
-import ThertiaryBtn from "../../Components/Buttons/ThertiaryBtn";
 
 function BudgetPlanner() {
   const dispatch = useDispatch();
-  const { curSelectedBranch, data } = useSelector((state) => state.budget);
+  const { data } = useSelector((state) => state.budget);
 
   useEffect(() => {
     dispatch(getCalcBudget());
-  }, [dispatch, curSelectedBranch, data.length]);
+  }, [dispatch, data.length]);
 
   return (
     <div className="scroll-body budgetplanner">

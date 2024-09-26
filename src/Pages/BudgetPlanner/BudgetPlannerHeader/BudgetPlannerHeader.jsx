@@ -11,7 +11,7 @@ import { NoData } from "../../../assets/images";
 const BudgetPlannerHeader = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editingIndex, setEditingIndex] = useState(null);
-  const { data, loading } = useSelector((state) => state.budget);
+  const { data, loading, branchData } = useSelector((state) => state.budget);
   const { curSelectedBranch } = useSelector((state) => state.budget);
   const [amounts, setAmounts] = useState([]);
   const [eventNames, setEventNames] = useState([]);
@@ -22,13 +22,13 @@ const BudgetPlannerHeader = () => {
   const updatationData = useRef({});
 
   useEffect(() => {
-    if (data.length > 0) {
-      const newAmounts = data.map((item) => item.amount);
-      const newEventNames = data.map((item) => item.name);
+    if (branchData.length > 0) {
+      const newAmounts = branchData.map((item) => item.amount);
+      const newEventNames = branchData.map((item) => item.name);
       setAmounts(newAmounts);
       setEventNames(newEventNames);
     }
-  }, [data]);
+  }, [branchData]);
 
   const handleAmountChange = (index, e) => {
     const newAmounts = [...amounts];
@@ -109,7 +109,7 @@ const BudgetPlannerHeader = () => {
                   </td>
                 </tr>
               ) : (
-                data.map((item, index) => (
+                branchData.map((item, index) => (
                   <BudegetPlannerRow
                     key={item.id}
                     item={item}
