@@ -22,13 +22,11 @@ export const fetchLogs = createAsyncThunk(
   "user/logs",
   async ({ userId }, thunkAPI) => {
     try {
-      console.log(userId, "thunk");
       const response = await axios.get(
         `${URL}/v1/logs?user=${userId}&limit=500`,
         {},
         { withCredentials: true }
       );
-      console.log(response.data, "response");
       return response.data.docs;
     } catch (error) {
       console.log(error);
