@@ -12,6 +12,13 @@ import {
   today,
 } from "../../../../Services/dateFormatter";
 import particularFinder from "../../../../Services/helperFunctions";
+import { fetchBalanceSheet } from "../../../../Global-Variables/features/BalancesheetSlice/balanceSheetSlice";
+import { fetchTotal } from "../../../../Global-Variables/features/liabilitySlice/liabilitySlice";
+import {
+  fetchBranchChart,
+  fetchBranchTransaction,
+  fetchBranchYearlyPnl,
+} from "../../../../Global-Variables/features/BranchWisePnlSlice/branchWIsePnlSlice";
 
 const DaybookForm = () => {
   const dispatch = useDispatch();
@@ -119,6 +126,11 @@ const DaybookForm = () => {
         user._id
       );
       reset();
+      dispatch(fetchBalanceSheet());
+      dispatch(fetchBranchTransaction());
+      dispatch(fetchBranchChart());
+      dispatch(fetchBranchYearlyPnl());
+
       setSelectedBranches([]);
       resetDayBook(dispatch);
       toast.success("Transaction created successfully");

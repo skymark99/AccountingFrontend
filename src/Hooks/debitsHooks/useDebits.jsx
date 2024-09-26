@@ -37,7 +37,7 @@ export function useDebits() {
       selectedCatagoryRef.current !== selectedCatagory ||
       selectedParticularRef.current !== selectedParticular ||
       previousQueryRef.current !== query ||
-      data.length <= 0
+      data?.length <= 0
     ) {
       dispatch(fetchDebits());
       startDateRef.current = startDate;
@@ -51,7 +51,7 @@ export function useDebits() {
   }, [
     dispatch,
     page,
-    data.length,
+    data?.length,
     branch,
     startDate,
     endDate,

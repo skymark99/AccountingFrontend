@@ -16,7 +16,8 @@ export const fetchBalanceSheet = createAsyncThunk(
 
 const initialState = {
   data: [],
-  loading: true,
+  initialStatus: "",
+  loading: false,
   error: null,
 };
 
@@ -32,10 +33,12 @@ const dashBoardSlice = createSlice({
       })
       .addCase(fetchBalanceSheet.fulfilled, (state, action) => {
         state.loading = false;
+        state.initialStatus = "Success";
         state.data = action.payload.formattedResult;
       })
       .addCase(fetchBalanceSheet.rejected, (state, action) => {
         state.loading = false;
+        state.initialStatus = "Failed";
         state.error = action.error.message;
       });
   },

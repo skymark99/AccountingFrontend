@@ -36,7 +36,7 @@ export function useCredits() {
       selectedCatagoryRef.current !== catagory ||
       selectedParticularRef.current !== particular ||
       previousQueryRef.current !== query ||
-      data.length <= 0
+      data?.length <= 0
     ) {
       dispatch(fetchCredits());
       startDateRef.current = startDate;
@@ -50,7 +50,7 @@ export function useCredits() {
   }, [
     dispatch,
     page,
-    data.length,
+    data?.length,
     branch,
     startDate,
     endDate,

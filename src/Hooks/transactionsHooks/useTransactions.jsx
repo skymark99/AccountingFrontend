@@ -38,7 +38,7 @@ export function useTransactions() {
       prevEndDateRef.current !== endDate ||
       preCategoryRef.current !== category ||
       preParticularRef.current !== particular ||
-      !data.length || // Ensure fetch on initial mount when data is empty
+      !data?.length || // Ensure fetch on initial mount when data is empty
       preQueryRef.current !== query
     ) {
       dispatch(fetchTransactions());
@@ -58,7 +58,7 @@ export function useTransactions() {
     branch,
     startDate,
     endDate,
-    data.length,
+    data?.length,
     category,
     particular,
     query,

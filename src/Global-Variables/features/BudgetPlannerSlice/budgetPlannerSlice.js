@@ -48,7 +48,6 @@ const budgetPlannerSlice = createSlice({
       } else {
         state.branchData = state.data;
       }
-      console.log(state.branchData, "branchData redux");
     },
     refreshBudgetPlanner: (state) => {
       state.data = [];

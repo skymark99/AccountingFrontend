@@ -9,7 +9,10 @@ import {
   today,
 } from "../../../Services/dateFormatter";
 import Catagory from "../../../Components/CatagorySelector/Catagory";
-import { resetLiability } from "../../../Global-Variables/features/liabilitySlice/liabilitySlice";
+import {
+  fetchTotal,
+  resetLiability,
+} from "../../../Global-Variables/features/liabilitySlice/liabilitySlice";
 import particularFinder from "../../../Services/helperFunctions";
 
 const LiabilityForm = () => {
@@ -62,6 +65,7 @@ const LiabilityForm = () => {
         } branch for ${particular} with purpose of ${formData.purpose}`,
         user._id
       );
+      dispatch(fetchTotal());
     } catch (err) {
       // Extract the error message, defaulting to a generic one if necessary
       const errorMessage =

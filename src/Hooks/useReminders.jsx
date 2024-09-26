@@ -30,7 +30,7 @@ export const useReminders = () => {
   useEffect(() => {
     if (
       previousPageRef.current !== page ||
-      data.length === 0 ||
+      data?.length === 0 ||
       previousStatusRef.current !== status ||
       previousEndDateRef.current !== endDate ||
       previousStartDateRef.current !== startDate ||
@@ -53,7 +53,7 @@ export const useReminders = () => {
     status,
     endDate,
     startDate,
-    data.length,
+    data?.length,
     selectedCatagory,
     selectedParticular,
     query,

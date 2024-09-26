@@ -5,7 +5,10 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { edit_liability } from "../../../Services/AxiosService";
 import Catagory from "../../../Components/CatagorySelector/Catagory";
-import { resetLiability } from "../../../Global-Variables/features/liabilitySlice/liabilitySlice";
+import {
+  fetchTotal,
+  resetLiability,
+} from "../../../Global-Variables/features/liabilitySlice/liabilitySlice";
 import useFormReset from "../../../Hooks/useFormReset";
 import { addCurrentTimeToDate } from "../../../Services/dateFormatter";
 
@@ -80,6 +83,7 @@ const LiabilityEditForm = () => {
           fontSize: "1.5rem",
         },
       });
+      dispatch(fetchTotal());
     } catch (err) {
       // Extract the error message, defaulting to a generic one if necessary
       const errorMessage =
@@ -253,12 +257,17 @@ const LiabilityEditForm = () => {
         </div>
 
         <div className="form-btn-group form-submit-btns">
-          <button type="reset" className="form-clear" onClick={() => reset()}>
+          <button
+            type="button"
+            className="btn delete-btn"
+            onClick={() => reset()}
+          >
             Clear
           </button>
           <button
             type="submit"
-            className={`form-submit ${loading ? "loading" : ""}`}
+            style={loading ? { opacity: 0.5 } : {}}
+            className={`btn primary-blue-btn form-submit`}
             disabled={loading}
           >
             {loading ? "Submitting..." : "Submit"}{" "}

@@ -8,20 +8,17 @@ import Navbar from "../../Components/Navbar";
 import GraphSkelton from "../../Components/GraphSkelton";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchBranchChart,
-  fetchBranchTransaction,
-  fetchBranchYearlyPnl,
   setBranchCurrentPage,
   setBranchWisePNLAllSelected,
   setBranchWisePNLSelectedItems,
 } from "../../Global-Variables/features/BranchWisePnlSlice/branchWIsePnlSlice";
+import { useBranchWise } from "../../Hooks/useBranchWise/useBranchwise";
 
 function BranchPNL() {
   const {
     transactionData,
     curBranch,
     startPage,
-    page,
     currentPage,
     dataset1,
     dataset2,
@@ -29,54 +26,11 @@ function BranchPNL() {
     chartLoading,
     branchwisePNLSelectedItems,
     branchWisePNLAllSelected,
-    selectedCategory,
-    selectedParticular,
-    branchWiseStartDate,
-    branchWiseEndDate,
-    query,
   } = useSelector((state) => state.branchwise);
 
   const dispatch = useDispatch();
 
-  const prevBranch = useRef(curBranch);
-  const prevPage = useRef(page);
-  const prevCategory = useRef(selectedCategory);
-  const prevParticular = useRef(selectedParticular);
-  const prevStartDate = useRef(branchWiseStartDate);
-  const prevEndDate = useRef(branchWiseEndDate);
-
-  useEffect(() => {
-    if (
-      prevBranch.current !== curBranch ||
-      prevPage.current !== page ||
-      prevCategory.current !== selectedCategory ||
-      prevParticular.current !== selectedParticular ||
-      prevStartDate.current !== branchWiseStartDate ||
-      prevEndDate.current !== branchWiseEndDate ||
-      transactionData.length <= 0 ||
-      query !== ""
-    ) {
-      dispatch(fetchBranchTransaction());
-      dispatch(fetchBranchChart());
-      dispatch(fetchBranchYearlyPnl());
-      prevBranch.current = curBranch;
-      prevPage.current = page;
-      prevCategory.current = selectedCategory;
-      prevParticular.current = selectedParticular;
-      prevStartDate.current = branchWiseStartDate;
-      prevEndDate.current = branchWiseEndDate;
-    }
-  }, [
-    dispatch,
-    curBranch,
-    page,
-    selectedCategory,
-    selectedParticular,
-    transactionData.length,
-    branchWiseStartDate,
-    branchWiseEndDate,
-    query,
-  ]);
+  useBranchWise();
 
   const labels = [
     "January",

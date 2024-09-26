@@ -10,6 +10,12 @@ import Catagory from "../../../../Components/CatagorySelector/Catagory";
 import particularFinder from "../../../../Services/helperFunctions";
 import useFormReset from "../../../../Hooks/useFormReset";
 import { addCurrentTimeToDate } from "../../../../Services/dateFormatter";
+import { fetchBalanceSheet } from "../../../../Global-Variables/features/BalancesheetSlice/balanceSheetSlice";
+import {
+  fetchBranchChart,
+  fetchBranchTransaction,
+  fetchBranchYearlyPnl,
+} from "../../../../Global-Variables/features/BranchWisePnlSlice/branchWIsePnlSlice";
 
 const DaybookEditForm = () => {
   const { selected } = useSelector((state) => state.daybook);
@@ -121,6 +127,10 @@ const DaybookEditForm = () => {
     try {
       await edit_daybook(values._id, formData);
       resetDayBook(dispatch);
+      dispatch(fetchBalanceSheet());
+      dispatch(fetchBranchTransaction());
+      dispatch(fetchBranchChart());
+      dispatch(fetchBranchYearlyPnl());
 
       toast.success("Successfully", {
         duration: 3000,

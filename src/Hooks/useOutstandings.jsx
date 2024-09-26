@@ -41,7 +41,7 @@ export function useOutStandings() {
       previousCategoryRef.current !== category ||
       previousParticularRef.current !== particular ||
       previousQueryRef.current !== query ||
-      data.length <= 0
+      data?.length <= 0
     ) {
       dispatch(fetchOutstandingData());
       previousPageRef.current = page;
@@ -60,7 +60,7 @@ export function useOutStandings() {
     endDate,
     category,
     particular,
-    data.length,
+    data?.length,
     query,
   ]);
 

@@ -9,6 +9,7 @@ import { resetOutStanding } from "../../../Global-Variables/features/liabilitySl
 import particularFinder from "../../../Services/helperFunctions";
 import useFormReset from "../../../Hooks/useFormReset";
 import { addCurrentTimeToDate } from "../../../Services/dateFormatter";
+import { fetchTotal } from "../../../Global-Variables/features/liabilitySlice/liabilitySlice";
 
 const OutstandingEditForm = () => {
   const { outstandingSelectedItems: selected } = useSelector(
@@ -75,6 +76,7 @@ const OutstandingEditForm = () => {
       //for both liability and outstanding , using same axios service
       await edit_liability(values._id, formData);
       dispatch(resetOutStanding());
+      dispatch(fetchTotal());
 
       reset();
       toast.success("New outstanding added✅", {

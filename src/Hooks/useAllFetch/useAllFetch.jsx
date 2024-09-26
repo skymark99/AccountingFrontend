@@ -8,6 +8,9 @@ import { useCredits } from "../creditsHooks/useCredits";
 import { useLiabilities } from "../useLiabilities";
 import { useOutStandings } from "../useOutstandings";
 import { useReminders } from "../useReminders";
+import { useBalanceSheet } from "../balanceSheetHook/useBalanceSheet";
+import { useBranchWise } from "../useBranchWise/useBranchwise";
+import { useBudgetPlanner } from "../useBudgetPlanner/useBudgetPlanner";
 
 export const useAllFetch = () => {
   const dispatch = useDispatch();
@@ -18,6 +21,9 @@ export const useAllFetch = () => {
   useLiabilities();
   useOutStandings();
   useReminders();
+  useBalanceSheet();
+  useBranchWise();
+  useBudgetPlanner();
 
   useEffect(() => {
     dispatch(fetchDashboardData());

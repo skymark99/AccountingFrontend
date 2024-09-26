@@ -31,7 +31,7 @@ export const useLiabilities = () => {
   useEffect(() => {
     if (
       previousPageRef.current !== page ||
-      data.length === 0 ||
+      data?.length === 0 ||
       previousStatusRef.current !== status ||
       previousQueryRef.current !== query ||
       previousEndDateRef.current !== endDate ||
@@ -54,7 +54,7 @@ export const useLiabilities = () => {
     status,
     endDate,
     startDate,
-    data.length,
+    data?.length,
     selectedCatagory,
     selectedParticular,
     query,

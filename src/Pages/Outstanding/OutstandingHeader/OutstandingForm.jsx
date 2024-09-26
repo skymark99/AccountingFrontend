@@ -11,6 +11,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { resetOutStanding } from "../../../Global-Variables/features/liabilitySlice/outstandingSlice";
 import particularFinder from "../../../Services/helperFunctions";
+import { fetchTotal } from "../../../Global-Variables/features/liabilitySlice/liabilitySlice";
 
 const OutstandingForm = () => {
   const [loading, setLoading] = useState(false);
@@ -54,6 +55,7 @@ const OutstandingForm = () => {
         user._id
       );
       dispatch(resetOutStanding());
+      dispatch(fetchTotal());
 
       reset();
       toast.success("New outstanding added✅", {
