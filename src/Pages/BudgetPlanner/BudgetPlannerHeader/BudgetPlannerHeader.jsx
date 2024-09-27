@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import BudgetPlannerSelector from "../Components/BudgetPlannerSelector";
 import BudgetPlannerHeaderRight from "../Components/BudgetPlannerHeaderRight";
 import TableHeaderTread from "../Components/TableHeaderTread";
 import { useSelector } from "react-redux";
@@ -18,10 +17,10 @@ const BudgetPlannerHeader = () => {
   const [eventNames, setEventNames] = useState([]);
   const [currentAmounts, setCurrentAmounts] = useState([]);
   const [currentEventNames, setCurrentEventNames] = useState([]);
-  const [currentTotal, setCurrentTotal] = useState("One Month");
+
+  const [currentTotal, setCurrentTotal] = useState("One month");
 
   const [total, setTotal] = useState(0);
-
   const updatationData = useRef({});
 
   useEffect(() => {
@@ -31,12 +30,25 @@ const BudgetPlannerHeader = () => {
       setTotal(newAmounts.reduce((acc, curr) => acc + curr, 0));
       setAmounts(newAmounts);
       setEventNames(newEventNames);
+    } else {
+      setTotal(0);
     }
   }, [branchData]);
 
   const handleTotalChange = (e) => {
     setCurrentTotal(e.target.value);
   };
+
+  useEffect(() => {
+    const total = branchData.reduce((acc, val) => acc + val.amount, 0);
+    if (currentTotal === "One month") {
+      setTotal(total * 1);
+    } else if (currentTotal === "Three month") {
+      setTotal(total * 3);
+    } else if (currentTotal === "Six month") {
+      setTotal(total * 6);
+    }
+  }, [currentTotal, branchData]);
 
   const handleAmountChange = (index, e) => {
     const newAmounts = [...amounts];
@@ -86,7 +98,7 @@ const BudgetPlannerHeader = () => {
               padding: "1rem 3rem",
             }}
           >
-            {total}
+            ₹ {total}
           </PrimaryBlueBtn>
         </div>
         <BudgetPlannerHeaderRight
