@@ -17,6 +17,7 @@ import {
   fetchBranchYearlyPnl,
 } from "../../../../Global-Variables/features/BranchWisePnlSlice/branchWIsePnlSlice";
 import { fetchBankDetails } from "../../../../Global-Variables/fetch/details";
+import { fetchDashboardData } from "../../../../Global-Variables/features/dashBoardSlice/dashBoardSlice";
 
 const DaybookEditForm = () => {
   const { selected } = useSelector((state) => state.daybook);
@@ -129,6 +130,7 @@ const DaybookEditForm = () => {
       await edit_daybook(values._id, formData);
       resetDayBook(dispatch);
       dispatch(fetchBalanceSheet());
+      dispatch(fetchDashboardData());
       dispatch(fetchBranchTransaction());
       dispatch(fetchBranchChart());
       dispatch(fetchBranchYearlyPnl());

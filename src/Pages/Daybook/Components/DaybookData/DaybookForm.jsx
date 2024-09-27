@@ -20,6 +20,7 @@ import {
   fetchBranchYearlyPnl,
 } from "../../../../Global-Variables/features/BranchWisePnlSlice/branchWIsePnlSlice";
 import { fetchBankDetails } from "../../../../Global-Variables/fetch/details";
+import { fetchDashboardData } from "../../../../Global-Variables/features/dashBoardSlice/dashBoardSlice";
 
 const DaybookForm = () => {
   const dispatch = useDispatch();
@@ -129,6 +130,7 @@ const DaybookForm = () => {
       reset();
       dispatch(fetchBalanceSheet());
       dispatch(fetchBranchTransaction());
+      dispatch(fetchDashboardData());
       dispatch(fetchBranchChart());
       dispatch(fetchBranchYearlyPnl());
       dispatch(fetchBankDetails());
