@@ -55,6 +55,7 @@ const authSlice = createSlice({
     },
     setUser(state, action) {
       state.user = action.payload;
+      console.log(state.user, "user");
     },
     setIsNewPassword(state, action) {
       state.isNewPassword = action.payload;

@@ -21,10 +21,11 @@ import { useKey } from "../../../Hooks/Gen/useKey";
 import SettinsButton from "../../../Components/Buttons/Download/SettinsButton";
 
 const OutstandingHeader = ({ width }) => {
-  const Status = ["All Status", "Paid", "Unpaid", "Postponed"];
+  const Status = ["All Status", "Paid", "Unpaid", "Postponed", "Pending"];
   const {
     selectedDate,
     status,
+    statusOptions,
     outStandingStartDate,
     outStandingEndDate,
     dateOptions,
@@ -94,7 +95,7 @@ const OutstandingHeader = ({ width }) => {
           <div className="header-catagory-selectors">
             <Selector
               style={{ width: "12rem" }}
-              options={Status}
+              options={statusOptions}
               buttonText={status}
               setter={setOutStandingStatus}
               resetter={resetOutStanding}

@@ -63,7 +63,7 @@ function Catagory({
       return;
     }
     try {
-      setIsLoading(true); // Start loading
+      setIsLoading(true);
       setCurValue(curEditValue);
       const response = await addCatagory({ name: curEditValue });
       dispatch(resetCatagory);
@@ -80,7 +80,7 @@ function Catagory({
       setIsLoading(false); // Stop loading
     }
   };
-
+  console.log(curEditValue, "Cur Edit value");
   const handleDiscard = (e) => {
     e.stopPropagation();
     setCurEditValue("");

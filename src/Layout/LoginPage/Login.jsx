@@ -9,15 +9,6 @@ import { useSelector } from "react-redux";
 function Login() {
   useAllFetch();
 
-  // const { income, expense, profit, initialStatus } = useSelector(
-  //   (state) => state.dashboard
-  // );
-  const { transactions, initialStatus } = useSelector(
-    (state) => state.transactions
-  );
-  console.log(transactions, "transaction");
-  console.log(initialStatus, "initialStatus");
-
   return (
     <div className="app-container">
       <Toaster />

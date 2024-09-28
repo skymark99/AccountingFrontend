@@ -17,6 +17,7 @@ const OutstandingForm = () => {
   const [loading, setLoading] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const [catagory, setCatagory] = useState("");
+  const { statusOptions } = useSelector((state) => state.outstanding);
   const [particular, setParticular] = useState("");
   const { catagories } = useSelector((state) => state.catagories);
 
@@ -208,6 +209,7 @@ const OutstandingForm = () => {
                 <option value="Paid">Paid</option>
                 <option value="Unpaid">Unpaid</option>
                 <option value="Postponed">Postponed</option>
+                <option value="Pending">Pending</option>
               </select>
               {errors.status && (
                 <span className="form-group-error">
