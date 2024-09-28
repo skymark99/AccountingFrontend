@@ -1768,7 +1768,6 @@ ul {
   }
 }
 .bp-table-card table {
-  border-collapse: collapse;
   width: 100%;
 }
 .bp-table-card th {
@@ -2031,18 +2030,6 @@ ul {
 .bp-table-card td:not(:first-child):not(:last-child) {
   width: 20%;
 }
-.bp-table-card td:nth-child(5) {
-  padding-left: 5rem;
-  width: 19% !important;
-}
-.bp-table-card td:nth-child(4) {
-  padding-left: 5rem;
-  width: 22% !important;
-}
-.bp-table-card td:nth-child(5),
-.bp-table-card th:nth-child(5) {
-  text-align: center !important;
-}
 .bp-table-card .delete-action {
   text-align: center;
 }
@@ -2144,6 +2131,53 @@ ul {
 .total-planner-budget-title {
   font-weight: 700;
   color: rgb(129, 129, 129);
+}
+
+.budgetplanner-content-row td {
+  font-size: 1.5rem;
+}
+
+.budget-properties {
+  width: 38% !important;
+}
+
+.budget-Branch {
+  width: 10% !important;
+}
+
+.budget-td-branch {
+  width: 10% !important;
+}
+
+.budget-Amount {
+  text-align: center !important;
+}
+
+.budget-td-amount {
+  text-align: center !important;
+}
+
+.budget-Change {
+  width: 13% !important;
+}
+
+.budget-td-change {
+  width: 13% !important;
+}
+
+.budget-td-total {
+  text-align: center !important;
+  width: 20% !important;
+}
+
+.budget-Total {
+  text-align: center !important;
+  width: 20% !important;
+}
+
+.budget-Actions {
+  text-align: center !important;
+  padding-right: 2rem !important;
 }
 
 @media only screen and (max-width: 575.98px) {
