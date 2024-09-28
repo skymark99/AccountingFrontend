@@ -6,6 +6,8 @@ import {
   refreshBudgetPlanner,
 } from "../../../Global-Variables/features/BudgetPlannerSlice/budgetPlannerSlice";
 import { useDispatch } from "react-redux";
+import { getInitialTime } from "../../../Components/Coundown/countdownActions";
+import { setTime } from "../../../Global-Variables/features/auth/authSlice";
 
 const branches = [
   "Kozhikode",
@@ -51,6 +53,7 @@ const NewProperty = () => {
         toast.error(error.response.data.message);
       } finally {
         setLoading(false);
+        dispatch(setTime(getInitialTime()));
       }
     } else {
       toast.error("Please fill in all fields.", {

@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetOutStanding } from "../../../Global-Variables/features/liabilitySlice/outstandingSlice";
 import particularFinder from "../../../Services/helperFunctions";
 import { fetchTotal } from "../../../Global-Variables/features/liabilitySlice/liabilitySlice";
+import { setTime } from "../../../Global-Variables/features/auth/authSlice";
+import { getInitialTime } from "../../../Components/Coundown/countdownActions";
 
 const OutstandingForm = () => {
   const [loading, setLoading] = useState(false);
@@ -89,6 +91,7 @@ const OutstandingForm = () => {
       });
     } finally {
       setLoading(false);
+      dispatch(setTime(getInitialTime()));
     }
   };
 

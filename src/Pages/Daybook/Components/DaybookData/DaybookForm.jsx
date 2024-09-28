@@ -21,6 +21,11 @@ import {
 } from "../../../../Global-Variables/features/BranchWisePnlSlice/branchWIsePnlSlice";
 import { fetchBankDetails } from "../../../../Global-Variables/fetch/details";
 import { fetchDashboardData } from "../../../../Global-Variables/features/dashBoardSlice/dashBoardSlice";
+import {
+  addTimer,
+  getInitialTime,
+} from "../../../../Components/Coundown/countdownActions";
+import { setTime } from "../../../../Global-Variables/features/auth/authSlice";
 
 const DaybookForm = () => {
   const dispatch = useDispatch();
@@ -134,7 +139,6 @@ const DaybookForm = () => {
       dispatch(fetchBranchChart());
       dispatch(fetchBranchYearlyPnl());
       dispatch(fetchBankDetails());
-
       setSelectedBranches([]);
       resetDayBook(dispatch);
       toast.success("Transaction created successfully");
@@ -159,6 +163,7 @@ const DaybookForm = () => {
       });
     } finally {
       setLoading(false);
+      dispatch(setTime(getInitialTime()));
     }
   };
 

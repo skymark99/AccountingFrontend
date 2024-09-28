@@ -6,6 +6,7 @@ import { useFetchCategories } from "./Hooks/Catagories/useFetchCatagories";
 import { useDispatch, useSelector } from "react-redux";
 import ResetPasswordModal from "./Layout/ResetPasswordForm/ResetPasswordModal";
 import { setIsNewPassword } from "./Global-Variables/features/auth/authSlice";
+import Countdown from "./Components/Coundown/Countdown";
 
 function App() {
   const loaderData = useLoaderData();
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <div className="container">
+      {isLoggedIn && <Countdown />}
       {isLoggedIn && (
         <ResetPasswordModal
           isNewPassword={isNewPassword}

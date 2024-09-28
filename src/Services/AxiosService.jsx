@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
 const URL = import.meta.env.VITE_URL;
 
 // Daybook

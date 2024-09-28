@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { getInitialTime } from "../../../Components/Coundown/countdownActions";
 
 const URL = import.meta.env.VITE_URL;
 
@@ -44,18 +45,22 @@ const initialState = {
   logs: [],
   logsLoading: false,
   logsError: null,
+  time: getInitialTime(),
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    setTime(state, action) {
+      state.time = action.payload;
+    },
+
     setIsLoggedIn(state, action) {
       state.isLoggedIn = action.payload;
     },
     setUser(state, action) {
       state.user = action.payload;
-      console.log(state.user, "user");
     },
     setIsNewPassword(state, action) {
       state.isNewPassword = action.payload;
@@ -93,6 +98,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { setIsLoggedIn, setUser, setIsNewPassword } = authSlice.actions;
+export const { setIsLoggedIn, setUser, setIsNewPassword, setTime } =
+  authSlice.actions;
 
 export default authSlice.reducer;

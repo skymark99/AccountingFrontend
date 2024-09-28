@@ -160,7 +160,7 @@ a {
 .scroll-body {
   flex: 1;
   height: 100%;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .arrow-down-btn,
@@ -4591,6 +4591,15 @@ ul {
 
 .setting-btn:hover .bar2::before {
   transform: translateX(-4px);
+}
+
+.time-display {
+  font-size: 1.6rem;
+  color: #333;
+  width: 5rem;
+  position: fixed;
+  top: 5rem;
+  right: 2%;
 }
 
 .branch-wise-filter {

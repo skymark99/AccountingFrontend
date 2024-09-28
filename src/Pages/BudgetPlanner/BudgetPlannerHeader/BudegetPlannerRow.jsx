@@ -40,7 +40,7 @@ const BudgetPlannerRow = ({
 
   return (
     <tr key={item.id}>
-      <td className="bp-td-tag">
+      <td>
         {isEditing && editingIndex === index ? (
           <input
             type="text"
@@ -56,7 +56,7 @@ const BudgetPlannerRow = ({
           </span>
         )}
       </td>
-      <td className="bp-td-branch">{item.branchName}</td>
+      <td>{item.branchName}</td>
       <td>
         {isEditing && editingIndex === index ? (
           <div className="amount-edit-container">
