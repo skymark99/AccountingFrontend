@@ -2518,6 +2518,17 @@ ul {
   }
 }
 
+.commition {
+  margin-right: 5rem;
+  margin-left: 5rem;
+  background-color: yellow;
+  height: 80vh;
+}
+.commition__header {
+  background-color: rgb(165, 17, 17);
+  height: 8rem;
+}
+
 .login-container {
   display: flex;
   align-items: center;

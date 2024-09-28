@@ -1,0 +1,11 @@
+.commition {
+  margin-right: $body-margin-2;
+  margin-left: $body-margin-2;
+  background-color: yellow;
+  height: 80vh;
+
+  &__header {
+    background-color: rgb(165, 17, 17);
+    height: 8rem;
+  }
+}

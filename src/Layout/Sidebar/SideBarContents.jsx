@@ -3,33 +3,17 @@ import HomeIcon, {
   BalanceSheetIcon,
   BranchPnlIcon,
   BudgetPlannerIcon,
+  CommitionIcon,
   DaybookIcon,
   LiabilityIcon,
-  LogoutIcon,
   OutStandingIcon,
   RemiderIcon,
 } from "../../Utils/icons/HomeIcon";
-import NotifyBtn from "../../Components/Buttons/NotifyBtn";
 import { Toaster } from "react-hot-toast";
-import { logout } from "../../Services/AxiosService";
-import toasting from "../../Utils/Toasting";
-import { useDispatch } from "react-redux";
-import { setIsLoggedIn } from "../../Global-Variables/features/auth/authSlice";
 
 function SideBarContents() {
   const iconSize = "20px";
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  // const handleLogout = async () => {
-  //   try {
-  //     toasting("error", "Logged Out");
-  //     await logout();
-  //     navigate("/sign-in");
-  //     dispatch(setIsLoggedIn(false));
-  //   } catch (e) {
-  //     toasting("error", "Logout failed");
-  //   }
-  // };
+
   return (
     <ul>
       <Toaster />
@@ -44,9 +28,6 @@ function SideBarContents() {
         <li>
           <DaybookIcon size={iconSize} className="nav-icons" />
           <span>Day Book</span>
-          {/* <NotifyBtn style={{ backgroundColor: "rgb(16, 182, 16)" }}>
-            83
-          </NotifyBtn> */}
         </li>
       </NavLink>
 
@@ -75,9 +56,6 @@ function SideBarContents() {
         <li>
           <RemiderIcon size={iconSize} className="nav-icons" />
           <span>Reminders</span>
-          {/* <NotifyBtn style={{ backgroundColor: "rgb(39, 1, 100)" }}>
-            83
-          </NotifyBtn> */}
         </li>
       </NavLink>
 
@@ -94,11 +72,12 @@ function SideBarContents() {
           <span>Budget Planner</span>
         </li>
       </NavLink>
-
-      {/* <li onClick={handleLogout}>
-        <LogoutIcon size={iconSize} className="nav-icons" />
-        <span>Logout</span>
-      </li> */}
+      <NavLink to="/commition">
+        <li>
+          <CommitionIcon size={iconSize} className="nav-icons" />
+          <span>Commition</span>
+        </li>
+      </NavLink>
     </ul>
   );
 }
