@@ -62,9 +62,9 @@ function DaybookDataItems({ transaction }) {
       />
       <div className="data-items particulars">
         <div className="tooltip-container">
-          <h4 className="particulars">{truncateText(particular?.name, 10)}</h4>
+          <h4 className="particulars">{truncateText(particular?.name, 15)}</h4>
           <span className="text">
-            <span className="particulars-sub">{purpose}</span>
+            <span className="particulars-sub">{truncateText(purpose, 15)}</span>
           </span>
           <div className="tooltip">
             <div>Particular: {particular?.name}</div>

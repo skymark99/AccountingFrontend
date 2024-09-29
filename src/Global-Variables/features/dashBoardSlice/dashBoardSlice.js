@@ -54,6 +54,7 @@ const dashBoardSlice = createSlice({
         state.loading = false;
 
         const stats = action.payload.stats;
+        state.initialStatus = "Success";
 
         if (!stats || stats.length === 0) {
           state.error = "No branch data available";

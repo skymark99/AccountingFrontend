@@ -61,7 +61,9 @@ function LIabilityTableItems({ item }) {
       />
       <div className="data-items particulars">
         <div className="tooltip-container">
-          <h4 className="particulars">{particular?.name || ""}</h4>
+          <h4 className="particulars">
+            {truncateText(particular?.name, 18) || ""}
+          </h4>
           <span className="text">
             <span className="particulars-sub">{truncateText(purpose, 25)}</span>
           </span>

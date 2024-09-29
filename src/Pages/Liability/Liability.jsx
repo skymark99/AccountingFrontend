@@ -19,11 +19,9 @@ import MaterialDatePicker from "../../Services/MaterialDatePicker";
 import formatDate from "../../Services/formatDate";
 import { today } from "../../Services/dateFormatter";
 import toast from "react-hot-toast";
-import {
-  downloadLiabilityReport,
-  downloadTransactionReport,
-} from "../../Services/downloadReports";
+import { downloadLiabilityReport } from "../../Services/downloadReports";
 import { dateFinder } from "../../Services/helperFunctions";
+import { useAllFetch } from "../../Hooks/useAllFetch/useAllFetch";
 
 function Liability() {
   const {
@@ -34,6 +32,8 @@ function Liability() {
     laibilitySelectedItems,
     liabilityAllSelected,
   } = useSelector((state) => state.liability);
+
+  useAllFetch();
 
   const dispatch = useDispatch();
 

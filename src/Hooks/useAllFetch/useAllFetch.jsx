@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchDashboardData } from "../../Global-Variables/features/dashBoardSlice/dashBoardSlice";
 import { fetchBankDetails } from "../../Global-Variables/fetch/details";
 import { useEffect } from "react";
@@ -14,6 +14,10 @@ import { useBudgetPlanner } from "../useBudgetPlanner/useBudgetPlanner";
 
 export const useAllFetch = () => {
   const dispatch = useDispatch();
+  const { initialStatus: dashboardStat } = useSelector(
+    (state) => state.dashboard
+  );
+  const { initialStatus: bankStat } = useSelector((state) => state.bank);
 
   useTransactions();
   useDebits();
@@ -26,7 +30,11 @@ export const useAllFetch = () => {
   useBudgetPlanner();
 
   useEffect(() => {
-    dispatch(fetchDashboardData());
-    dispatch(fetchBankDetails());
-  }, [dispatch]);
+    if (dashboardStat !== "Success") {
+      dispatch(fetchDashboardData());
+    }
+    if (bankStat !== "Success") {
+      dispatch(fetchBankDetails());
+    }
+  }, [dispatch, bankStat, dashboardStat]);
 };

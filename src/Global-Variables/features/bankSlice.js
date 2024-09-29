@@ -5,6 +5,7 @@ import { fetchBankDetails } from "../fetch/details"; // Assuming this is an asyn
 const balanceSlice = createSlice({
   name: "balance",
   initialState: {
+    initialStatus: "",
     banks: [],
     totalBalance: 0,
     percentageHike: 0,
@@ -24,6 +25,7 @@ const balanceSlice = createSlice({
         state.banks = banks;
         state.totalBalance = stats.totalBalance;
         state.percentageHike = stats.percentageHike;
+        state.initialStatus = "Success";
       })
       .addCase(fetchBankDetails.rejected, (state, action) => {
         state.loading = false;

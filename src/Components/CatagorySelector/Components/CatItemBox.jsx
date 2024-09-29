@@ -56,7 +56,7 @@ function CatItemBox({ value, onClick, setStopDropdown, setCurValue, id }) {
     <div className="cat-item-box" onClick={onClick}>
       <input
         className="cat-item-input"
-        value={truncateText(localCurValue, 23)}
+        value={truncateText(localCurValue, 25)}
         readOnly={!isEdit}
         style={isEdit ? { backgroundColor: "white" } : {}}
         onChange={handleChange}

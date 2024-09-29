@@ -4,6 +4,7 @@ import DashBoardRight from "./DashboardRight/DashBoardRight";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchDashboardData } from "../../Global-Variables/features/dashBoardSlice/dashBoardSlice";
 import Navbar from "../../Components/Navbar";
+import { useAllFetch } from "../../Hooks/useAllFetch/useAllFetch";
 
 const monthNames = [
   "January",
@@ -24,13 +25,13 @@ function Dashboard() {
   const month = new Date().getMonth();
   const currentMonth = monthNames[month];
 
-  const dispatch = useDispatch();
+  useAllFetch();
 
+  const dispatch = useDispatch();
   const { initialStatus } = useSelector((state) => state.dashboard);
 
   useEffect(() => {
     if (initialStatus !== "Success") {
-      console.log("working");
       dispatch(fetchDashboardData());
     }
   }, [dispatch, initialStatus]);

@@ -61,9 +61,9 @@ function ReminderTableItems({ item }) {
       />
       <div className="data-items particulars">
         <div className="tooltip-container">
-          <h4 className="particulars">{truncateText(particular?.name, 13)}</h4>
+          <h4 className="particulars">{truncateText(particular?.name, 18)}</h4>
           <span className="text">
-            <span className="particulars-sub">{purpose}</span>
+            <span className="particulars-sub">{truncateText(purpose, 18)}</span>
           </span>
           <div className="tooltip">
             <div>Purpose: {purpose}</div>
@@ -85,7 +85,7 @@ function ReminderTableItems({ item }) {
 
       <div className="data-items remark-container">
         <div className="tooltip-container">
-          <span className="text remark">{remark || ""}</span>
+          <span className="text remark">{truncateText(remark, 38) || ""}</span>
           <div className="tooltip">{remark}</div>
         </div>
       </div>
