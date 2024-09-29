@@ -12,6 +12,7 @@ import Login from "../Layout/LoginPage/Login";
 import ErrorPage from "../Layout/Error/ErrorPage";
 
 import axios from "axios";
+import Commition from "../Pages/UnivercityCommition/Commition";
 
 const URL = import.meta.env.VITE_URL;
 
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
       {
         path: "budget-planner",
         element: <BudgetPlanner />,
+      },
+      {
+        path: "commition",
+        element: <Commition />,
       },
     ],
   },

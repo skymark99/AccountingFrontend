@@ -11,6 +11,8 @@ import {
   addCurrentTimeToDate,
   combineDateWithCurrentTime,
 } from "../../../Services/dateFormatter";
+import { getInitialTime } from "../../../Components/Coundown/countdownActions";
+import { setTime } from "../../../Global-Variables/features/auth/authSlice";
 
 const RemindersForm = () => {
   const [loading, setLoading] = useState(false);
@@ -86,6 +88,7 @@ const RemindersForm = () => {
       });
     } finally {
       setLoading(false);
+      dispatch(setTime(getInitialTime()));
     }
   };
 

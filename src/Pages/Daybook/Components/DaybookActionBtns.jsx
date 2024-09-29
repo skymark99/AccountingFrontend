@@ -77,7 +77,9 @@ function DaybookActionBtns() {
           Log
         </SecondaryBtn>
       </div>
+
       <LogModal isLog={isLog} handleIsLog={handleIsLog} />
+
       <div className="daybook__catagory-selectors">
         <CatagorySelector
           selectedCat={selectedCatagory}

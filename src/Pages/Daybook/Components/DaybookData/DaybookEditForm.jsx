@@ -17,6 +17,12 @@ import {
   fetchBranchYearlyPnl,
 } from "../../../../Global-Variables/features/BranchWisePnlSlice/branchWIsePnlSlice";
 import { fetchBankDetails } from "../../../../Global-Variables/fetch/details";
+import { fetchDashboardData } from "../../../../Global-Variables/features/dashBoardSlice/dashBoardSlice";
+import {
+  addTimer,
+  getInitialTime,
+} from "../../../../Components/Coundown/countdownActions";
+import { setTime } from "../../../../Global-Variables/features/auth/authSlice";
 
 const DaybookEditForm = () => {
   const { selected } = useSelector((state) => state.daybook);
@@ -129,6 +135,7 @@ const DaybookEditForm = () => {
       await edit_daybook(values._id, formData);
       resetDayBook(dispatch);
       dispatch(fetchBalanceSheet());
+      dispatch(fetchDashboardData());
       dispatch(fetchBranchTransaction());
       dispatch(fetchBranchChart());
       dispatch(fetchBranchYearlyPnl());
@@ -163,6 +170,8 @@ const DaybookEditForm = () => {
       });
     } finally {
       setLoading(false);
+      addTimer();
+      dispatch(setTime(getInitialTime()));
     }
   };
 
@@ -200,8 +209,7 @@ const DaybookEditForm = () => {
       catagory: catagory,
       particular: curPart._id,
     };
-    console.log(formData, "formData");
-    // Here you would typically send the formData to your backend using an API call.
+
     await handleCreateTransaction(formData);
   };
 

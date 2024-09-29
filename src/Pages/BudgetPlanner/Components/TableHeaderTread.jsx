@@ -2,12 +2,12 @@ function TableHeaderTread() {
   return (
     <thead className="bp-head">
       <tr>
-        <th className="bp-th-tag">Properties</th>
-        <th>Branch</th>
-        <th>Amount</th>
-        <th>Change</th>
-        <th>Total</th>
-        <th>Actions</th>
+        <th className="budget-properties">Properties</th>
+        <th className="budget-Branch">Branch</th>
+        <th className="budget-Amount">Amount</th>
+        <th className="budget-Change">Change</th>
+        <th className="budget-Total">Total Amount</th>
+        <th className="budget-Actions">Actions</th>
       </tr>
     </thead>
   );

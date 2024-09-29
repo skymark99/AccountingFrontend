@@ -26,6 +26,7 @@ const OutstandingEditForm = () => {
   };
   const [selectedCat] = selectedCatFinder();
 
+  const { statusOptions } = useSelector((state) => state.outstanding);
   const [loading, setLoading] = useState(false);
   const [catagory, setCatagory] = useState("Select Catagory");
   const [particular, setParticular] = useState(
@@ -68,6 +69,7 @@ const OutstandingEditForm = () => {
     },
   });
   useFormReset(reset, values);
+  console.log(values?.status, "status");
 
   const handleCreateTransaction = async (formData) => {
     setLoading(true);
@@ -228,10 +230,11 @@ const OutstandingEditForm = () => {
                 id="status"
                 {...register("status", { required: "Select a status" })}
               >
-                <option value="">Select Status</option>
-                <option value="Paid">Paid</option>
-                <option value="Unpaid">Unpaid</option>
-                <option value="Postponed">Postponed</option>
+                {statusOptions.slice(1).map((val, i) => (
+                  <option key={i} value={val}>
+                    {val}
+                  </option>
+                ))}
               </select>
               {errors.status && (
                 <span className="form-group-error">

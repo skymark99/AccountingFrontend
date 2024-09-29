@@ -14,6 +14,8 @@ import {
   resetLiability,
 } from "../../../Global-Variables/features/liabilitySlice/liabilitySlice";
 import particularFinder from "../../../Services/helperFunctions";
+import { setTime } from "../../../Global-Variables/features/auth/authSlice";
+import { getInitialTime } from "../../../Components/Coundown/countdownActions";
 
 const LiabilityForm = () => {
   const [loading, setLoading] = useState(false);
@@ -87,6 +89,7 @@ const LiabilityForm = () => {
       });
     } finally {
       setLoading(false);
+      dispatch(setTime(getInitialTime()));
     }
   };
 

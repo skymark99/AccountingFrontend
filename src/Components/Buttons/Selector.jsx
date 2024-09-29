@@ -30,7 +30,7 @@ function Selector({
     <div className="catagory-selector" style={style}>
       <div className="custom-dropdown">
         <select value={selectedOption} onChange={handleSelectChange}>
-          {options.slice(1).map((option, index) => (
+          {options.map((option, index) => (
             <option key={index} value={option}>
               {option}
             </option>

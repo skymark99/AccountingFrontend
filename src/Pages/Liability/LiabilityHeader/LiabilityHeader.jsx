@@ -102,7 +102,7 @@ const LiabilityHeader = ({ width }) => {
             setSelectedParticular={setLiabSelectedParticular}
           />
         </div>
-        {/* <DayBookDateSelector onClick={handleCancel} /> */}
+
         <SettinsButton onClick={handleCancel} />
 
         <DateModal

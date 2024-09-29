@@ -3,8 +3,12 @@ import "./logoutButton.css";
 import toasting from "../../../Utils/Toasting";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../Services/AxiosService";
-import { setIsLoggedIn } from "../../../Global-Variables/features/auth/authSlice";
+import {
+  setIsLoggedIn,
+  setTime,
+} from "../../../Global-Variables/features/auth/authSlice";
 import { useState } from "react";
+import { getInitialTime } from "../../Coundown/countdownActions";
 
 function LogoutButton() {
   const navigate = useNavigate();
@@ -15,8 +19,9 @@ function LogoutButton() {
   const handleLogout = async () => {
     try {
       setLoading(true);
-      toasting("error", "Logged Out");
       await logout();
+      toasting("error", "Logged Out");
+      dispatch(setTime(getInitialTime()));
       navigate("/sign-in");
       dispatch(setIsLoggedIn(false));
     } catch (e) {

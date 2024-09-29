@@ -12,11 +12,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetOutStanding } from "../../../Global-Variables/features/liabilitySlice/outstandingSlice";
 import particularFinder from "../../../Services/helperFunctions";
 import { fetchTotal } from "../../../Global-Variables/features/liabilitySlice/liabilitySlice";
+import { setTime } from "../../../Global-Variables/features/auth/authSlice";
+import { getInitialTime } from "../../../Components/Coundown/countdownActions";
 
 const OutstandingForm = () => {
   const [loading, setLoading] = useState(false);
   const { user } = useSelector((state) => state.auth);
   const [catagory, setCatagory] = useState("");
+  const { statusOptions } = useSelector((state) => state.outstanding);
   const [particular, setParticular] = useState("");
   const { catagories } = useSelector((state) => state.catagories);
 
@@ -88,6 +91,7 @@ const OutstandingForm = () => {
       });
     } finally {
       setLoading(false);
+      dispatch(setTime(getInitialTime()));
     }
   };
 
@@ -208,6 +212,7 @@ const OutstandingForm = () => {
                 <option value="Paid">Paid</option>
                 <option value="Unpaid">Unpaid</option>
                 <option value="Postponed">Postponed</option>
+                <option value="Pending">Pending</option>
               </select>
               {errors.status && (
                 <span className="form-group-error">

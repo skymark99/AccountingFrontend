@@ -60,6 +60,7 @@ const initialState = {
   outStandingStartDate: formatDate(new Date(new Date().getFullYear(), 0, 1)),
   outStandingEndDate: today(),
   status: "All Status",
+  statusOptions: ["All Status", "Paid", "Unpaid", "Postponed", "Pending"],
   outstandingSelectedItems: [],
   outstatndingAllSelected: false,
   temp: 1,

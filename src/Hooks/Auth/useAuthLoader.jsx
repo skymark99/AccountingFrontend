@@ -23,4 +23,6 @@ export const useAuthLoader = (loaderData) => {
       toast.success("Login Successfull");
     }
   }, [loaderData, dispatch, navigate]);
+
+  useEffect(() => {}, []);
 };

@@ -39,8 +39,8 @@ const BudgetPlannerRow = ({
   }, [item.amount, currentTotal]);
 
   return (
-    <tr key={item.id}>
-      <td className="bp-td-tag">
+    <tr key={item.id} className="budgetplanner-content-row">
+      <td>
         {isEditing && editingIndex === index ? (
           <input
             type="text"
@@ -51,13 +51,16 @@ const BudgetPlannerRow = ({
             maxLength={20}
           />
         ) : (
-          <span onClick={() => handleEdit(index)}>
-            <TableIcons name={eventNames[index]} index={index} />
+          <span
+            className="budget-td-properties"
+            onClick={() => handleEdit(index)}
+          >
+            {eventNames[index]}
           </span>
         )}
       </td>
-      <td className="bp-td-branch">{item.branchName}</td>
-      <td>
+      <td className="budget-td-branch">{item.branchName}</td>
+      <td className="budget-td-amount">
         {isEditing && editingIndex === index ? (
           <div className="amount-edit-container">
             <input
@@ -73,15 +76,13 @@ const BudgetPlannerRow = ({
           <span onClick={() => handleEdit(index)}>{amounts[index]}</span>
         )}
       </td>
-      <td style={{ flex: "1" }}>
-        <span className="bp-change">
-          {item.percentageDifference.startsWith("-")
-            ? displayDownIcon()
-            : displayUpIcon()}
-          {item.percentageDifference}
-        </span>
+      <td className="budget-td-change">
+        {item.percentageDifference.startsWith("-")
+          ? displayDownIcon()
+          : displayUpIcon()}
+        {item.percentageDifference}
       </td>
-      <td className="budget-total">{formatAmount(totalAmount)}</td>
+      <td className="budget-td-total">{formatAmount(totalAmount)}</td>
       <td className="delete-action">
         <DeleteEvent id={item._id} eventName={eventNames[index]} />
       </td>

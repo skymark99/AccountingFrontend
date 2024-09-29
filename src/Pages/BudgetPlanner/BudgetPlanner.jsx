@@ -1,7 +1,6 @@
 import Navbar from "../../Components/Navbar";
 import BudgetPlannerHeader from "./BudgetPlannerHeader/BudgetPlannerHeader";
 import { useBudgetPlanner } from "../../Hooks/useBudgetPlanner/useBudgetPlanner";
-import { useState } from "react";
 
 function BudgetPlanner() {
   useBudgetPlanner();
