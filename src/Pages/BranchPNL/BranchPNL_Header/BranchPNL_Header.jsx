@@ -15,19 +15,16 @@ import Search from "../../../Components/Search";
 import ThertiaryBtn from "../../../Components/Buttons/ThertiaryBtn";
 import CatagorySelector from "../../../Components/CatagorySelector/CatagorySelector";
 import ParticularSelector from "../../../Components/CatagorySelector/ParticularSelector";
-import DayBookDateSelector from "../../Daybook/Components/DayBookHeader/DayBookDateSelector";
 import DateModal from "../../../Components/Date/DateModal";
 import MaterialDatePicker from "../../../Services/MaterialDatePicker";
 import SettinsButton from "../../../Components/Buttons/Download/SettinsButton";
-import { Opacity } from "@mui/icons-material";
 import { useKey } from "../../../Hooks/Gen/useKey";
-import { setLiabilityQuery } from "../../../Global-Variables/features/liabilitySlice/liabilitySlice";
 
 const BranchPNL_Header = ({ width }) => {
   const {
     branches,
     branchwisePNLSelectedItems,
-    selectedCatagory,
+    selectedCategory,
     selectedParticular,
     dateOptions,
     branchWiseStartDate,
@@ -82,6 +79,7 @@ const BranchPNL_Header = ({ width }) => {
   const handleQuery = (e) => {
     dispatch(setBranchQuery(e.target.value));
   };
+
   return (
     <>
       {/* scss styles used from liability & common */}
@@ -105,11 +103,11 @@ const BranchPNL_Header = ({ width }) => {
                   buttonText="Branch"
                 />
                 <CatagorySelector
-                  selectedCat={selectedCatagory}
+                  selectedCat={selectedCategory}
                   setSelectedCat={setBranchSelectedCategory}
                 />
                 <ParticularSelector
-                  selectedCat={selectedCatagory}
+                  selectedCat={selectedCategory}
                   selectedParticular={selectedParticular}
                   setSelectedParticular={setBranchSelectedParticular}
                 />

@@ -75,7 +75,7 @@ function SideBarContents() {
       <NavLink to="/commition">
         <li>
           <CommitionIcon size={iconSize} className="nav-icons" />
-          <span>Commition</span>
+          <span>Commission</span>
         </li>
       </NavLink>
     </ul>

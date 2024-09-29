@@ -7,7 +7,7 @@ function Commition() {
         <Navbar />
       </div>
       <div className="header">
-        <h2>University Commitioin</h2>
+        <h2>University Commission</h2>
       </div>
       <div className="commition">
         <div className="daybook__header commition__header">height</div>

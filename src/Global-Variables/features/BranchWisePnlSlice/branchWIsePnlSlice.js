@@ -115,7 +115,7 @@ const initialState = {
 
   query: "",
 
-  selectedCategory: "All Categories", // <-- Add this
+  selectedCategory: "All Categories",
   selectedParticular: "All Particulars",
 
   branchLoading: false,
