@@ -99,7 +99,7 @@ const BranchPNL_Header = ({ width }) => {
                   style={{ width: "12rem" }}
                   resetter="none"
                   setter={setCurBranch}
-                  options={branches}
+                  options={branches.slice(1)}
                   buttonText="Branch"
                 />
                 <CatagorySelector
