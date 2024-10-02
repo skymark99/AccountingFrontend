@@ -7,7 +7,6 @@ import BudegetPlannerRow from "./BudegetPlannerRow";
 import Loader from "../../../Components/Loader/Loader";
 import { NoData } from "../../../assets/images";
 import PrimaryBlueBtn from "../../../Components/Buttons/PrimaryBlueBtn";
-import { setCurSelectedBranch } from "../../../Global-Variables/features/BudgetPlannerSlice/budgetPlannerSlice";
 
 const BudgetPlannerHeader = () => {
   const [isEditing, setIsEditing] = useState(false);

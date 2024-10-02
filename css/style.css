@@ -2522,11 +2522,50 @@ ul {
   margin-right: 5rem;
   margin-left: 5rem;
   background-color: yellow;
-  height: 80vh;
+  height: 70vh;
+}
+.commition input {
+  margin-right: 3rem;
+  cursor: pointer;
 }
 .commition__header {
-  background-color: rgb(165, 17, 17);
   height: 8rem;
+  background-color: #f9f9f9;
+}
+.commition__data {
+  height: calc(100% - 8rem);
+}
+.commition__data-header {
+  background-color: rgb(201, 212, 202);
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: start;
+  padding: 0 3rem;
+}
+.commition__data-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 4rem);
+}
+.commition__data-items {
+  flex: 1;
+  border: 1px solid gray;
+  padding: 0 3rem;
+}
+.commition__data-headerItems {
+  width: 15rem;
+  font-family: "Poppins", "Open Sans", "Roboto", sans-serif;
+  font-weight: 500;
+  border: 1px solid gray;
+}
+.commition__student {
+  flex: 1;
+}
+
+.commitionDate {
+  width: 10rem;
 }
 
 .login-container {

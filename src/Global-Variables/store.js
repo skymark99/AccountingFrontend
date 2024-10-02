@@ -14,6 +14,7 @@ import branchWisePnlReducer from "./features/BranchWisePnlSlice/branchWIsePnlSli
 import authSlice from "./features/auth/authSlice";
 import budgetPlannerReducer from "./features/BudgetPlannerSlice/budgetPlannerSlice";
 import catagorySlice from "./features/catagorySlice/catagorySlice";
+import universitySlice from "./features/university/universitySlice";
 
 export const store = configureStore({
   reducer: {
@@ -28,6 +29,7 @@ export const store = configureStore({
     outstanding: outstandinReducer,
     dashboard: dashBoardReducer,
     reminders: remindersReducer,
+    university: universitySlice,
     balanceSheet: balanceSheetReducer,
     branchwise: branchWisePnlReducer,
     budget: budgetPlannerReducer,

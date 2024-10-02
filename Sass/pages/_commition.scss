@@ -1,11 +1,58 @@
+$data-header-height: 4rem;
+$header-height: 8rem;
+$side-padding: 3rem;
+
 .commition {
   margin-right: $body-margin-2;
   margin-left: $body-margin-2;
   background-color: yellow;
-  height: 80vh;
+  height: 70vh;
+
+  & input {
+    margin-right: 3rem;
+    cursor: pointer;
+  }
 
   &__header {
-    background-color: rgb(165, 17, 17);
-    height: 8rem;
+    height: $header-height;
+    background-color: $mild-gray;
   }
+
+  &__data {
+    height: calc(100% - $header-height);
+
+    &-header {
+      background-color: $light-green;
+      height: $data-header-height;
+      @include flex(center);
+      justify-content: start;
+      padding: 0 $side-padding;
+    }
+
+    &-container {
+      display: flex;
+      flex-direction: column;
+      height: calc(100% - $data-header-height);
+    }
+    &-items {
+      flex: 1;
+      border: 1px solid gray;
+      padding: 0 $side-padding;
+    }
+
+    &-headerItems {
+      width: 15rem;
+      font-family: "Poppins", "Open Sans", "Roboto", sans-serif;
+      font-weight: 500;
+      border: 1px solid gray;
+    }
+  }
+
+  &__student {
+    flex: 1;
+  }
+}
+
+.commitionDate {
+  width: 10rem;
 }

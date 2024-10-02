@@ -1,6 +1,18 @@
+import { useSelector } from "react-redux";
 import Navbar from "../../Components/Navbar";
+import ComData from "./ComData";
+import ComDataHeader from "./ComDataHeader";
 
 function Commition() {
+  const {
+    universities,
+    currentPage,
+    length,
+    startPage,
+    universitySelectedItems,
+    universityAllSelecteds,
+  } = useSelector((state) => state.university);
+
   return (
     <div className="body">
       <div className="responsive-nav">
@@ -11,7 +23,10 @@ function Commition() {
       </div>
       <div className="commition">
         <div className="daybook__header commition__header">height</div>
-        <div className="daybook__data"></div>
+        <div className="commition__data">
+          <ComDataHeader />
+          <ComData />
+        </div>
       </div>
     </div>
   );
