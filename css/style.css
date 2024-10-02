@@ -206,6 +206,8 @@ html {
 body {
   font-size: 16px;
   font-family: "Poppins", "Open Sans", sans-serif;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .container {
@@ -2520,13 +2522,11 @@ ul {
 
 .commition {
   height: 70vh;
+  box-sizing: content-box;
 }
 .commition input {
   margin-right: 3rem;
   cursor: pointer;
-}
-.commition__actions {
-  display: none;
 }
 .commition__header {
   height: 8rem;

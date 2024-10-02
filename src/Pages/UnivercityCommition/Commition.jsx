@@ -2,15 +2,13 @@ import Navbar from "../../Components/Navbar";
 import ComData from "./ComData";
 import ComDataHeader from "./ComDataHeader";
 import { useUniversity } from "../../Hooks/universityHook/useUniversity";
-import ThertiaryBtn from "../../Components/Buttons/ThertiaryBtn";
-import DaybookActionBtns from "../Daybook/Components/DaybookActionBtns";
 import ComActionsBtns from "./ComActionBtns";
 
 function Commition() {
   useUniversity();
 
   return (
-    <div className="body">
+    <div className="body daybook">
       <div className="responsive-nav">
         <Navbar />
       </div>

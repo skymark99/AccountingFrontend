@@ -5,13 +5,15 @@ $input-margin: 3rem;
 
 .commition {
   height: 70vh;
+  box-sizing: content-box;
 
   & input {
     margin-right: $input-margin;
     cursor: pointer;
   }
+
   &__actions {
-    display: none;
+    // display: none;
   }
 
   &__header {
