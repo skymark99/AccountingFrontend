@@ -337,7 +337,7 @@ ul {
 .sideBar {
   width: 16%;
   height: 100vh;
-  min-width: 10rem;
+  min-width: 16%;
   padding: 1.5rem;
   background-color: #f0f0f0;
   display: flex;
@@ -2519,14 +2519,14 @@ ul {
 }
 
 .commition {
-  margin-right: 5rem;
-  margin-left: 5rem;
-  background-color: yellow;
   height: 70vh;
 }
 .commition input {
   margin-right: 3rem;
   cursor: pointer;
+}
+.commition__actions {
+  display: none;
 }
 .commition__header {
   height: 8rem;
@@ -2550,22 +2550,33 @@ ul {
   height: calc(100% - 4rem);
 }
 .commition__data-items {
-  flex: 1;
-  border: 1px solid gray;
+  height: 16.6666666667%;
   padding: 0 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid gray;
+}
+.commition__data-items input {
+  margin-right: 3rem;
+}
+.commition__data-items span {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: start;
+  text-wrap: wrap;
 }
 .commition__data-headerItems {
   width: 15rem;
   font-family: "Poppins", "Open Sans", "Roboto", sans-serif;
   font-weight: 500;
-  border: 1px solid gray;
-}
-.commition__student {
-  flex: 1;
+  font-size: 1.2rem;
 }
 
 .commitionDate {
-  width: 10rem;
+  width: 12em;
 }
 
 .login-container {

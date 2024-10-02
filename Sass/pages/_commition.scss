@@ -1,16 +1,17 @@
 $data-header-height: 4rem;
 $header-height: 8rem;
 $side-padding: 3rem;
+$input-margin: 3rem;
 
 .commition {
-  margin-right: $body-margin-2;
-  margin-left: $body-margin-2;
-  background-color: yellow;
   height: 70vh;
 
   & input {
-    margin-right: 3rem;
+    margin-right: $input-margin;
     cursor: pointer;
+  }
+  &__actions {
+    display: none;
   }
 
   &__header {
@@ -35,24 +36,36 @@ $side-padding: 3rem;
       height: calc(100% - $data-header-height);
     }
     &-items {
-      flex: 1;
-      border: 1px solid gray;
+      height: calc(100% / 6);
       padding: 0 $side-padding;
+      // width: 100%;
+      @include flex(center);
+      border-bottom: 1px solid gray;
+
+      & input {
+        margin-right: $input-margin;
+      }
+      & span {
+        height: 100%;
+        @include flex(center);
+        justify-content: start;
+        text-wrap: wrap;
+      }
     }
 
     &-headerItems {
       width: 15rem;
       font-family: "Poppins", "Open Sans", "Roboto", sans-serif;
       font-weight: 500;
-      border: 1px solid gray;
+      font-size: 1.2rem;
     }
   }
 
-  &__student {
-    flex: 1;
-  }
+  // &__student {
+  //   flex: 1;
+  // }
 }
 
 .commitionDate {
-  width: 10rem;
+  width: 12em;
 }

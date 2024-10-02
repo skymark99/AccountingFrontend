@@ -21,8 +21,8 @@ export const fetchUniversity = createAsyncThunk(
       let endpoint;
       endpoint =
         status === "All Status"
-          ? `/v1/university?type=university&sort=-createdAt&page=${page}&startDate=${startDate}&endDate=${endDate}`
-          : `/v1/university?type=university&sort=-createdAt&page=${page}&startDate=${startDate}&endDate=${endDate}&status=${status}`;
+          ? `/v1/university?sort=-createdAt&page=${page}&startDate=${startDate}&endDate=${endDate}`
+          : `/v1/university?sort=-createdAt&page=${page}&startDate=${startDate}&endDate=${endDate}&status=${status}`;
 
       if (query) {
         endpoint += `&search=${query}`;
@@ -71,17 +71,17 @@ const universitySlice = createSlice({
       state.query = action.payload;
     },
     setUniversityAllSelected(state, action) {
-      state.liabilityAllSelected = action.payload;
+      state.universityAllSelected = action.payload;
     },
     setUniversitySelectedItems(state, action) {
-      state.laibilitySelectedItems = action.payload;
+      state.universitySelectedItems = action.payload;
     },
     setUniversityStatus(state, action) {
       state.status = action.payload;
     },
     setUniversity(state, action) {
       state.length = action.payload.length;
-      state.liability = action.payload;
+      state.universities = action.payload;
     },
     setUniversityCurrentPage(state, action) {
       const newPage = action.payload; // The page number user clicked
@@ -180,7 +180,7 @@ const universitySlice = createSlice({
       })
       .addCase(fetchUniversity.fulfilled, (state, action) => {
         state.loading = false;
-        state.liability = action.payload;
+        state.universities = action.payload;
         state.length = action.payload.length;
       })
       .addCase(fetchUniversity.rejected, (state, action) => {

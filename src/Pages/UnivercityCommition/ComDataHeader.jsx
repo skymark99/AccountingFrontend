@@ -1,7 +1,22 @@
+import { useDispatch, useSelector } from "react-redux";
+import { setUniversityAllSelected } from "../../Global-Variables/features/university/universitySlice";
+
 export default function ComDataHeader() {
+  const { universityAllSelected } = useSelector((state) => state.university);
+  const dispatch = useDispatch();
+
+  const handleSelect = () => {
+    dispatch(setUniversityAllSelected(!universityAllSelected));
+  };
+
   return (
     <div className="commition__data-header">
-      <input type="checkbox" />
+      <input
+        style={{ cursor: "pointer" }}
+        checked={universityAllSelected}
+        type="checkbox"
+        onChange={handleSelect}
+      />
       <span className="commition__data-headerItems commitionDate">Date</span>
       <span className="commition__data-headerItems commition__student">
         Student

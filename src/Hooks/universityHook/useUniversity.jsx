@@ -1,32 +1,29 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchLiability } from "../Global-Variables/features/liabilitySlice/liabilitySlice";
+import { fetchUniversity } from "../../Global-Variables/features/university/universitySlice";
 
 const URL = import.meta.env.VITE_URL;
 
-export const useLiabilities = () => {
+export const useUniversity = () => {
   const dispatch = useDispatch();
 
   const {
-    liability: data,
+    universities: data,
     page,
-    liabilityStartDate: startDate,
-    liabilityEndDate: endDate,
+    universityStartDate: startDate,
+    universityEndDate: endDate,
     status,
     loading,
     error,
-    selectedCatagory,
-    selectedParticular,
     query,
-  } = useSelector((state) => state.liability);
+  } = useSelector((state) => state.university);
 
   const previousPageRef = useRef(page);
   const previousStatusRef = useRef(status);
   const previousStartDateRef = useRef(startDate);
   const previousEndDateRef = useRef(endDate);
-  const previousSelectedCatagoryRef = useRef(selectedCatagory);
-  const previousSelectedParticularRef = useRef(selectedParticular);
   const previousQueryRef = useRef(query);
+
   useEffect(() => {
     if (
       previousPageRef.current !== page ||
@@ -34,30 +31,16 @@ export const useLiabilities = () => {
       previousStatusRef.current !== status ||
       previousQueryRef.current !== query ||
       previousEndDateRef.current !== endDate ||
-      previousStartDateRef.current !== startDate ||
-      previousSelectedCatagoryRef.current !== selectedCatagory ||
-      previousSelectedParticularRef.current !== selectedParticular
+      previousStartDateRef.current !== startDate
     ) {
-      dispatch(fetchLiability());
+      dispatch(fetchUniversity());
       previousPageRef.current = page;
       previousStatusRef.current = status;
       previousStartDateRef.current = startDate;
       previousEndDateRef.current = endDate;
-      previousSelectedCatagoryRef.current = selectedCatagory;
-      previousSelectedParticularRef.current = selectedParticular;
       previousQueryRef.current = query;
     }
-  }, [
-    dispatch,
-    page,
-    status,
-    endDate,
-    startDate,
-    data?.length,
-    selectedCatagory,
-    selectedParticular,
-    query,
-  ]);
+  }, [dispatch, page, status, endDate, startDate, data?.length, query]);
 
   return [loading, error, data];
 };
