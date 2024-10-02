@@ -7,7 +7,7 @@ export const getCalcBudget = createAsyncThunk(
   "budgetPlanner/getCalcBudget",
   async (_, { rejectWithValue }) => {
     try {
-      let url = `${URL}/v1/event?sort=-updatedAt`;
+      let url = `${URL}/v1/event?sort=-updatedAt&limit=500`;
       const response = await axios.get(url, { withCredentials: true });
       console.log(response.data.docs);
       return response.data.docs;
@@ -62,7 +62,14 @@ const budgetPlannerSlice = createSlice({
       .addCase(getCalcBudget.fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload;
-        state.branchData = action.payload;
+
+        if (state.curSelectedBranch !== "All Branch") {
+          state.branchData = state.data.filter(
+            (obj) => obj.branchName === state.curSelectedBranch
+          );
+        } else {
+          state.branchData = state.data;
+        }
         state.error = null;
       })
       .addCase(getCalcBudget.rejected, (state, action) => {

@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const URL = import.meta.env.VITE_URL;
+console.log(URL, "urls");
 
 // Async thunk to fetch transactions
 export const fetchTransactions = createAsyncThunk(

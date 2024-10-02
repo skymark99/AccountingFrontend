@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import BudgetPlannerHeaderRight from "../Components/BudgetPlannerHeaderRight";
 import TableHeaderTread from "../Components/TableHeaderTread";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import BudegetPlannerRow from "./BudegetPlannerRow";
 import Loader from "../../../Components/Loader/Loader";
 import { NoData } from "../../../assets/images";
 import PrimaryBlueBtn from "../../../Components/Buttons/PrimaryBlueBtn";
+import { setCurSelectedBranch } from "../../../Global-Variables/features/BudgetPlannerSlice/budgetPlannerSlice";
 
 const BudgetPlannerHeader = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -22,6 +23,7 @@ const BudgetPlannerHeader = () => {
 
   const [total, setTotal] = useState(0);
   const updatationData = useRef({});
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (branchData.length > 0) {
@@ -60,13 +62,14 @@ const BudgetPlannerHeader = () => {
   const handleEventNameChange = (index, e) => {
     const newEventNames = [...eventNames];
     newEventNames[index] = e.target.value;
-    updatationData.current.eventName = e.target.value;
+    updatationData.current.name = e.target.value;
     setEventNames(newEventNames);
   };
 
   const saveChanges = () => {
     setIsEditing(false);
     setEditingIndex(null);
+    // dispatch(setCurSelectedBranch("All Branch"));
   };
 
   const handleEdit = (index) => {
