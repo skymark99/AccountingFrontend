@@ -15,6 +15,7 @@ import formatDate from "../../Services/formatDate";
 import { today } from "../../Services/dateFormatter";
 import { downloadTransactionReport } from "../../Services/downloadReports";
 import toast from "react-hot-toast";
+import ErrorBoundary from "../../Utils/ErrorBoundary";
 
 function DayBook() {
   const { currentDayBookState } = useSelector((state) => state.daybook);
@@ -93,26 +94,28 @@ function DayBook() {
           </div>
         </DateModal>
 
-        <div className="daybook__data">
-          {currentDayBookState === "all" && (
-            <DaybookData
-              onSetTotal={setTotal}
-              handleOpenDownload={handleOpenDownload}
-            />
-          )}
-          {currentDayBookState === "debit" && (
-            <DaybookDebit
-              onSetTotal={setTotal}
-              handleOpenDownload={handleOpenDownload}
-            />
-          )}
-          {currentDayBookState === "credit" && (
-            <DaybookCredit
-              onSetTotal={setTotal}
-              handleOpenDownload={handleOpenDownload}
-            />
-          )}
-        </div>
+        <ErrorBoundary>
+          <div className="daybook__data">
+            {currentDayBookState === "all" && (
+              <DaybookData
+                onSetTotal={setTotal}
+                handleOpenDownload={handleOpenDownload}
+              />
+            )}
+            {currentDayBookState === "debit" && (
+              <DaybookDebit
+                onSetTotal={setTotal}
+                handleOpenDownload={handleOpenDownload}
+              />
+            )}
+            {currentDayBookState === "credit" && (
+              <DaybookCredit
+                onSetTotal={setTotal}
+                handleOpenDownload={handleOpenDownload}
+              />
+            )}
+          </div>
+        </ErrorBoundary>
         <div className="daybook__actions">
           <div className="items-selected-tablet">
             <span>{total[1]} items Selected</span>
