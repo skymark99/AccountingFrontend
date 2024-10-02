@@ -17,6 +17,8 @@ export default function ComData() {
 
   const btnDisable = viewSix.length < 6;
 
+  console.log(viewSix, "viewSixx");
+
   return (
     <>
       <div className="commition__data-container">

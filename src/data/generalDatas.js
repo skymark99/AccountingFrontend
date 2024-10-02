@@ -16,3 +16,10 @@ export const dateOptions = [
   "Last 30 Days",
   "Last 60 Days",
 ];
+
+export const univStatus = [
+  "Invoice Shared",
+  "Mail Pending",
+  "Pending",
+  "Recieved",
+];

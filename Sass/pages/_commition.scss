@@ -1,11 +1,15 @@
 $data-header-height: 4rem;
-$header-height: 8rem;
+$header-height: 13rem;
 $side-padding: 3rem;
 $input-margin: 3rem;
 
 .commition {
-  height: 70vh;
-  box-sizing: content-box;
+  height: 90vh;
+  margin: 0 $body-margin-2;
+
+  & .text {
+    font-weight: 100;
+  }
 
   & input {
     margin-right: $input-margin;
@@ -17,12 +21,19 @@ $input-margin: 3rem;
   }
 
   &__actions {
-    // display: none;
+    @include flex(center);
+    justify-content: start;
+    gap: 1rem;
+    margin-bottom: 1rem;
   }
 
   &__header {
     height: $header-height;
     background-color: $mild-gray;
+
+    &-bottom {
+      @include flex(between);
+    }
   }
 
   &__data {
@@ -46,6 +57,7 @@ $input-margin: 3rem;
       padding: 0 $side-padding;
       // width: 100%;
       @include flex(center);
+      justify-content: start;
       border-bottom: 1px solid gray;
 
       & input {
@@ -55,7 +67,8 @@ $input-margin: 3rem;
         height: 100%;
         @include flex(center);
         justify-content: start;
-        text-wrap: wrap;
+        padding: 2rem;
+        padding-left: 0;
       }
     }
 
@@ -67,9 +80,21 @@ $input-margin: 3rem;
     }
   }
 
-  // &__student {
-  //   flex: 1;
-  // }
+  &__student {
+    flex: 1;
+    min-width: 15rem;
+  }
+
+  &-search-container {
+    @include flex(center);
+    padding: 3rem 0rem;
+    padding-bottom: 1.5rem;
+  }
+
+  &__filter-container {
+    @include flex(center);
+    gap: 1.5rem;
+  }
 }
 
 .commitionDate {

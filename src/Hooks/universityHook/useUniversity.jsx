@@ -16,6 +16,8 @@ export const useUniversity = () => {
     loading,
     error,
     query,
+    intake,
+    curBranch: branch,
   } = useSelector((state) => state.university);
 
   const previousPageRef = useRef(page);
@@ -23,6 +25,8 @@ export const useUniversity = () => {
   const previousStartDateRef = useRef(startDate);
   const previousEndDateRef = useRef(endDate);
   const previousQueryRef = useRef(query);
+  const previousBranch = useRef(branch);
+  const previousIntake = useRef(intake);
 
   useEffect(() => {
     if (
@@ -31,7 +35,9 @@ export const useUniversity = () => {
       previousStatusRef.current !== status ||
       previousQueryRef.current !== query ||
       previousEndDateRef.current !== endDate ||
-      previousStartDateRef.current !== startDate
+      previousStartDateRef.current !== startDate ||
+      previousBranch.current !== branch ||
+      previousIntake.current !== intake
     ) {
       dispatch(fetchUniversity());
       previousPageRef.current = page;
@@ -39,8 +45,20 @@ export const useUniversity = () => {
       previousStartDateRef.current = startDate;
       previousEndDateRef.current = endDate;
       previousQueryRef.current = query;
+      previousBranch.current = branch;
+      previousIntake.current = intake;
     }
-  }, [dispatch, page, status, endDate, startDate, data?.length, query]);
+  }, [
+    dispatch,
+    intake,
+    page,
+    status,
+    endDate,
+    startDate,
+    data?.length,
+    query,
+    branch,
+  ]);
 
   return [loading, error, data];
 };

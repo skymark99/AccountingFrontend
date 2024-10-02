@@ -17,6 +17,8 @@ export const fetchUniversity = createAsyncThunk(
         universityEndDate: endDate,
         status,
         query,
+        curBranch: branch,
+        intake,
       } = state.university;
       let endpoint;
       endpoint =
@@ -27,10 +29,18 @@ export const fetchUniversity = createAsyncThunk(
       if (query) {
         endpoint += `&search=${query}`;
       }
+      if (branch !== "All Branch") {
+        endpoint += `&branchName=${branch}`;
+      }
+
+      if (intake !== "All Intakes") {
+        endpoint += `&intake=${intake}`;
+      }
 
       const response = await axios.get(`${URL}${endpoint}`, {
         withCredentials: true,
       });
+
       return response.data.docs;
     } catch (error) {
       if (axios.isCancel(error)) {
@@ -61,12 +71,20 @@ const initialState = {
   universitySelectedItems: [],
   universityAllSelected: false,
   query: "",
+  curBranch: "All Branch",
+  intake: "All Intakes",
 };
 
 const universitySlice = createSlice({
-  name: "liability",
+  name: "university",
   initialState,
   reducers: {
+    setIntake(state, action) {
+      state.intake = action.payload;
+    },
+    setUnivCurBranch(state, action) {
+      state.curBranch = action.payload;
+    },
     setUniversityQuery(state, action) {
       state.query = action.payload;
     },
@@ -158,7 +176,7 @@ const universitySlice = createSlice({
       state.selectedDate = "All";
     },
     resetUniversity(state) {
-      state.liability = [];
+      state.universities = [];
       state.length = 0;
       state.page = 1;
       state.currentPage = 1;
@@ -166,10 +184,10 @@ const universitySlice = createSlice({
       state.temp = 1;
     },
     resetUniversityDates(state) {
-      state.liabilityStartDate = formatDate(
+      state.universityStartDate = formatDate(
         new Date(new Date().setDate(new Date().getDate() - 30))
       );
-      state.liabilityEndDate = formatDate(new Date());
+      state.universityEndDate = formatDate(new Date());
     },
   },
   extraReducers: (builder) => {
@@ -202,6 +220,8 @@ export const {
   setUniversitySelectedItems,
   setUniversityAllSelected,
   setUniversityQuery,
+  setUnivCurBranch,
+  setIntake,
 } = universitySlice.actions;
 
 export default universitySlice.reducer;

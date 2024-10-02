@@ -8,10 +8,18 @@ export default function ComDataItems({ item }) {
         <h4> {item?.formattedDate}</h4>
       </span>
       <span className="commition__data-headerItems commition__student data-items">
-        <h4>{truncateText(item?.student, 15)}</h4>
+        <div>
+          <h4>{truncateText(item?.student, 15)}</h4>
+          <div className="text">{item?.country}</div>
+          <div className="text">{item?.counsillor}</div>
+          <div className="text">
+            {item?.intakeMonth} | {item?.intake}
+          </div>
+          <div className="text">{item?.university}</div>
+        </div>
       </span>
       <span className="commition__data-headerItems data-items">
-        <h4>{item?.branch}</h4>
+        <h4>{item?.branchName}</h4>
       </span>
       <span className="commition__data-headerItems data-items">
         <h4>{item?.courseFee}</h4>
@@ -23,7 +31,7 @@ export default function ComDataItems({ item }) {
         <h4>{item?.status}</h4>
       </span>
       <span className="commition__data-headerItems data-items">
-        <h4>{truncateText(item?.agent, 15)}</h4>
+        <h4>{truncateText(item?.agent, 25)}</h4>
       </span>
     </div>
   );

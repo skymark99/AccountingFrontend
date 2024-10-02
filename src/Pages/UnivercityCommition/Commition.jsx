@@ -1,32 +1,32 @@
 import Navbar from "../../Components/Navbar";
 import ComData from "./ComData";
-import ComDataHeader from "./ComDataHeader";
+import ComDataHeader from "./Components/ComDataHeader";
+// import ComActionsBtns from "./ComActionBtns";
 import { useUniversity } from "../../Hooks/universityHook/useUniversity";
-import ComActionsBtns from "./ComActionBtns";
-import { setUniversityCurrentPage } from "../../Global-Variables/features/university/universitySlice";
-import { useSelector } from "react-redux";
-import PageNavigate from "../../Components/PageNavigate/PageNavigate";
+import ComHeader from "./ComHeader";
 
 function Commition() {
-  const { currentPage } = useSelector((state) => state.university);
-  useUniversity();
+  const [loading, error] = useUniversity();
 
   return (
     <div className="body daybook">
       <div className="responsive-nav">
         <Navbar />
       </div>
-      <div className="header">
-        <h2>University Commission</h2>
-      </div>
-      <div className="daybook__body commition">
-        <div className="daybook__header">height</div>
-        <div className="daybook__data commition_data">
-          <ComDataHeader />
-          <ComData />
+      <div className="commition">
+        <div className="commition__header">
+          <ComHeader />
         </div>
-        <div className="daybook__actions commition__actions">
-          <ComActionsBtns />
+        <div className="commition__data">
+          <ComDataHeader />
+
+          {loading ? (
+            <div>Loading...</div> // Loader message or spinner
+          ) : error ? (
+            <div className="error">Oops! Something went wrong: {error}</div> // Error message
+          ) : (
+            <ComData />
+          )}
         </div>
       </div>
     </div>

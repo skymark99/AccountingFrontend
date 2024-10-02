@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setUniversityAllSelected } from "../../Global-Variables/features/university/universitySlice";
+import { setUniversityAllSelected } from "../../../Global-Variables/features/university/universitySlice";
 
 export default function ComDataHeader() {
   const { universityAllSelected } = useSelector((state) => state.university);

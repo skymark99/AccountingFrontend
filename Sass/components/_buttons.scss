@@ -21,12 +21,37 @@
 }
 
 .secondary-blue-btn {
-  border: 1px solid $primary-color;
+  border: 1px solid transparent; /* Make border transparent */
   font-family: "Roboto", "Open Sans";
   font-weight: 500;
+  border-radius: 5px;
   padding: 1rem 2rem;
   color: $secondary-color;
+  position: relative; /* Needed for the pseudo-element */
+  background-color: #fff; /* Set a background color */
+  overflow: hidden; /* Hide overflow for the inner border */
 }
+
+.secondary-blue-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px;
+  border: 1px solid $primary-color; /* Use the primary color for the border */
+  pointer-events: none; /* Allow clicks to pass through */
+  box-sizing: border-box; /* Ensure proper sizing */
+  z-index: 1; /* Place it behind the text */
+}
+
+.secondary-blue-btn span {
+  border-radius: 5px;
+  position: relative; /* Ensure text is above the border */
+  z-index: 2; /* Place text above the border */
+}
+
 .thertiary-blue-btn {
   font-family: "Roboto", "Open Sans";
   font-weight: 500;

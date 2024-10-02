@@ -2521,8 +2521,11 @@ ul {
 }
 
 .commition {
-  height: 70vh;
-  box-sizing: content-box;
+  height: 90vh;
+  margin: 0 5rem;
+}
+.commition .text {
+  font-weight: 100;
 }
 .commition input {
   margin-right: 3rem;
@@ -2531,12 +2534,25 @@ ul {
 .commition-footer {
   margin-top: 3rem;
 }
+.commition__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
 .commition__header {
-  height: 8rem;
+  height: 13rem;
   background-color: #f9f9f9;
 }
+.commition__header-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .commition__data {
-  height: calc(100% - 8rem);
+  height: calc(100% - 13rem);
 }
 .commition__data-header {
   background-color: rgb(201, 212, 202);
@@ -2558,6 +2574,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
+  justify-content: start;
   border-bottom: 1px solid gray;
 }
 .commition__data-items input {
@@ -2569,13 +2586,31 @@ ul {
   align-items: center;
   justify-content: center;
   justify-content: start;
-  text-wrap: wrap;
+  padding: 2rem;
+  padding-left: 0;
 }
 .commition__data-headerItems {
   width: 15rem;
   font-family: "Poppins", "Open Sans", "Roboto", sans-serif;
   font-weight: 500;
   font-size: 1.2rem;
+}
+.commition__student {
+  flex: 1;
+  min-width: 15rem;
+}
+.commition-search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0rem;
+  padding-bottom: 1.5rem;
+}
+.commition__filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .commitionDate {
@@ -2759,11 +2794,35 @@ ul {
 }
 
 .secondary-blue-btn {
-  border: 1px solid rgb(39, 1, 100);
+  border: 1px solid transparent; /* Make border transparent */
   font-family: "Roboto", "Open Sans";
   font-weight: 500;
+  border-radius: 5px;
   padding: 1rem 2rem;
   color: rgb(5, 64, 153);
+  position: relative; /* Needed for the pseudo-element */
+  background-color: #fff; /* Set a background color */
+  overflow: hidden; /* Hide overflow for the inner border */
+}
+
+.secondary-blue-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px;
+  border: 1px solid rgb(39, 1, 100); /* Use the primary color for the border */
+  pointer-events: none; /* Allow clicks to pass through */
+  box-sizing: border-box; /* Ensure proper sizing */
+  z-index: 1; /* Place it behind the text */
+}
+
+.secondary-blue-btn span {
+  border-radius: 5px;
+  position: relative; /* Ensure text is above the border */
+  z-index: 2; /* Place text above the border */
 }
 
 .thertiary-blue-btn {

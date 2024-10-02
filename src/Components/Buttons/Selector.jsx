@@ -9,6 +9,7 @@ function Selector({
   buttonText = "Select",
   style,
   resetter = "none",
+  arrowNone = false,
 }) {
   const [selectedOption, setSelectedOption] = useState(buttonText);
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ function Selector({
             </option>
           ))}
         </select>
-        <BsChevronDown className="icon cat-icon" />
+        {arrowNone || <BsChevronDown className="icon cat-icon" />}
       </div>
     </div>
   );
