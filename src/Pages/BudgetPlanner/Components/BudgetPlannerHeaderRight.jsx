@@ -33,9 +33,9 @@ function BudgetPlannerHeaderRight({
     if (editingIndex !== null) {
       try {
         await budgetPlannerUpdateEvent(selectedItem?._id, updatationData);
-        // dispatch(refreshBudgetPlanner());
-        dispatch(getCalcBudget());
         saveChanges();
+        dispatch(refreshBudgetPlanner());
+        dispatch(getCalcBudget());
         setOpenBtn(!openBtn);
         toast.success("Data updated successfully");
       } catch (error) {

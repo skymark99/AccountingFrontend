@@ -2528,6 +2528,9 @@ ul {
   margin-right: 3rem;
   cursor: pointer;
 }
+.commition-footer {
+  margin-top: 3rem;
+}
 .commition__header {
   height: 8rem;
   background-color: #f9f9f9;

@@ -3,8 +3,12 @@ import ComData from "./ComData";
 import ComDataHeader from "./ComDataHeader";
 import { useUniversity } from "../../Hooks/universityHook/useUniversity";
 import ComActionsBtns from "./ComActionBtns";
+import { setUniversityCurrentPage } from "../../Global-Variables/features/university/universitySlice";
+import { useSelector } from "react-redux";
+import PageNavigate from "../../Components/PageNavigate/PageNavigate";
 
 function Commition() {
+  const { currentPage } = useSelector((state) => state.university);
   useUniversity();
 
   return (

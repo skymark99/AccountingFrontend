@@ -68,6 +68,8 @@ const BudgetPlannerHeader = () => {
   const saveChanges = () => {
     setIsEditing(false);
     setEditingIndex(null);
+    setAmounts([]);
+    setEventNames([]);
     // dispatch(setCurSelectedBranch("All Branch"));
   };
 
@@ -112,7 +114,7 @@ const BudgetPlannerHeader = () => {
           openBtn={isEditing}
           setOpenBtn={setIsEditing}
           handleDiscard={handleDiscard}
-          selectedItem={data[editingIndex]}
+          selectedItem={branchData[editingIndex]}
           updatationData={updatationData.current}
           onSetCurrentTotal={handleTotalChange}
           currentTotal={currentTotal}
@@ -145,7 +147,7 @@ const BudgetPlannerHeader = () => {
               ) : (
                 branchData.map((item, index) => (
                   <BudegetPlannerRow
-                    key={item.id}
+                    key={item?._id}
                     item={item}
                     index={index}
                     isEditing={isEditing}

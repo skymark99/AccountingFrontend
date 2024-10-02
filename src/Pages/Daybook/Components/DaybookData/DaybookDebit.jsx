@@ -14,7 +14,7 @@ function DaybookDebit({ onSetTotal }) {
   return (
     <>
       <DataHeader>
-        <span className="particulars">Transaction</span>
+        <span className="particulars">Particular</span>
         <span className="date-time">Date & time</span>
         <span className="Amount">Amount</span>
         <span className="header-remark">Remark</span>
