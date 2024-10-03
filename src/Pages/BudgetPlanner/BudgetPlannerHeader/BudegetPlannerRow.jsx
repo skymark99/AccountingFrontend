@@ -1,16 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosArrowRoundUp, IoIosArrowRoundDown } from "react-icons/io";
-import TableIcons from "../Components/TableIcons";
 import DeleteEvent from "../Components/DeleteEvent";
 
-const formatAmount = (amount) => {
-  if (amount >= 10000000) {
-    return `${(amount / 10000000).toFixed(2)} Cr`;
-  } else if (amount >= 100000) {
-    return `${(amount / 100000).toFixed(2)} L`;
-  }
-  return amount?.toLocaleString("en-IN");
-};
+// const formatAmount = (amount) => {
+//   if (amount >= 10000000) {
+//     return `${(amount / 10000000).toFixed(2)} Cr`;
+//   } else if (amount >= 100000) {
+//     return `${(amount / 100000).toFixed(2)} L`;
+//   }
+//   return amount?.toLocaleString("en-IN");
+// };
 
 const BudgetPlannerRow = ({
   item,
@@ -82,7 +81,7 @@ const BudgetPlannerRow = ({
           : displayUpIcon()}
         {item.percentageDifference}
       </td>
-      <td className="budget-td-total">{formatAmount(totalAmount)}</td>
+      <td className="budget-td-total">{totalAmount}</td>
       <td className="delete-action">
         <DeleteEvent id={item._id} eventName={eventNames[index]} />
       </td>

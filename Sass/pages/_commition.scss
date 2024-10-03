@@ -29,7 +29,6 @@ $input-margin: 3rem;
 
   &__header {
     height: $header-height;
-    background-color: $mild-gray;
 
     &-bottom {
       @include flex(between);

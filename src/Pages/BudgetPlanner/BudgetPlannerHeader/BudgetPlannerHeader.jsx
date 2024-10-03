@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import BudgetPlannerHeaderRight from "../Components/BudgetPlannerHeaderRight";
 import TableHeaderTread from "../Components/TableHeaderTread";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import BudegetPlannerRow from "./BudegetPlannerRow";
 import Loader from "../../../Components/Loader/Loader";
@@ -22,7 +22,6 @@ const BudgetPlannerHeader = () => {
 
   const [total, setTotal] = useState(0);
   const updatationData = useRef({});
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (branchData.length > 0) {

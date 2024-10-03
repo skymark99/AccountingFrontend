@@ -59,7 +59,6 @@ const UniversityEditForm = () => {
 
   const handleCreateTransaction = async (formData) => {
     setLoading(true);
-    console.log(formData);
     try {
       await update_commition(selected?._id, formData);
       dispatch(resetUniversity());
@@ -107,7 +106,6 @@ const UniversityEditForm = () => {
 
   // Submit handler
   const handleReminderSubmit = async (data) => {
-    console.log(addCurrentTimeToDate(data.date), "date");
     const formData = {
       date: data.date,
       intake: data.intake,
@@ -265,8 +263,10 @@ const UniversityEditForm = () => {
                   ißd="currency"
                   {...register("currency", { required: "Select a curreny" })}
                 >
-                  {currencies.map((val) => (
-                    <option value={val}>{val}</option>
+                  {currencies.map((val, i) => (
+                    <option key={i} value={val}>
+                      {val}
+                    </option>
                   ))}
                 </select>
               </div>

@@ -255,8 +255,10 @@ const UniversityForm = () => {
                   ißd="currency"
                   {...register("currency", { required: "Select a curreny" })}
                 >
-                  {currencies.map((val) => (
-                    <option value={val}>{val}</option>
+                  {currencies.map((val, i) => (
+                    <option key={i} value={val}>
+                      {val}
+                    </option>
                   ))}
                 </select>
               </div>

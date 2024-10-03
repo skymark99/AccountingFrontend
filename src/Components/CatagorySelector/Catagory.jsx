@@ -80,7 +80,7 @@ function Catagory({
       setIsLoading(false); // Stop loading
     }
   };
-  console.log(curEditValue, "Cur Edit value");
+
   const handleDiscard = (e) => {
     e.stopPropagation();
     setCurEditValue("");

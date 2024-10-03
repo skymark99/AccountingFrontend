@@ -69,7 +69,6 @@ const OutstandingEditForm = () => {
     },
   });
   useFormReset(reset, values);
-  console.log(values?.status, "status");
 
   const handleCreateTransaction = async (formData) => {
     setLoading(true);

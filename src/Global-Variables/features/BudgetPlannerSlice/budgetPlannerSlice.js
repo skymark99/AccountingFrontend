@@ -9,7 +9,6 @@ export const getCalcBudget = createAsyncThunk(
     try {
       let url = `${URL}/v1/event?sort=-updatedAt&limit=500`;
       const response = await axios.get(url, { withCredentials: true });
-      console.log(response.data.docs);
       return response.data.docs;
     } catch (error) {
       return rejectWithValue(error.response?.data || "An error occurred");
