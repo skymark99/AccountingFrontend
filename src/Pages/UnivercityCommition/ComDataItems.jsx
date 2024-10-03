@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { truncateText } from "../../Services/truncateFormatter";
 import { useCallback, useEffect, useState } from "react";
 import { setUniversitySelectedItems } from "../../Global-Variables/features/university/universitySlice";
+import { currencies } from "../../data/generalDatas";
 
 export default function ComDataItems({ item }) {
   const { universitySelectedItems } = useSelector((state) => state.university);
@@ -32,6 +33,8 @@ export default function ComDataItems({ item }) {
     setIsChecked(checkItem());
   }, [checkItem]);
 
+  const currentCurrency = currencies.indexOf(item?.currency);
+
   return (
     <div
       className={`commition__data-items ${
@@ -49,7 +52,7 @@ export default function ComDataItems({ item }) {
       </span>
       <span className="commition__data-headerItems commition__student data-items">
         <div>
-          <h4>{truncateText(item?.student, 15)}</h4>
+          <h4>{truncateText(item?.student, 30)}</h4>
           <div className="text">{item?.country}</div>
           <div className="text">{item?.counsillor}</div>
           <div className="text">
@@ -63,12 +66,15 @@ export default function ComDataItems({ item }) {
       </span>
       <span className="commition__data-headerItems data-items">
         <div style={{ textAlign: "center" }}>
-          <h4>{item?.courseFee}</h4>
+          <h4>{item?.courseFee + " " + item?.currency}</h4>
           <div className="text">{item?.commition + "%"}</div>
         </div>
       </span>
       <span className="commition__data-headerItems data-items">
-        <h4>{((item?.commition / 100) * item?.courseFee).toFixed(2)}</h4>
+        <div style={{ textAlign: "center" }}>
+          <h4>{((item?.commition / 100) * item?.courseFee).toFixed(2)}</h4>
+          <div className="text">{item?.inr + " INR"}</div>
+        </div>
       </span>
       <span className="commition__data-headerItems data-items">
         <h4>{item?.status}</h4>

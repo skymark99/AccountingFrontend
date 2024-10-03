@@ -21,10 +21,7 @@ import {
 } from "../../../../Global-Variables/features/BranchWisePnlSlice/branchWIsePnlSlice";
 import { fetchBankDetails } from "../../../../Global-Variables/fetch/details";
 import { fetchDashboardData } from "../../../../Global-Variables/features/dashBoardSlice/dashBoardSlice";
-import {
-  addTimer,
-  getInitialTime,
-} from "../../../../Components/Coundown/countdownActions";
+import { getInitialTime } from "../../../../Components/Coundown/countdownActions";
 import { setTime } from "../../../../Global-Variables/features/auth/authSlice";
 
 const DaybookForm = () => {
@@ -257,6 +254,7 @@ const DaybookForm = () => {
               <input
                 type="date"
                 id="date"
+                max={new Date().toISOString().split("T")[0]}
                 {...register("date", { required: "Date is required" })}
               />
               {errors.date && (

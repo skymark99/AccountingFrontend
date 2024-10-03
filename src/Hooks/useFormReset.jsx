@@ -1,3 +1,4 @@
+import { values } from "lodash";
 import { useEffect } from "react";
 
 function useFormReset(reset, values) {
@@ -18,3 +19,26 @@ function useFormReset(reset, values) {
 }
 
 export default useFormReset;
+
+export function useUnivFormReset(reset, selected) {
+  useEffect(() => {
+    reset({
+      student: selected?.student || "",
+      courseFee: selected?.courseFee || "",
+      counsillor: selected?.counsillor || "",
+      country: selected?.country || "",
+      agent: selected?.agent || "",
+      university: selected?.university || "",
+      commition: selected?.commition || "",
+      branchName: selected?.branchName || "",
+      status: selected?.status || "",
+      intake: selected?.intake || "",
+      inr: selected?.inr || "",
+      currency: selected?.currency || "USD",
+      intakeMonth: selected?.intakeMonth || "",
+      date: selected?.date
+        ? new Date(selected.date).toISOString().split("T")[0]
+        : "",
+    });
+  }, [reset, selected]);
+}

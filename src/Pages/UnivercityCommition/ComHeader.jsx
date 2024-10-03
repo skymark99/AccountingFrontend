@@ -18,7 +18,7 @@ export default function ComHeader() {
     "Invoice Shared",
     "Mail Pending",
     "Pending",
-    "Recieved",
+    "Received",
   ];
   const Intakes = ["All Intakes", "April-October", "November-March"];
   const { query, intake, universitySelectedItems, status, curBranch } =

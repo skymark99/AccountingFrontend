@@ -105,13 +105,21 @@ export const create_log = async (log, userId) => {
   }
 };
 export const create_commition = async (formData) => {
-  try {
-    return (
-      await axios.post(`${URL}/v1/university`, formData, {
-        withCredentials: true,
-      })
-    ).data;
-  } catch (error) {
-    console.log(error);
-  }
+  return await axios.post(`${URL}/v1/university`, formData, {
+    withCredentials: true,
+  });
+};
+export const update_commition = async (id, formData) => {
+  return await axios.patch(`${URL}/v1/university/${id}`, formData, {
+    withCredentials: true,
+  });
+};
+export const delete_commition = async (id) => {
+  return await axios.delete(
+    `${URL}/v1/university/${id}`,
+    {},
+    {
+      withCredentials: true,
+    }
+  );
 };

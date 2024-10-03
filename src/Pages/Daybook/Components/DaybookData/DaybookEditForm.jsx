@@ -29,8 +29,6 @@ const DaybookEditForm = () => {
   const [values] = selected;
   const { catagories } = useSelector((state) => state.catagories);
 
-  console.log(selected, "selected");
-
   const selectedCatFinder = () => {
     const selectedCat = catagories?.find(
       (cat) => values?.catagory === cat?._id
@@ -316,6 +314,7 @@ const DaybookEditForm = () => {
               <input
                 type="date"
                 id="date"
+                max={new Date().toISOString().split("T")[0]}
                 defaultValue={
                   values?.date
                     ? new Date(values.date).toISOString().split("T")[0]

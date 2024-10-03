@@ -1,8 +1,8 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
-import { create_commition, create_log } from "../../../Services/AxiosService";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { create_log, update_commition } from "../../../Services/AxiosService";
 import { getInitialTime } from "../../../Components/Coundown/countdownActions";
 import { setTime } from "../../../Global-Variables/features/auth/authSlice";
 import {
@@ -11,39 +11,40 @@ import {
   today,
 } from "../../../Services/dateFormatter";
 import { resetUniversity } from "../../../Global-Variables/features/university/universitySlice";
+import { currencies } from "../../../data/generalDatas";
+import useFormReset, { useUnivFormReset } from "../../../Hooks/useFormReset";
 
 const aprilIntake = ["May", "June", "July", "August", "September", "October"];
 const novemberIntake = ["November", "December", "January", "February", "March"];
 
 const UniversityEditForm = () => {
   const [loading, setLoading] = useState(false);
-  const [intake, setIntake] = useState(""); // State to track selected intake
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
-  const { universitySelectedItems: selected } = useSelector(
-    (state) => state.university
-  );
+  const { universitySelectedItems } = useSelector((state) => state.university);
 
-  console.log(selected, "selected");
+  const [selected] = universitySelectedItems;
+  const [intake, setIntake] = useState(selected?.intake); // State to track selected intake
 
-  const defaultValues = useMemo(
-    () => ({
-      student: selected?.student || "",
-      courseFee: selected?.courseFee || "",
-      counsillor: selected?.counsillor || "",
-      country: selected?.country || "",
-      agent: selected?.agent || "",
-      university: selected?.university || "",
-      commition: selected?.commition || "",
-      branchName: selected?.branchName || "",
-      status: selected?.status || "",
-      intake: selected?.intake || "",
-      intakeMonth: selected?.intakeMonth || "",
-      date: selected?.date || today(),
-    }),
-    [selected]
-  ); // Only re-compute when 'selected' changes
+  const defaultValues = {
+    student: selected?.student || "",
+    courseFee: selected?.courseFee || "",
+    counsillor: selected?.counsillor || "",
+    country: selected?.country || "",
+    agent: selected?.agent || "",
+    university: selected?.university || "",
+    commition: selected?.commition || "",
+    branchName: selected?.branchName || "",
+    status: selected?.status || "",
+    intake: selected?.intake || "",
+    inr: selected?.inr || "",
+    currency: selected?.currency || "USD",
+    intakeMonth: selected?.intakeMonth || "",
+    date: selected?.date
+      ? new Date(selected.date).toISOString().split("T")[0]
+      : "",
+  };
 
   const {
     register,
@@ -54,15 +55,16 @@ const UniversityEditForm = () => {
     defaultValues,
   });
 
+  useUnivFormReset(reset, selected);
+
   const handleCreateTransaction = async (formData) => {
     setLoading(true);
-
+    console.log(formData);
     try {
-      await create_commition(formData);
-      reset();
+      await update_commition(selected?._id, formData);
       dispatch(resetUniversity());
 
-      toast.success("New Commition added✅", {
+      toast.success("Successful ✅", {
         duration: 3000,
         position: "top-center",
         style: {
@@ -105,8 +107,9 @@ const UniversityEditForm = () => {
 
   // Submit handler
   const handleReminderSubmit = async (data) => {
+    console.log(addCurrentTimeToDate(data.date), "date");
     const formData = {
-      date: addCurrentTimeToDate(data.date),
+      date: data.date,
       intake: data.intake,
       intakeMonth: data.intakeMonth,
       country: data.country,
@@ -118,6 +121,8 @@ const UniversityEditForm = () => {
       counsillor: data.counsillor,
       courseFee: data.courseFee,
       branchName: data.branchName,
+      inr: data.inr,
+      currency: data.currency,
     };
     await handleCreateTransaction(formData);
   };
@@ -139,6 +144,7 @@ const UniversityEditForm = () => {
               <label htmlFor="date">Date</label>
               <input
                 type="date"
+                max={new Date().toISOString().split("T")[0]}
                 id="date"
                 {...register("date", { required: "Date is required" })}
               />
@@ -202,60 +208,7 @@ const UniversityEditForm = () => {
                 </span>
               )}
             </div>
-            <div className="form-group">
-              <label htmlFor="university">University</label>
-              <input
-                id="university"
-                {...register("university", {
-                  required: "University is required",
-                })}
-              ></input>
-              {errors.university && (
-                <span className="form-group-error">
-                  {errors.university.message}
-                </span>
-              )}
-            </div>
 
-            <div className="form-group">
-              <label htmlFor="courseFee">Course Fee</label>
-              <input
-                type="number"
-                id="courseFee"
-                {...register("courseFee", {
-                  required: "Course Fee is required",
-                  min: { value: 0, message: "Course Fee must be positive" },
-                })}
-              />
-              {errors.courseFee && (
-                <span className="form-group-error">
-                  {errors.courseFee.message}
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div className="form-section">
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="status">Status</label>
-              <select
-                id="status"
-                {...register("status", { required: "Select a status" })}
-              >
-                <option value="">Select Status</option>
-                <option value="Invoice Shared">Invoice Shared</option>
-                <option value="Mail Pending">Mail Pending</option>
-                <option value="Pending">Pending</option>
-                <option value="Received">Received</option>
-              </select>
-              {errors.status && (
-                <span className="form-group-error">
-                  {errors.status.message}
-                </span>
-              )}
-            </div>
             <div className="form-group">
               <label htmlFor="country">Country</label>
               <input
@@ -273,23 +226,53 @@ const UniversityEditForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="agent">Agent</label>
+              <label htmlFor="university">University</label>
               <input
-                id="agent"
-                {...register("agent", {
-                  required: "Agent Name is required",
+                id="university"
+                {...register("university", {
+                  required: "University is required",
                 })}
               ></input>
-              {errors.agent && (
-                <span className="form-group-error">{errors.agent.message}</span>
+              {errors.university && (
+                <span className="form-group-error">
+                  {errors.university.message}
+                </span>
               )}
             </div>
           </div>
         </div>
+
         <div className="form-section">
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="commition">Commition</label>
+              <label tmlFor="courseFee">Course Fee</label>
+              <div style={{ display: "flex" }}>
+                <input
+                  type="number"
+                  id="courseFee"
+                  {...register("courseFee", {
+                    required: "Course Fee is required",
+                    min: { value: 0, message: "Course Fee must be positive" },
+                  })}
+                />
+                {errors.courseFee && (
+                  <span className="form-group-error">
+                    {errors.courseFee.message}
+                  </span>
+                )}
+                <select
+                  style={{ width: "10rem", cursor: "pointer" }}
+                  ißd="currency"
+                  {...register("currency", { required: "Select a curreny" })}
+                >
+                  {currencies.map((val) => (
+                    <option value={val}>{val}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="commition">Commission</label>
               <input
                 type="number"
                 id="commition"
@@ -301,6 +284,35 @@ const UniversityEditForm = () => {
                 <span className="form-group-error">
                   {errors.commition.message}
                 </span>
+              )}
+            </div>
+            <div className="form-group">
+              <label htmlFor="inr">INR</label>
+              <input
+                type="number"
+                id="inr"
+                {...register("inr", {
+                  required: "INR is required",
+                })}
+              ></input>
+              {errors.inr && (
+                <span className="form-group-error">{errors.inr.message}</span>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="form-section">
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="agent">Agent</label>
+              <input
+                id="agent"
+                {...register("agent", {
+                  required: "Agent Name is required",
+                })}
+              ></input>
+              {errors.agent && (
+                <span className="form-group-error">{errors.agent.message}</span>
               )}
             </div>
 
@@ -347,6 +359,28 @@ const UniversityEditForm = () => {
               {errors.intakeMonth && (
                 <span className="form-group-error">
                   {errors.intakeMonth.message}
+                </span>
+              )}
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              {/* <label htmlFor="status">Status</label> */}
+              <select
+                style={{ width: "15rem" }}
+                id="status"
+                {...register("status", { required: "Select a status" })}
+              >
+                <option value="">Select Status</option>
+                <option value="Invoice Shared">Invoice Shared</option>
+                <option value="Mail Pending">Mail Pending</option>
+                <option value="Pending">Pending</option>
+                <option value="Received">Received</option>
+              </select>
+              {errors.status && (
+                <span className="form-group-error">
+                  {errors.status.message}
                 </span>
               )}
             </div>

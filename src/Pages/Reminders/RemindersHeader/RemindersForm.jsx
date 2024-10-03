@@ -45,7 +45,8 @@ const RemindersForm = () => {
     setLoading(true);
 
     try {
-      await create_reminder(formData);
+      const res = await create_reminder(formData);
+
       await create_log(
         `${combineDateWithCurrentTime(new Date())} ${
           user.name

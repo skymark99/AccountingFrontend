@@ -21,5 +21,7 @@ export const univStatus = [
   "Invoice Shared",
   "Mail Pending",
   "Pending",
-  "Recieved",
+  "Received",
 ];
+
+export const currencies = ["USD", "Pound", "CAD", "Euro"];

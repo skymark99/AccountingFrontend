@@ -11,6 +11,7 @@ import {
   today,
 } from "../../../Services/dateFormatter";
 import { resetUniversity } from "../../../Global-Variables/features/university/universitySlice";
+import { currencies } from "../../../data/generalDatas";
 
 const aprilIntake = ["May", "June", "July", "August", "September", "October"];
 const novemberIntake = ["November", "December", "January", "February", "March"];
@@ -39,6 +40,8 @@ const UniversityForm = () => {
       branchName: "",
       status: "",
       intake: "",
+      inr: "",
+      currency: "USD",
       intakeMonth: "",
       date: today(),
     },
@@ -47,12 +50,19 @@ const UniversityForm = () => {
   const handleCreateTransaction = async (formData) => {
     setLoading(true);
 
-    console.log(formData, "formdata");
-
     try {
       await create_commition(formData);
       reset();
       dispatch(resetUniversity());
+
+      await create_log(
+        `${combineDateWithCurrentTime(new Date())} ${
+          user.name
+        } created a ${"Commition"} of ${formData.courseFee} in ${
+          formData.branchName
+        } branch , ${formData.counsillor} consillor, ${formData.agent} agent`,
+        user._id
+      );
 
       toast.success("New Commition added✅", {
         duration: 3000,
@@ -63,15 +73,6 @@ const UniversityForm = () => {
           fontSize: "1.5rem",
         },
       });
-
-      await create_log(
-        `${combineDateWithCurrentTime(new Date())} ${
-          user.name
-        } created a ${"Commition"} of ${formData.courseFee} in ${
-          formData.branchName
-        } branch , ${formData.counsillor} consillor, ${formData.agent} agent`,
-        user._id
-      );
     } catch (err) {
       const errorMessage =
         err.response?.data?.message ||
@@ -110,6 +111,8 @@ const UniversityForm = () => {
       counsillor: data.counsillor,
       courseFee: data.courseFee,
       branchName: data.branchName,
+      inr: data.inr,
+      currency: data.currency,
     };
     await handleCreateTransaction(formData);
   };
@@ -131,6 +134,7 @@ const UniversityForm = () => {
               <label htmlFor="date">Date</label>
               <input
                 type="date"
+                max={new Date().toISOString().split("T")[0]}
                 id="date"
                 {...register("date", { required: "Date is required" })}
               />
@@ -194,60 +198,7 @@ const UniversityForm = () => {
                 </span>
               )}
             </div>
-            <div className="form-group">
-              <label htmlFor="university">University</label>
-              <input
-                id="university"
-                {...register("university", {
-                  required: "University is required",
-                })}
-              ></input>
-              {errors.university && (
-                <span className="form-group-error">
-                  {errors.university.message}
-                </span>
-              )}
-            </div>
 
-            <div className="form-group">
-              <label htmlFor="courseFee">Course Fee</label>
-              <input
-                type="number"
-                id="courseFee"
-                {...register("courseFee", {
-                  required: "Course Fee is required",
-                  min: { value: 0, message: "Course Fee must be positive" },
-                })}
-              />
-              {errors.courseFee && (
-                <span className="form-group-error">
-                  {errors.courseFee.message}
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div className="form-section">
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="status">Status</label>
-              <select
-                id="status"
-                {...register("status", { required: "Select a status" })}
-              >
-                <option value="">Select Status</option>
-                <option value="Invoice Shared">Invoice Shared</option>
-                <option value="Mail Pending">Mail Pending</option>
-                <option value="Pending">Pending</option>
-                <option value="Received">Received</option>
-              </select>
-              {errors.status && (
-                <span className="form-group-error">
-                  {errors.status.message}
-                </span>
-              )}
-            </div>
             <div className="form-group">
               <label htmlFor="country">Country</label>
               <input
@@ -265,23 +216,53 @@ const UniversityForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="agent">Agent</label>
+              <label htmlFor="university">University</label>
               <input
-                id="agent"
-                {...register("agent", {
-                  required: "Agent Name is required",
+                id="university"
+                {...register("university", {
+                  required: "University is required",
                 })}
               ></input>
-              {errors.agent && (
-                <span className="form-group-error">{errors.agent.message}</span>
+              {errors.university && (
+                <span className="form-group-error">
+                  {errors.university.message}
+                </span>
               )}
             </div>
           </div>
         </div>
+
         <div className="form-section">
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="commition">Commition</label>
+              <label tmlFor="courseFee">Course Fee</label>
+              <div style={{ display: "flex" }}>
+                <input
+                  type="number"
+                  id="courseFee"
+                  {...register("courseFee", {
+                    required: "Course Fee is required",
+                    min: { value: 0, message: "Course Fee must be positive" },
+                  })}
+                />
+                {errors.courseFee && (
+                  <span className="form-group-error">
+                    {errors.courseFee.message}
+                  </span>
+                )}
+                <select
+                  style={{ width: "10rem", cursor: "pointer" }}
+                  ißd="currency"
+                  {...register("currency", { required: "Select a curreny" })}
+                >
+                  {currencies.map((val) => (
+                    <option value={val}>{val}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="form-group">
+              <label htmlFor="commition">Commission</label>
               <input
                 type="number"
                 id="commition"
@@ -293,6 +274,35 @@ const UniversityForm = () => {
                 <span className="form-group-error">
                   {errors.commition.message}
                 </span>
+              )}
+            </div>
+            <div className="form-group">
+              <label htmlFor="inr">INR</label>
+              <input
+                type="number"
+                id="inr"
+                {...register("inr", {
+                  required: "INR is required",
+                })}
+              ></input>
+              {errors.inr && (
+                <span className="form-group-error">{errors.inr.message}</span>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="form-section">
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="agent">Agent</label>
+              <input
+                id="agent"
+                {...register("agent", {
+                  required: "Agent Name is required",
+                })}
+              ></input>
+              {errors.agent && (
+                <span className="form-group-error">{errors.agent.message}</span>
               )}
             </div>
 
@@ -339,6 +349,28 @@ const UniversityForm = () => {
               {errors.intakeMonth && (
                 <span className="form-group-error">
                   {errors.intakeMonth.message}
+                </span>
+              )}
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              {/* <label htmlFor="status">Status</label> */}
+              <select
+                style={{ width: "15rem" }}
+                id="status"
+                {...register("status", { required: "Select a status" })}
+              >
+                <option value="">Select Status</option>
+                <option value="Invoice Shared">Invoice Shared</option>
+                <option value="Mail Pending">Mail Pending</option>
+                <option value="Pending">Pending</option>
+                <option value="Received">Received</option>
+              </select>
+              {errors.status && (
+                <span className="form-group-error">
+                  {errors.status.message}
                 </span>
               )}
             </div>
