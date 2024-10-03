@@ -29,6 +29,8 @@ const DaybookEditForm = () => {
   const [values] = selected;
   const { catagories } = useSelector((state) => state.catagories);
 
+  console.log(selected, "selected");
+
   const selectedCatFinder = () => {
     const selectedCat = catagories?.find(
       (cat) => values?.catagory === cat?._id

@@ -1,9 +1,49 @@
+import { useDispatch, useSelector } from "react-redux";
 import { truncateText } from "../../Services/truncateFormatter";
+import { useCallback, useEffect, useState } from "react";
+import { setUniversitySelectedItems } from "../../Global-Variables/features/university/universitySlice";
 
 export default function ComDataItems({ item }) {
+  const { universitySelectedItems } = useSelector((state) => state.university);
+
+  const checkItem = useCallback(() => {
+    return universitySelectedItems?.some((val) => val._id === item._id);
+  }, [universitySelectedItems, item._Id]);
+
+  const [isChecked, setIsChecked] = useState(checkItem());
+  const dispatch = useDispatch();
+
+  const handleChecked = () => {
+    const newCheckedState = !isChecked;
+    setIsChecked(newCheckedState);
+
+    if (newCheckedState) {
+      dispatch(setUniversitySelectedItems([...universitySelectedItems, item]));
+    } else {
+      dispatch(
+        setUniversitySelectedItems(
+          universitySelectedItems.filter((val) => val._id !== item._id)
+        )
+      );
+    }
+  };
+
+  useEffect(() => {
+    setIsChecked(checkItem());
+  }, [checkItem]);
+
   return (
-    <div className="commition__data-items">
-      <input type="checkbox" />
+    <div
+      className={`commition__data-items ${
+        isChecked ? "daybook__selected" : ""
+      }`}
+    >
+      <input
+        type="checkbox"
+        checked={isChecked}
+        onChange={handleChecked}
+        style={{ cursor: "pointer" }}
+      />
       <span className="commition__data-headerItems commitionDate data-items">
         <h4> {item?.formattedDate}</h4>
       </span>
@@ -22,10 +62,13 @@ export default function ComDataItems({ item }) {
         <h4>{item?.branchName}</h4>
       </span>
       <span className="commition__data-headerItems data-items">
-        <h4>{item?.courseFee}</h4>
+        <div style={{ textAlign: "center" }}>
+          <h4>{item?.courseFee}</h4>
+          <div className="text">{item?.commition + "%"}</div>
+        </div>
       </span>
       <span className="commition__data-headerItems data-items">
-        <h4>Revievable</h4>
+        <h4>{((item?.commition / 100) * item?.courseFee).toFixed(2)}</h4>
       </span>
       <span className="commition__data-headerItems data-items">
         <h4>{item?.status}</h4>

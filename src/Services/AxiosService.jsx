@@ -104,3 +104,14 @@ export const create_log = async (log, userId) => {
     console.log(error);
   }
 };
+export const create_commition = async (formData) => {
+  try {
+    return (
+      await axios.post(`${URL}/v1/university`, formData, {
+        withCredentials: true,
+      })
+    ).data;
+  } catch (error) {
+    console.log(error);
+  }
+};

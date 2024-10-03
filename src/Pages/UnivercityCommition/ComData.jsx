@@ -1,7 +1,12 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ComDataItems from "./ComDataItems";
-import { setUniversityCurrentPage } from "../../Global-Variables/features/university/universitySlice";
+import {
+  setUniversityAllSelected,
+  setUniversityCurrentPage,
+  setUniversitySelectedItems,
+} from "../../Global-Variables/features/university/universitySlice";
 import PageNavigate from "../../Components/PageNavigate/PageNavigate";
+import { useEffect } from "react";
 
 export default function ComData() {
   const {
@@ -10,14 +15,32 @@ export default function ComData() {
     length,
     startPage,
     universitySelectedItems,
-    universityAllSelecteds,
+    universityAllSelected,
   } = useSelector((state) => state.university);
 
-  const viewSix = universities.slice(startPage, startPage + 6);
+  const dispatch = useDispatch();
 
+  const viewSix = universities.slice(startPage, startPage + 6);
   const btnDisable = viewSix.length < 6;
 
-  console.log(viewSix, "viewSixx");
+  useEffect(() => {
+    if (
+      universitySelectedItems.length === viewSix.length &&
+      viewSix.length > 0
+    ) {
+      dispatch(setUniversityAllSelected(true));
+    } else {
+      dispatch(setUniversityAllSelected(false));
+    }
+  }, [universitySelectedItems.length, viewSix.length, dispatch]);
+
+  useEffect(() => {
+    if (universityAllSelected) {
+      dispatch(setUniversitySelectedItems(viewSix));
+    } else if (universitySelectedItems.length === viewSix.length) {
+      dispatch(setUniversitySelectedItems([]));
+    }
+  }, [universityAllSelected, dispatch]);
 
   return (
     <>
