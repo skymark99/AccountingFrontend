@@ -1,24 +1,20 @@
-import React, { Suspense, lazy } from "react";
+import React from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "../App";
 import ErrorPage from "../Layout/Error/ErrorPage";
 import Login from "../Layout/LoginPage/Login";
 import axios from "axios";
 
-// Lazy load the components
-const Dashboard = lazy(() => import("../Pages/Dashboard/Dashboard"));
-const DayBook = lazy(() => import("../Pages/Daybook/DayBook"));
-const BalanceSheet = lazy(() => import("../Pages/BalanceSheet/BalanceSheet"));
-const BranchPNL = lazy(() => import("../Pages/BranchPNL/BranchPNL"));
-const Liability = lazy(() => import("../Pages/Liability/Liability"));
-const Outstanding = lazy(() => import("../Pages/Outstanding/Outstanding"));
-const Reminders = lazy(() => import("../Pages/Reminders/Reminders"));
-const BudgetPlanner = lazy(() =>
-  import("../Pages/BudgetPlanner/BudgetPlanner")
-);
-const Commition = lazy(() => import("../Pages/UnivercityCommition/Commition"));
-
-import FullScreenLoader from "../Components/Loader/FullScreenLoader";
+// Directly import the components
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import DayBook from "../Pages/Daybook/DayBook";
+import BalanceSheet from "../Pages/BalanceSheet/BalanceSheet";
+import BranchPNL from "../Pages/BranchPNL/BranchPNL";
+import Liability from "../Pages/Liability/Liability";
+import Outstanding from "../Pages/Outstanding/Outstanding";
+import Reminders from "../Pages/Reminders/Reminders";
+import BudgetPlanner from "../Pages/BudgetPlanner/BudgetPlanner";
+import Commition from "../Pages/UnivercityCommition/Commition";
 
 const URL = import.meta.env.VITE_URL;
 
@@ -58,75 +54,39 @@ const router = createBrowserRouter([
       },
       {
         path: "dashboard",
-        element: (
-          <Suspense fallback={<FullScreenLoader />}>
-            <Dashboard />
-          </Suspense>
-        ),
+        element: <Dashboard />,
       },
       {
         path: "daybook",
-        element: (
-          <Suspense fallback={<FullScreenLoader />}>
-            <DayBook />
-          </Suspense>
-        ),
+        element: <DayBook />,
       },
       {
         path: "balance-sheet",
-        element: (
-          <Suspense fallback={<FullScreenLoader />}>
-            <BalanceSheet />
-          </Suspense>
-        ),
+        element: <BalanceSheet />,
       },
       {
         path: "liability",
-        element: (
-          <Suspense fallback={<FullScreenLoader />}>
-            <Liability />
-          </Suspense>
-        ),
+        element: <Liability />,
       },
       {
         path: "outstanding",
-        element: (
-          <Suspense fallback={<FullScreenLoader />}>
-            <Outstanding />
-          </Suspense>
-        ),
+        element: <Outstanding />,
       },
       {
         path: "reminders",
-        element: (
-          <Suspense fallback={<FullScreenLoader />}>
-            <Reminders />
-          </Suspense>
-        ),
+        element: <Reminders />,
       },
       {
         path: "branch-pnl",
-        element: (
-          <Suspense fallback={<FullScreenLoader />}>
-            <BranchPNL />
-          </Suspense>
-        ),
+        element: <BranchPNL />,
       },
       {
         path: "budget-planner",
-        element: (
-          <Suspense fallback={<FullScreenLoader />}>
-            <BudgetPlanner />
-          </Suspense>
-        ),
+        element: <BudgetPlanner />,
       },
       {
         path: "commition",
-        element: (
-          <Suspense fallback={<FullScreenLoader />}>
-            <Commition />
-          </Suspense>
-        ),
+        element: <Commition />,
       },
     ],
   },
