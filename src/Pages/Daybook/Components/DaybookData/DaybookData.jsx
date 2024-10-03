@@ -9,7 +9,6 @@ import { useTransactionManagement } from "../../../../Hooks/transactionsHooks/us
 import { NoData } from "../../../../assets/images";
 import ErrorBoundary from "antd/es/alert/ErrorBoundary";
 
-
 function DaybookData({ onSetTotal, handleOpenDownload }) {
   const { currentPage, loading, error, transactions, viewSix } =
     useTransactionManagement(onSetTotal);
