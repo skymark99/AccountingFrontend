@@ -6,6 +6,24 @@ import { dateOptions } from "../../../data/generalDatas";
 
 const URL = import.meta.env.VITE_URL;
 
+export const fetchUnivTotals = createAsyncThunk(
+  "university/totals",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await axios.get(`${URL}/v1/university/totals`);
+      return res?.data?.data;
+    } catch (error) {
+      if (axios.isCancel(error)) {
+        console.log("Request canceled", error.message);
+        return rejectWithValue("Request canceled");
+      }
+      return rejectWithValue(
+        error.response?.data?.message || "An error occurred"
+      );
+    }
+  }
+);
+
 export const fetchUniversity = createAsyncThunk(
   "university/fetchUniversity",
   async (_, { rejectWithValue, getState }) => {
@@ -13,8 +31,8 @@ export const fetchUniversity = createAsyncThunk(
       const state = getState();
       const {
         page,
-        universityStartDate: startDate,
-        universityEndDate: endDate,
+        // universityStartDate: startDate,
+        // universityEndDate: endDate,
         status,
         query,
         curBranch: branch,
@@ -23,8 +41,8 @@ export const fetchUniversity = createAsyncThunk(
       let endpoint;
       endpoint =
         status === "All Status"
-          ? `/v1/university?sort=-createdAt&page=${page}&startDate=${startDate}&endDate=${endDate}`
-          : `/v1/university?sort=-createdAt&page=${page}&startDate=${startDate}&endDate=${endDate}&status=${status}`;
+          ? `/v1/university?sort=-createdAt&page=${page}`
+          : `/v1/university?sort=-createdAt&page=${page}&status=${status}`;
 
       if (query) {
         endpoint += `&search=${query}`;
@@ -73,6 +91,11 @@ const initialState = {
   query: "",
   curBranch: "All Branch",
   intake: "All Intakes",
+
+  totalReceived: null,
+  totalPending: null,
+  totalsLoading: false,
+  totalsErr: null,
 };
 
 const universitySlice = createSlice({
@@ -204,6 +227,22 @@ const universitySlice = createSlice({
       .addCase(fetchUniversity.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || "An error occurred";
+      })
+
+      //fetching totals
+      .addCase(fetchUnivTotals.pending, (state) => {
+        state.totalsLoading = true;
+        state.totalsErr = null;
+      })
+      .addCase(fetchUnivTotals.fulfilled, (state, action) => {
+        state.totalsLoading = false;
+        state.totalsErr = null;
+        state.totalReceived = action.payload.totalReceived;
+        state.totalPending = action.payload.totalPending;
+      })
+      .addCase(fetchUnivTotals.rejected, (state, action) => {
+        state.totalsLoading = false;
+        state.totalsErr = action.payload || "An Error Occured";
       });
   },
 });

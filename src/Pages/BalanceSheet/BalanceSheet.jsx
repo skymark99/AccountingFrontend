@@ -44,9 +44,9 @@ function BalanceSheet() {
           />
 
           <div className="sheet__buttons">
-            <ThertiaryBtn style={{ fontSize: "1.2rem" }}>
+            {/* <ThertiaryBtn style={{ fontSize: "1.2rem" }}>
               Download Report
-            </ThertiaryBtn>
+            </ThertiaryBtn> */}
 
             <div className="pagination-group">
               <button className="pagination-btn" onClick={handlePrevious}>

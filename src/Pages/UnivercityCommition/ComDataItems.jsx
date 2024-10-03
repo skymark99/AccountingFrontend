@@ -71,7 +71,7 @@ export default function ComDataItems({ item }) {
         </div>
       </span>
       <span className="commition__data-headerItems data-items">
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "left" }}>
           <h4>{((item?.commition / 100) * item?.courseFee).toFixed(2)}</h4>
           <div className="text">{item?.inr + " INR"}</div>
         </div>

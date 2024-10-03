@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { addTimer, getInitialTime } from "./countdownActions"; // Keep this if it serves a purpose
+import { addTimer, getInitialTime } from "./countdownActions";
 import { logout } from "../../Services/AxiosService";
 import { useDispatch, useSelector } from "react-redux";
 import { setTime } from "../../Global-Variables/features/auth/authSlice";

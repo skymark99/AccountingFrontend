@@ -19,14 +19,7 @@ function Commition() {
         </div>
         <div className="commition__data">
           <ComDataHeader />
-
-          {loading ? (
-            <div>Loading...</div> // Loader message or spinner
-          ) : error ? (
-            <div className="error">Oops! Something went wrong: {error}</div> // Error message
-          ) : (
-            <ComData />
-          )}
+          <ComData />
         </div>
       </div>
     </div>

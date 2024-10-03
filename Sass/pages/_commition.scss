@@ -95,6 +95,11 @@ $input-margin: 3rem;
     @include flex(center);
     gap: 1.5rem;
   }
+
+  &-total-btns {
+    @include flex(center);
+    gap: 2rem;
+  }
 }
 
 .commitionDate {

@@ -1,7 +1,7 @@
 export const branches = [
   "All Branch",
-  "Kochi",
   "Kozhikode",
+  "Kochi",
   "Kottayam",
   "Manjeri",
   "Kannur",

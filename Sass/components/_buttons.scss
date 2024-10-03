@@ -103,14 +103,14 @@
   margin: 20px 0; /* Add some margin for spacing */
   position: fixed;
   bottom: 10%;
-  left: 50%;
+  left: 60%;
   transform: translateX(-50%);
   transition: all 0.3s ease-in-out;
 }
 
 .pagination-group {
   display: flex; /* Align buttons horizontally */
-  justify-content: space-between; /* Center buttons within the container */
+  width: 100%;
   gap: 5px;
 }
 .sheet-btn {
