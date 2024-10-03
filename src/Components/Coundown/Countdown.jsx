@@ -48,7 +48,11 @@ const Countdown = () => {
     }${remainingSeconds}`;
   };
 
-  return <h1 className="time-display">{formatTime(time)}</h1>;
+  return (
+    <h1 className="time-display" style={{ opacity: "0.3" }}>
+      {formatTime(time)}
+    </h1>
+  );
 };
 
 export default Countdown;
