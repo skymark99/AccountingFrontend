@@ -79,6 +79,7 @@ function ForgotPassword() {
       {!isOtpVerified ? (
         <form onSubmit={isOtpSent ? handleVerifyOtp : handleSendOtp}>
           <label
+            style={{ textWrap: "nowrap" }}
             htmlFor="chk"
             aria-hidden="true"
             className="forgot-password-label"
