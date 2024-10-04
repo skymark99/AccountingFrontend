@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import Percentage from "../../Components/Percentage";
-import HorizontalLoader from "../../Components/Loader/HorizontalLoader";
 import { Skeleton } from "antd";
 
 function TopPerformer() {
@@ -19,7 +18,6 @@ function TopPerformer() {
         Top Performer
       </span>
       {loading ? (
-        // <HorizontalLoader />
         <Skeleton.Input
           active
           style={{

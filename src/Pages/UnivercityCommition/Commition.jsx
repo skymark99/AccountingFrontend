@@ -6,7 +6,7 @@ import { useUniversity } from "../../Hooks/universityHook/useUniversity";
 import ComHeader from "./ComHeader";
 
 function Commition() {
-  const [loading, error] = useUniversity();
+  useUniversity();
 
   return (
     <div className="body daybook">

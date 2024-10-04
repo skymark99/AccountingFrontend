@@ -1,21 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BalanceSheetHeader from "./Components/BalanceSheetHeader/BalanceSheetHeader";
 import TotalLiability from "./Components/BalanceSheetCardsRight/TotalLiability";
 import OutstandingIncome from "./Components/BalanceSheetCardsRight/OutstandingIncome";
 import TotAvailableBalance from "./Components/BalanceSheetCardsRight/TotAvailableBalance";
 import BalanceSheetTable from "./Components/BalanceSheetCardsRight/BalanceSheetTable";
 import Navbar from "../../Components/Navbar";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchBalanceSheet } from "../../Global-Variables/features/BalancesheetSlice/balanceSheetSlice";
+import { useSelector } from "react-redux";
 import { TbPlayerTrackNext, TbPlayerTrackPrev } from "react-icons/tb";
-import { fetchTotal } from "../../Global-Variables/features/liabilitySlice/liabilitySlice";
-import ThertiaryBtn from "../../Components/Buttons/ThertiaryBtn";
 import { useBalanceSheet } from "../../Hooks/balanceSheetHook/useBalanceSheet";
 
 function BalanceSheet() {
   const [currentPage, setCurrentPage] = useState(0);
   const { data } = useSelector((state) => state.balanceSheet);
-  const dispatch = useDispatch();
 
   useBalanceSheet();
 

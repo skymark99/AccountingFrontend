@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import BranchPNL_Header from "./BranchPNL_Header/BranchPNL_Header";
 import BranchPNL_Cards from "./BranchPNL_Cards/BranchPNL_Cards";
 import MonthlyPNLChart from "./BranchPNL_Cards/MonthlyPNLChart";

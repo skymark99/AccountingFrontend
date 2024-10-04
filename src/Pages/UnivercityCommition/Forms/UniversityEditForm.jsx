@@ -1,18 +1,14 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { create_log, update_commition } from "../../../Services/AxiosService";
 import { getInitialTime } from "../../../Components/Coundown/countdownActions";
 import { setTime } from "../../../Global-Variables/features/auth/authSlice";
-import {
-  addCurrentTimeToDate,
-  combineDateWithCurrentTime,
-  today,
-} from "../../../Services/dateFormatter";
+import { combineDateWithCurrentTime } from "../../../Services/dateFormatter";
 import { resetUniversity } from "../../../Global-Variables/features/university/universitySlice";
 import { currencies } from "../../../data/generalDatas";
-import useFormReset, { useUnivFormReset } from "../../../Hooks/useFormReset";
+import { useUnivFormReset } from "../../../Hooks/useFormReset";
 
 const aprilIntake = ["May", "June", "July", "August", "September", "October"];
 const novemberIntake = ["November", "December", "January", "February", "March"];

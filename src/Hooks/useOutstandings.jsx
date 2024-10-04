@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from "axios";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOutstandingData } from "../Global-Variables/features/liabilitySlice/outstandingSlice";
 

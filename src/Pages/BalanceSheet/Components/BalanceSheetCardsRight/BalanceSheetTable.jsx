@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Loader from "../../../../Components/Loader/Loader";
 import { useSelector } from "react-redux";
 

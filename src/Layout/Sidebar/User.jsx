@@ -1,4 +1,3 @@
-import { IoCaretDown } from "react-icons/io5";
 import { useSelector } from "react-redux";
 
 function User() {

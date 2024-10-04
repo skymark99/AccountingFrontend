@@ -8,7 +8,6 @@ function TotalExpense() {
     <div className="overview-item">
       <span className="small-bold-title">Expense</span>
       {loading ? (
-        // <HorizontalLoader style={{ marginBottom: "2.5rem" }} />
         <div className="medium-money overview-content">
           <Skeleton.Input active style={{ width: 200, height: 26 }} />
         </div>

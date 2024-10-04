@@ -49,6 +49,7 @@ function LoginSection() {
           name="email"
           placeholder="Email"
           required
+          autoComplete="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -56,8 +57,9 @@ function LoginSection() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           type="password"
-          name="pswd"
+          name="password"
           placeholder="Password"
+          autoComplete="current-password"
           required
         />
         <button style={loading ? { opacity: ".7" } : {}} type="submit">

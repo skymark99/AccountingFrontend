@@ -51,8 +51,6 @@ function App() {
       <Toaster />
       {isLoggedIn && <SideBar />}
       {isLoggedIn && <Outlet />}
-      {/* <SideBar />
-      <Outlet /> */}
     </div>
   );
 }
