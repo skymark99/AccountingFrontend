@@ -18,8 +18,8 @@ export const editCatagory = async (id, body) => {
 
 export const addParticular = async (catagoryName, particular) => {
   const response = await axios.patch(
-    `${URL}/v1/catagory/addParticular?catagoryName=${catagoryName}`,
-    { particular },
+    `${URL}/v1/catagory/addParticular`,
+    { particular, catagoryName },
     {
       withCredentials: true,
     }
@@ -27,12 +27,14 @@ export const addParticular = async (catagoryName, particular) => {
   return response.data;
 };
 export const updateParticular = async (
-  catagoryName,
+  catagory,
   particularName,
   particular
 ) => {
+  console.log(catagory, "cat");
+
   const response = await axios.patch(
-    `${URL}/v1/catagory/updateParticular?catagoryName=${catagoryName}&particularName=${particularName}`,
+    `${URL}/v1/catagory/updateParticular?catagoryName=${catagory}&particularName=${particularName}`,
     { particular },
     {
       withCredentials: true,
