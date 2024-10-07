@@ -37,7 +37,10 @@ function Catagory({
   }, [curValue, setCatagory, catagories, defaultValue]);
 
   const handleCurValue = (val) => {
-    return () => setCurValue(val);
+    return () => {
+      setIsCurEdit(false);
+      setCurValue(val);
+    };
   };
 
   const handleCatagory = () => {
@@ -46,6 +49,7 @@ function Catagory({
 
   const handleAddCatagory = (e) => {
     e.stopPropagation();
+    setCurEditValue("");
     setIsCurEdit(true);
     setStopDropdown(false);
     setIsCat(true);
@@ -66,7 +70,7 @@ function Catagory({
       setIsLoading(true);
       setCurValue(curEditValue);
       const response = await addCatagory({ name: curEditValue });
-      dispatch(resetCatagory);
+      dispatch(resetCatagory());
       dispatch(fetchCatagory());
       setCurValue(response.envelop.data.name);
       toast.success("Catagory added successfully");

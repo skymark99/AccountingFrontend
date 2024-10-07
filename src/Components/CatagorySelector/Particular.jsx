@@ -51,6 +51,7 @@ function Particular({
 
   const handleCurValue = (val) => {
     return () => {
+      setIsCurEdit(false);
       setCurValue(val);
     };
   };
@@ -68,6 +69,7 @@ function Particular({
   const handleAddParticular = (e) => {
     e.stopPropagation();
     setIsCurEdit(true);
+    setCurEditValue("");
     setStopDropdown(false);
     setIsCat(true);
   };
