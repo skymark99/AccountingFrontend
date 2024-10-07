@@ -65,7 +65,7 @@ function DaybookActionBtns() {
       </PrimaryBlueBtn>
 
       <Modal open={isBankToBank} onCancel={handleBankToBank} footer={null}>
-        <h4 className="form-head">Edit The Transaction</h4>
+        <h4 className="form-head">Self Transaction</h4>
         <BankToBankForm />
       </Modal>
 
