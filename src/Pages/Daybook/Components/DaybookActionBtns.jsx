@@ -12,6 +12,7 @@ import {
 } from "../../../Global-Variables/features/dayBookSlice/dayBookSlice";
 import ParticularSelector from "../../../Components/CatagorySelector/ParticularSelector";
 import LogModal from "../../../Features/LogModal/LogModal";
+import BankToBankForm from "./DaybookData/BankToBankForm";
 
 function DaybookActionBtns() {
   const { selected, selectedCatagory, selectedParticular } = useSelector(
@@ -20,6 +21,11 @@ function DaybookActionBtns() {
 
   const [isNewEntri, setIsNewEntri] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [isBankToBank, setIsBankToBank] = useState(false);
+
+  const handleBankToBank = () => {
+    setIsBankToBank((b) => !b);
+  };
 
   const [isLog, setIsLog] = useState(false);
   const handleIsLog = () => {
@@ -46,6 +52,27 @@ function DaybookActionBtns() {
       >
         + New Entry
       </PrimaryBlueBtn>
+      <PrimaryBlueBtn
+        onClick={handleBankToBank}
+        style={{
+          fontWeight: "700",
+          padding: "1rem 3rem",
+          fontFamily: "Roboto",
+          width: "15rem",
+        }}
+      >
+        Bank to Bank
+      </PrimaryBlueBtn>
+
+      <Modal open={isBankToBank} onCancel={handleBankToBank} footer={null}>
+        <h4 className="form-head">Edit The Transaction</h4>
+        <BankToBankForm />
+      </Modal>
+
+      <Modal open={isEdit} onCancel={handleIsEdit} footer={null} width={"50%"}>
+        <h4 className="form-head">Edit The Transaction</h4>
+        <DaybookEditForm />
+      </Modal>
 
       <Modal
         open={isNewEntri}

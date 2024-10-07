@@ -21,7 +21,7 @@ function Particular({
   const [stopDropdown, setStopDropdown] = useState(false);
   const [isCurEdit, setIsCurEdit] = useState(false);
   const [curEditValue, setCurEditValue] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // Loading state
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {

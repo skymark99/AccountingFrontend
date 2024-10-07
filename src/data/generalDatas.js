@@ -24,4 +24,6 @@ export const univStatus = [
   "Received",
 ];
 
+export const bank = ["RBL", "ICICI", "HDFC", "RAK", "CASH"];
+
 export const currencies = ["USD", "Pound", "CAD", "Euro"];
