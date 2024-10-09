@@ -100,7 +100,6 @@ function Particular({
       const message = err.response.data.message || "Network Error";
       toast.error(message);
       setIsCurEdit(true);
-      console.error(err);
     } finally {
       setIsLoading(false); // Stop loading
     }

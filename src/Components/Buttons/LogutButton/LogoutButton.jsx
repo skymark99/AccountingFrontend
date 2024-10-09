@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import "./logoutButton.css";
-import toasting from "../../../Utils/Toasting";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../Services/AxiosService";
 import {
@@ -9,6 +8,7 @@ import {
 } from "../../../Global-Variables/features/auth/authSlice";
 import { useState } from "react";
 import { getInitialTime } from "../../Coundown/countdownActions";
+import toast, { Toaster } from "react-hot-toast";
 
 function LogoutButton() {
   const navigate = useNavigate();
@@ -19,20 +19,32 @@ function LogoutButton() {
   const handleLogout = async () => {
     try {
       setLoading(true);
-      await logout();
-      toasting("error", "Logged Out");
-      dispatch(setTime(getInitialTime()));
+      await logout(); // Call your logout function
+      // Dispatch actions to update the app state
+      dispatch(setTime(getInitialTime())); // Assuming this is correct
+      dispatch(setIsLoggedIn(false)); // Set logged-in status to false
+
+      // Navigate to the sign-in page
       navigate("/sign-in");
-      dispatch(setIsLoggedIn(false));
     } catch (e) {
-      setError(e.message);
-      toasting(error, "Logout failed");
+      setError(e.message); // Set the error message
+      toast.error("Logout failed", {
+        duration: 3000,
+        position: "top-center",
+        style: {
+          background: "white !important",
+          color: "red !important",
+          fontSize: "1.5rem !important",
+          zIndex: "10000 !important",
+        },
+      });
     } finally {
-      setLoading(false);
+      setLoading(false); // Always executed after try/catch
     }
   };
   return (
     <div className="logout-button-container">
+      <Toaster />
       <button
         className="logout-button"
         onClick={handleLogout}

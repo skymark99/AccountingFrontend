@@ -26,9 +26,7 @@ export const downloadTransactionReport = async (startDate, endDate) => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  } catch (error) {
-    console.error("Error downloading the report:", error);
-  }
+  } catch (error) {}
 };
 
 export const downloadLiabilityReport = async (startDate, endDate, type) => {
@@ -56,9 +54,7 @@ export const downloadLiabilityReport = async (startDate, endDate, type) => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  } catch (error) {
-    console.error("Error downloading the report:", error);
-  }
+  } catch (error) {}
 };
 
 export const downloadReminderReport = async (startDate, endDate) => {
@@ -84,7 +80,5 @@ export const downloadReminderReport = async (startDate, endDate) => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  } catch (error) {
-    console.error("Error downloading the report:", error);
-  }
+  } catch (error) {}
 };

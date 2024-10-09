@@ -79,7 +79,6 @@ function Catagory({
       toast.error("Catagory added failed");
       setCurValue(defaultValue);
       setIsCurEdit(true);
-      console.error(err);
     } finally {
       setIsLoading(false); // Stop loading
     }

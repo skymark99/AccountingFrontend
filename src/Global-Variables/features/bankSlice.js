@@ -22,6 +22,7 @@ const balanceSlice = createSlice({
       .addCase(fetchBankDetails.fulfilled, (state, action) => {
         state.loading = false;
         const { banks, stats } = action.payload;
+
         state.banks = banks;
         state.totalBalance = stats.totalBalance;
         state.percentageHike = stats.percentageHike;

@@ -12,15 +12,17 @@ import {
 import Countdown from "./Components/Coundown/Countdown";
 import { useEffect } from "react";
 import { getInitialTime } from "./Components/Coundown/countdownActions";
+import { useLogoutOnWindowClose } from "./Hooks/useLogoutOnWindowClose";
+import { useAllFetch } from "./Hooks/useAllFetch/useAllFetch";
 
 function App() {
   const loaderData = useLoaderData();
   const { isLoggedIn, isNewPassword } = useSelector((state) => state.auth);
 
-  // Custom hook for authentication
+  // useAllFetch();
   useAuthLoader(loaderData);
-  // Custom hook for fetching categories
   useFetchCategories();
+  useLogoutOnWindowClose();
 
   const dispatch = useDispatch();
   const handleClose = () => {
@@ -37,7 +39,7 @@ function App() {
     return () => {
       document.removeEventListener("click", handleClick);
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="container">

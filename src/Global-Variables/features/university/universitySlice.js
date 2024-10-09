@@ -14,7 +14,6 @@ export const fetchUnivTotals = createAsyncThunk(
       return res?.data?.data;
     } catch (error) {
       if (axios.isCancel(error)) {
-        console.log("Request canceled", error.message);
         return rejectWithValue("Request canceled");
       }
       return rejectWithValue(
@@ -62,7 +61,6 @@ export const fetchUniversity = createAsyncThunk(
       return response.data.docs;
     } catch (error) {
       if (axios.isCancel(error)) {
-        console.log("Request canceled", error.message);
         return rejectWithValue("Request canceled");
       }
       return rejectWithValue(

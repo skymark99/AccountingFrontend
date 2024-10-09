@@ -38,9 +38,7 @@ function BudgetPlannerHeaderRight({
         dispatch(getCalcBudget());
         setOpenBtn(!openBtn);
         toast.success("Data updated successfully");
-      } catch (error) {
-        console.error("Error updating data", error);
-      }
+      } catch (error) {}
     }
   };
 

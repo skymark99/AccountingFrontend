@@ -25,7 +25,6 @@ function BankToBankForm() {
       toast.success("Succesfully transfered", { id: toastId });
     } catch (err) {
       toast.error("Something went Wrong...", { id: toastId });
-      console.log(err);
     } finally {
       setLoading(false);
     }

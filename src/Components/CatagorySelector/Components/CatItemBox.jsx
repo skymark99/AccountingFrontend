@@ -34,7 +34,7 @@ function CatItemBox({ value, onClick, setStopDropdown, setCurValue, id }) {
       toast.success("Category updated successfully");
     } catch (err) {
       toast.error("Duplicate category name or error occurred");
-      console.error(err.response.data, "error");
+
       setCurValue(pastValue); // Revert to the previous value in case of error
       setLocalCurValue(pastValue);
     }

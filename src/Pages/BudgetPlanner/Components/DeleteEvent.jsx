@@ -15,7 +15,6 @@ function DeleteEvent({ id }) {
       dispatch(getCalcBudget());
       toast.success("Plan deleted successfully");
     } catch (error) {
-      console.log(error, "error");
       toast.error("Error while deleting event");
     }
   };

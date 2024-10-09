@@ -25,14 +25,14 @@ function ResetPasswordModal() {
       toast.error("Password did not matching", { id: toasetId });
       return;
     }
-    await resetPassword(password);
-    toast.success("Password updated Successfully", { id: toasetId });
-    setIsLoading(false);
-    handleClose();
+
     try {
+      await resetPassword(password);
+      toast.success("Password updated Successfully", { id: toasetId });
+      setIsLoading(false);
+      handleClose();
     } catch (err) {
       toast.error("Something went wrong", { id: toasetId });
-      console.log(err);
     } finally {
       setIsLoading(false);
     }

@@ -46,7 +46,6 @@ function ParticularItemBox({
       setLocalCurValue(pastValue);
       setCurValue(pastValue);
       toast.error("Duplicate category name or error occurred");
-      console.error(err);
     }
   };
 

@@ -17,8 +17,6 @@ export const fetchDashboardData = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      console.log(error.response?.data?.message, "error");
-
       return rejectWithValue(
         error.response?.data?.message || "An Error Occured"
       );

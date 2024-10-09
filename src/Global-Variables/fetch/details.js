@@ -30,7 +30,6 @@ export const fetchTransaction = createAsyncThunk(
       });
       return response.data.docs;
     } catch (error) {
-      console.log(error.message);
       return rejectWithValue(error.message);
     }
   }

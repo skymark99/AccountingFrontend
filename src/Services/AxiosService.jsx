@@ -1,5 +1,6 @@
 import axios from "axios";
 const URL = import.meta.env.VITE_URL;
+import Cookies from "js-cookie";
 
 // Daybook
 export const create_daybook = async (formData) => {
@@ -61,6 +62,16 @@ export const delete_reminder = async (formData) => {
 };
 
 export const logout = async () => {
+  const clearBrowserCache = () => {
+    if ("caches" in window) {
+      caches.keys().then((names) => {
+        names.forEach((name) => caches.delete(name));
+      });
+    }
+  };
+
+  clearBrowserCache();
+  Cookies.remove("token");
   return (
     await axios.post(`${URL}/v1/user/logout`, {}, { withCredentials: true })
   ).data;
@@ -100,9 +111,7 @@ export const create_log = async (log, userId) => {
         { withCredentials: true }
       )
     ).data;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 export const create_commition = async (formData) => {
   return await axios.post(`${URL}/v1/university`, formData, {

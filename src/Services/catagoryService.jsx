@@ -31,8 +31,6 @@ export const updateParticular = async (
   particularName,
   particular
 ) => {
-  console.log(catagory, "cat");
-
   const response = await axios.patch(
     `${URL}/v1/catagory/updateParticular?catagoryName=${catagory}&particularName=${particularName}`,
     { particular },

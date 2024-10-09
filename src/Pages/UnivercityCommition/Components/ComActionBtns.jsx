@@ -52,7 +52,6 @@ function ComActionsBtns() {
       toast.error("Error deleting item", {
         autoClose: 3000,
       });
-      console.error("Error during deletion:", e);
     } finally {
       setLoadingDel(false); // Ensure loading state is cleared regardless of success or failure
     }

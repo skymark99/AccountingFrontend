@@ -39,7 +39,6 @@ export const fetchDebits = createAsyncThunk(
       });
       return response.data.docs;
     } catch (error) {
-      console.error("Error fetching debits:", error);
       return rejectWithValue("Failed to fetch debits. Please try again.");
     }
   }

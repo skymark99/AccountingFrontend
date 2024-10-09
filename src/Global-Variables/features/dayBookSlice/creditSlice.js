@@ -40,7 +40,6 @@ export const fetchCredits = createAsyncThunk(
       });
       return response.data.docs;
     } catch (error) {
-      console.error("Error fetching credits:", error);
       return rejectWithValue("Failed to fetch Credits. Please try again.");
     }
   }

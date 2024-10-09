@@ -49,7 +49,6 @@ const NewProperty = () => {
         await dispatch(getCalcBudget());
         toast.success("Data added successfully");
       } catch (error) {
-        console.log(error, "error");
         toast.error(error.response.data.message);
       } finally {
         setLoading(false);

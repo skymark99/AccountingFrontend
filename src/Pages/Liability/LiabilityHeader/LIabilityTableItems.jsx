@@ -49,8 +49,6 @@ function LIabilityTableItems({ item }) {
   const { catagories } = useSelector((state) => state.catagories);
   const catagoryName = catagoryFinder(catagories, catagory)?.name;
 
-  console.log(branches, "liab");
-
   return (
     <div
       className={`data-items-container ${isChecked ? "daybook__selected" : ""}`}

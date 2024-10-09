@@ -24,9 +24,7 @@ const DaybookLog = () => {
       try {
         await containerRef.current.requestFullscreen();
         setIsFullScreen(true);
-      } catch (err) {
-        console.error("Error attempting to enable fullscreen:", err);
-      }
+      } catch (err) {}
     } else {
       if (document.exitFullscreen) {
         document.exitFullscreen();

@@ -14,7 +14,19 @@ export const login = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error?.response?.data?.message);
+      if (error.response) {
+        if (error.response.status === 429) {
+          return thunkAPI.rejectWithValue(
+            "Too many requests. Please try again later."
+          );
+        } else {
+          return thunkAPI.rejectWithValue(error.response.data.message);
+        }
+      } else {
+        return thunkAPI.rejectWithValue(
+          "Too many requests. Please try again in one hour.."
+        );
+      }
     }
   }
 );
@@ -25,12 +37,10 @@ export const fetchLogs = createAsyncThunk(
     try {
       const response = await axios.get(
         `${URL}/v1/logs?user=${userId}&limit=500`,
-        {},
         { withCredentials: true }
       );
       return response.data.docs;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error?.response?.data?.message);
     }
   }

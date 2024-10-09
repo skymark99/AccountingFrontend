@@ -6,6 +6,7 @@ function TopPerformer() {
   const { topPerformerProfit, topPerformer, loading, error } = useSelector(
     (state) => state.dashboard
   );
+
   return (
     <div className="overview-item">
       <span
@@ -40,7 +41,7 @@ function TopPerformer() {
           >
             {topPerformer}
           </span>
-          <Percentage>{`₹ ${topPerformerProfit}/Profit`}</Percentage>
+          <Percentage>{topPerformerProfit}</Percentage>
         </>
       )}
     </div>
