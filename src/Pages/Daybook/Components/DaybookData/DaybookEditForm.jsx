@@ -23,6 +23,15 @@ import {
   getInitialTime,
 } from "../../../../Components/Coundown/countdownActions";
 import { setTime } from "../../../../Global-Variables/features/auth/authSlice";
+import {
+  Bank,
+  DateSel,
+  Purpose,
+  Radio,
+  Remark,
+} from "../../../../Components/Form/Components/Purpose";
+import Branches from "../../../../Components/Form/Branches";
+import { toggleBranch } from "../../../../Components/Form/HelperFunctions";
 
 const DaybookEditForm = () => {
   const { selected } = useSelector((state) => state.daybook);
@@ -90,7 +99,6 @@ const DaybookEditForm = () => {
     clearErrors,
   } = useForm({
     defaultValues: {
-      transaction: values?.name || "",
       date: values?.date
         ? new Date(values.date).toISOString().split("T")[0]
         : "",
@@ -104,18 +112,6 @@ const DaybookEditForm = () => {
   // Update the form with new values when `values` changes
   useFormReset(reset, values);
 
-  const toggleBranch = (branch) => {
-    setSelectedBranches((prev) =>
-      prev?.includes(branch)
-        ? prev?.filter((b) => b !== branch)
-        : prev?.concat(branch)
-    );
-
-    // Clear errors if there are selected branches
-    if (selectedBranches?.length > 1) {
-      clearErrors("branches");
-    }
-  };
   const validateBranches = () => {
     if (selectedBranches?.length === 0) {
       setError("branches", {
@@ -170,8 +166,6 @@ const DaybookEditForm = () => {
       });
     } finally {
       setLoading(false);
-      addTimer();
-      dispatch(setTime(getInitialTime()));
     }
   };
 
@@ -232,100 +226,14 @@ const DaybookEditForm = () => {
         />
         <div className="form-section">
           <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="purpose">Purpose</label>
-              <input
-                type="text"
-                id="purpose"
-                {...register("purpose", {
-                  required: "Purpose is required",
-                })}
-              />
-              {errors.purpose && (
-                <span className="form-group-error">
-                  {errors.purpose.message}
-                </span>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="remark">Remark</label>
-              <textarea
-                id="remark"
-                {...register("remark", { required: "Remark is required" })}
-              ></textarea>
-              {errors.remark && (
-                <span className="form-group-error">
-                  {errors.remark.message}
-                </span>
-              )}
-            </div>
+            <Purpose register={register} errors={errors} />
+            <Remark register={register} errors={errors} />
           </div>
 
           <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="bank">Bank</label>
-              <select
-                id="bank"
-                {...register("bank", { required: "Bank is required" })}
-              >
-                <option value="">Select Bank</option>
-                <option value="HDFC">HDFC</option>
-                <option value="RAK">RAK</option>
-                <option value="ICICI">ICICI</option>
-                <option value="RBL">RBL</option>
-                <option value="CASH">CASH</option>
-              </select>
-              {errors.bank && (
-                <span className="form-group-error">{errors.bank.message}</span>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="Type">Type</label>
-              <div className="type-options">
-                <div className="type-option-container">
-                  <label className="type-option">
-                    <input
-                      disabled={true}
-                      type="radio"
-                      value="Debit"
-                      {...register("type")}
-                      onClick={(e) => e.stopPropagation()} // Prevent default submission behavior
-                    />
-                    Debited
-                  </label>
-                </div>
-                <label className="type-option">
-                  <input
-                    disabled={true}
-                    type="radio"
-                    value="Credit"
-                    {...register("type")}
-                    onClick={(e) => e.stopPropagation()} // Prevent default submission behavior
-                  />
-                  Credited
-                </label>
-              </div>
-              {errors.type && (
-                <span className="form-group-error">{errors.type.message}</span>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="date">Date</label>
-              <input
-                type="date"
-                id="date"
-                max={new Date().toISOString().split("T")[0]}
-                defaultValue={
-                  values?.date
-                    ? new Date(values.date).toISOString().split("T")[0]
-                    : ""
-                }
-                {...register("date")}
-              />
-              {errors.date && (
-                <span className="form-group-error">{errors.date.message}</span>
-              )}
-            </div>
+            <Bank register={register} errors={errors} />
+            <Radio register={register} errors={errors} edit={true} />
+            <DateSel register={register} errors={errors} />
           </div>
         </div>
 
@@ -355,32 +263,16 @@ const DaybookEditForm = () => {
                 <h5>Selected Branches and Amounts</h5>
                 <div className="grid-container">
                   {selectedBranches.map((branch) => (
-                    <div key={branch} className="grid-item">
-                      <label htmlFor={`amount_${branch}`}>{branch}</label>
-                      <div className="amount-field ">
-                        <input
-                          type="number"
-                          defaultValue={
-                            values?.branches?.find(
-                              (b) => branch == b?.branchName
-                            )?.amount
-                          }
-                          id={`amount_${branch}`}
-                          {...register(`amount_${branch}`, {
-                            required: "Amount is required",
-                            min: {
-                              value: 0,
-                              message: "Amount must be positive",
-                            },
-                          })}
-                        />
-                      </div>
-                      {errors[`amount_${branch}`] && (
-                        <span className="form-group-error">
-                          {errors[`amount_${branch}`].message}
-                        </span>
-                      )}
-                    </div>
+                    <Branches
+                      key={branch}
+                      branch={branch}
+                      register={register}
+                      errors={errors}
+                      defaultValue={
+                        values?.branches?.find((b) => branch == b?.branchName)
+                          ?.amount
+                      }
+                    />
                   ))}
                 </div>
               </>

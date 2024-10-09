@@ -5,6 +5,7 @@ import { useCallback } from "react";
 import { setOutstandingSelectedItems } from "../../../Global-Variables/features/liabilitySlice/outstandingSlice";
 import { truncateText } from "../../../Services/truncateFormatter";
 import { catagoryFinder } from "../../../Services/helperFunctions";
+import { branches } from "../../../data/generalDatas";
 
 function OutstandingTableItems({ item }) {
   const { outstandingSelectedItems } = useSelector(
@@ -46,7 +47,7 @@ function OutstandingTableItems({ item }) {
     amount,
     remark,
     date,
-    branch,
+    branches,
     status,
     catagory,
   } = item;
@@ -99,7 +100,19 @@ function OutstandingTableItems({ item }) {
       </div>
 
       <div className="data-items Branch">
-        <h4>{branch}</h4>
+        <div className="tooltip-container">
+          {branches?.length === 1 ? (
+            <h4>{branches[0]?.branchName}</h4>
+          ) : (
+            <>
+              <h4>Mulitple</h4>
+
+              <span className="tooltip text">
+                {branches?.map((branch) => branch.branchName).join(", ")}
+              </span>
+            </>
+          )}
+        </div>
       </div>
 
       <div className="data-items Status">

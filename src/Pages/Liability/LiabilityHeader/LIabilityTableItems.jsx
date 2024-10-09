@@ -40,7 +40,7 @@ function LIabilityTableItems({ item }) {
     amount,
     remark,
     date,
-    branch,
+    branches,
     status,
     catagory,
   } = item;
@@ -48,6 +48,8 @@ function LIabilityTableItems({ item }) {
 
   const { catagories } = useSelector((state) => state.catagories);
   const catagoryName = catagoryFinder(catagories, catagory)?.name;
+
+  console.log(branches, "liab");
 
   return (
     <div
@@ -91,9 +93,25 @@ function LIabilityTableItems({ item }) {
           <div className="tooltip">{remark}</div>
         </div>
       </div>
-
+      {/* 
       <div className="data-items Branch">
         <h4>{branch}</h4>
+      </div> */}
+
+      <div className="data-items Branch">
+        <div className="tooltip-container">
+          {branches?.length === 1 ? (
+            <h4>{branches[0]?.branchName}</h4>
+          ) : (
+            <>
+              <h4>Mulitple</h4>
+
+              <span className="tooltip text">
+                {branches?.map((branch) => branch.branchName).join(", ")}
+              </span>
+            </>
+          )}
+        </div>
       </div>
 
       <div className="data-items Status">

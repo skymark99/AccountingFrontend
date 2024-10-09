@@ -148,6 +148,7 @@ const RemindersForm = () => {
               <input
                 type="number"
                 id="amount"
+                step="any"
                 {...register("amount", {
                   required: "Amount is required",
                   min: { value: 0, message: "Amount must be positive" },

@@ -46,7 +46,7 @@ function Liability() {
       amount,
       remark,
       status,
-      branch,
+      branches,
       date,
       _id,
     }) => ({
@@ -56,7 +56,7 @@ function Liability() {
       catagory,
       remark,
       status,
-      branch,
+      branches,
       date,
       _id,
     })

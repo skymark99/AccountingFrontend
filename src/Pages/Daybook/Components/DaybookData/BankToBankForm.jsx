@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { fetchBankDetails } from "../../../../Global-Variables/fetch/details";
 
 const URL = import.meta.env.VITE_URL;
+
 function BankToBankForm() {
   const [loading, setLoading] = useState(false);
   const [amount, setAmount] = useState("");
@@ -95,7 +96,7 @@ function BankToBankForm() {
             disabled={loading}
             style={{ opacity: loading ? 0.5 : 1 }}
           >
-            {loading ? "Adding..." : "Add"}
+            {loading ? "Transfering..." : "Transfer"}
           </button>
         </div>
       </form>

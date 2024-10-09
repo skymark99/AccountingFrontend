@@ -11,6 +11,19 @@ import {
 } from "../../../Global-Variables/features/liabilitySlice/liabilitySlice";
 import useFormReset from "../../../Hooks/useFormReset";
 import { addCurrentTimeToDate } from "../../../Services/dateFormatter";
+import {
+  toggleBranch,
+  validateBranches,
+} from "../../../Components/Form/HelperFunctions";
+import {
+  DateSel,
+  Purpose,
+  Remark,
+  StatusSel,
+} from "../../../Components/Form/Components/Purpose";
+import { branches } from "../../../data/generalDatas";
+import BranchesSelector from "../../../Components/Buttons/BranchesSelector";
+import Branches from "../../../Components/Form/Branches";
 
 const LiabilityEditForm = () => {
   const dispatch = useDispatch();
@@ -58,15 +71,24 @@ const LiabilityEditForm = () => {
       date: values?.date
         ? new Date(values.date).toISOString().split("T")[0]
         : "",
-      amount: values?.amount || 0,
       remark: values?.remark || "",
-      branch: values?.branch || "",
       status: values?.status || "",
       purpose: values?.purpose || "",
     },
   });
 
   useFormReset(reset, values);
+
+  const filterBranchName = values?.branches?.map(
+    (branch) => branch?.branchName
+  );
+  const [selectedBranches, setSelectedBranches] = useState(
+    filterBranchName || []
+  );
+
+  useEffect(() => {
+    setSelectedBranches(values?.branches?.map((branch) => branch.branchName));
+  }, [values?.branches]);
 
   const handleCreateTransaction = async (formData) => {
     setLoading(true);
@@ -109,7 +131,15 @@ const LiabilityEditForm = () => {
   };
 
   // Submit handler
-  const handleReminderSubmit = async (data) => {
+  const onSubmit = async (data) => {
+    // Building the branches array
+    if (!validateBranches()) return;
+
+    const branches = selectedBranches?.map((branch) => ({
+      branchName: branch,
+      amount: data[`amount_${branch}`],
+    }));
+
     if (!catagory) {
       toast.error("Select a Catagory");
       return;
@@ -125,12 +155,11 @@ const LiabilityEditForm = () => {
     );
 
     const formData = {
-      name: data.particulars,
       date: addCurrentTimeToDate(data.date),
       purpose: data.purpose,
       amount: data.amount,
       remark: data.remark,
-      branch: data.branch,
+      branches,
       status: data.status,
       particular: curPart._id,
       catagory,
@@ -141,10 +170,7 @@ const LiabilityEditForm = () => {
 
   return (
     <div className="daybook-form-container">
-      <form
-        className="daybook-form"
-        onSubmit={handleSubmit(handleReminderSubmit)}
-      >
+      <form className="daybook-form" onSubmit={handleSubmit(onSubmit)}>
         <Catagory
           setCatagory={setCatagory}
           setParticular={setParticular}
@@ -153,106 +179,56 @@ const LiabilityEditForm = () => {
         />
         <div className="form-section">
           <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="purpose">Purpose</label>
-              <input
-                type="text"
-                id="purpose"
-                {...register("purpose", {
-                  required: "Purpose is required",
-                })}
-              />
-              {errors.purpose && (
-                <span className="form-group-error">
-                  {errors.purpose.message}
-                </span>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="amount">Amount</label>
-              <input
-                type="number"
-                id="amount"
-                {...register("amount", {
-                  required: "Amount is required",
-                  min: { value: 0, message: "Amount must be positive" },
-                })}
-              />
-              {errors.amount && (
-                <span className="form-group-error">
-                  {errors.amount.message}
-                </span>
-              )}
-            </div>
+            <Purpose register={register} errors={errors} />
+            <Remark register={register} errors={errors} />
           </div>
 
           <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="date">Date</label>
-              <input
-                type="date"
-                id="date"
-                {...register("date", { required: "Date is required" })}
-              />
-              {errors.date && (
-                <span className="form-group-error">{errors.date.message}</span>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="branch">Branch</label>
-              <select
-                id="branch"
-                {...register("branch", { required: "Select a branch" })}
-              >
-                <option value="">Select branch</option>
-                <option value="Kochi">Kochi</option>
-                <option value="Kozhikode">Kozhikode</option>
-                <option value="Kottayam">Kottayam</option>
-                <option value="Manjeri">Manjeri</option>
-                <option value="Kannur">Kannur</option>
-                <option value="Corporate">Corporate</option>
-                <option value="Directors">Directors</option>
-              </select>
-              {errors.branch && (
-                <span className="form-group-error">
-                  {errors.branch.message}
-                </span>
-              )}
-            </div>
+            <DateSel register={register} errors={errors} />
+            <StatusSel register={register} errors={errors} />
           </div>
         </div>
 
         <div className="form-section">
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="status">Status</label>
-              <select
-                id="status"
-                {...register("status", { required: "Select a status" })}
-              >
-                <option value="">Select Status</option>
-                <option value="Paid">Paid</option>
-                <option value="Unpaid">Unpaid</option>
-                <option value="Postponed">Postponed</option>
-              </select>
-              {errors.status && (
-                <span className="form-group-error">
-                  {errors.status.message}
-                </span>
-              )}
+              <label htmlFor="Branches">Branches</label>
+              <div className="branch-group">
+                {branches?.slice(1).map((branch) => (
+                  <BranchesSelector
+                    key={branch}
+                    isActive={selectedBranches?.includes(branch)}
+                    onClick={() => toggleBranch(branch)}
+                  >
+                    {branch}
+                  </BranchesSelector>
+                ))}
+              </div>
             </div>
-            <div className="form-group">
-              <label htmlFor="remark">Remark</label>
-              <textarea
-                id="remark"
-                {...register("remark", { required: "Remark is required" })}
-              ></textarea>
-              {errors.remark && (
-                <span className="form-group-error">
-                  {errors.remark.message}
-                </span>
-              )}
-            </div>
+          </div>
+          {errors.branches && (
+            <span className="form-group-error">{errors.branches.message}</span>
+          )}
+          <div className="form-section">
+            {selectedBranches?.length > 0 && (
+              <>
+                <h5>Selected Branches and Amounts</h5>
+                <div className="grid-container">
+                  {selectedBranches.map((branch) => (
+                    <Branches
+                      key={branch}
+                      branch={branch}
+                      register={register}
+                      errors={errors}
+                      defaultValue={
+                        values?.branches?.find((b) => branch == b?.branchName)
+                          ?.amount
+                      }
+                    />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </div>
 

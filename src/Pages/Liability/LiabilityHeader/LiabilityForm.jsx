@@ -14,8 +14,14 @@ import {
   resetLiability,
 } from "../../../Global-Variables/features/liabilitySlice/liabilitySlice";
 import particularFinder from "../../../Services/helperFunctions";
-import { setTime } from "../../../Global-Variables/features/auth/authSlice";
-import { getInitialTime } from "../../../Components/Coundown/countdownActions";
+import { validateBranches } from "../../../Components/Form/HelperFunctions";
+import {
+  BranchComponent,
+  DateSel,
+  Purpose,
+  Remark,
+  StatusSel,
+} from "../../../Components/Form/Components/Purpose";
 
 const LiabilityForm = () => {
   const [loading, setLoading] = useState(false);
@@ -24,23 +30,60 @@ const LiabilityForm = () => {
   const [particular, setParticular] = useState("");
   const dispatch = useDispatch();
   const { catagories } = useSelector((state) => state.catagories);
+  const [selectedBranches, setSelectedBranches] = useState([]);
   // Initialize the useForm hook
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
+    setError,
+    clearErrors,
   } = useForm({
     defaultValues: {
-      name: "",
       date: today(),
-      amount: "",
       remark: "",
-      branch: "",
       status: "",
       purpose: "",
     },
   });
+
+  // Submit handler
+  const onSubmit = async (data) => {
+    if (!validateBranches(selectedBranches.length, setError));
+
+    const branches = selectedBranches.map((branch) => ({
+      branchName: branch,
+      amount: data[`amount_${branch}`],
+    }));
+
+    if (!catagory) {
+      toast.error("Select a Catagory");
+      return;
+    }
+    if (!particular) {
+      toast.error("Select a Particular");
+      return;
+    }
+
+    const curPart = particularFinder(catagories, particular, catagory);
+
+    const formData = {
+      purpose: data.purpose,
+      amount: branches.reduce(
+        (total, branch) => total + parseFloat(branch.amount),
+        0
+      ),
+      date: addCurrentTimeToDate(data.date),
+      remark: data.remark,
+      branches,
+      status: data.status,
+      type: "liability",
+      catagory: catagory,
+      particular: curPart._id,
+    };
+    await handleCreateTransaction(formData);
+  };
 
   const handleCreateTransaction = async (formData) => {
     setLoading(true);
@@ -89,43 +132,17 @@ const LiabilityForm = () => {
       });
     } finally {
       setLoading(false);
-      dispatch(setTime(getInitialTime()));
     }
   };
 
-  // Submit handler
-  const handleReminderSubmit = async (data) => {
-    if (!catagory) {
-      toast.error("Select a Catagory");
-      return;
-    }
-    if (!particular) {
-      toast.error("Select a Particular");
-      return;
-    }
-
-    const curPart = particularFinder(catagories, particular, catagory);
-
-    const formData = {
-      particular: curPart._id,
-      date: addCurrentTimeToDate(data.date),
-      catagory: catagory,
-      purpose: data.purpose,
-      amount: data.amount,
-      remark: data.remark,
-      branch: data.branch,
-      status: data.status,
-      type: "liability",
-    };
-    await handleCreateTransaction(formData);
+  const handleReset = () => {
+    reset();
+    setSelectedBranches([]);
   };
 
   return (
     <div className="daybook-form-container">
-      <form
-        className="daybook-form"
-        onSubmit={handleSubmit(handleReminderSubmit)}
-      >
+      <form className="daybook-form" onSubmit={handleSubmit(onSubmit)}>
         <Catagory
           setCatagory={setCatagory}
           setParticular={setParticular}
@@ -134,109 +151,23 @@ const LiabilityForm = () => {
 
         <div className="form-section">
           <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="purpose">Purpose</label>
-              <input
-                type="text"
-                id="purpose"
-                {...register("purpose", {
-                  required: "Purpose is required",
-                })}
-              />
-              {errors.purpose && (
-                <span className="form-group-error">
-                  {errors.purpose.message}
-                </span>
-              )}
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="amount">Amount</label>
-              <input
-                type="number"
-                id="amount"
-                {...register("amount", {
-                  required: "Amount is required",
-                  min: { value: 0, message: "Amount must be positive" },
-                })}
-              />
-              {errors.amount && (
-                <span className="form-group-error">
-                  {errors.amount.message}
-                </span>
-              )}
-            </div>
+            <Purpose register={register} errors={errors} />
+            <Remark register={register} errors={errors} />
           </div>
 
           <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="date">Date</label>
-              <input
-                type="date"
-                id="date"
-                {...register("date", { required: "Date is required" })}
-              />
-              {errors.date && (
-                <span className="form-group-error">{errors.date.message}</span>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="branch">Branch</label>
-              <select
-                id="branch"
-                {...register("branch", { required: "Select a branch" })}
-              >
-                <option value="">Select branch</option>
-                <option value="Kochi">Kochi</option>
-                <option value="Kozhikode">Kozhikode</option>
-                <option value="Kottayam">Kottayam</option>
-                <option value="Manjeri">Manjeri</option>
-                <option value="Kannur">Kannur</option>
-                <option value="Corporate">Corporate</option>
-                <option value="Directors">Directors</option>
-              </select>
-              {errors.branch && (
-                <span className="form-group-error">
-                  {errors.branch.message}
-                </span>
-              )}
-            </div>
+            <DateSel register={register} errors={errors} />
+            <StatusSel register={register} errors={errors} />
           </div>
         </div>
 
-        <div className="form-section">
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="status">Status</label>
-              <select
-                id="status"
-                {...register("status", { required: "Select a status" })}
-              >
-                <option value="">Select Status</option>
-                <option value="Paid">Paid</option>
-                <option value="Unpaid">Unpaid</option>
-                <option value="Postponed">Postponed</option>
-              </select>
-              {errors.status && (
-                <span className="form-group-error">
-                  {errors.status.message}
-                </span>
-              )}
-            </div>
-            <div className="form-group">
-              <label htmlFor="remark">Remark</label>
-              <textarea
-                id="remark"
-                {...register("remark", { required: "Remark is required" })}
-              ></textarea>
-              {errors.remark && (
-                <span className="form-group-error">
-                  {errors.remark.message}
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
+        <BranchComponent
+          setSelectedBranches={setSelectedBranches}
+          clearErrors={clearErrors}
+          selectedBranches={selectedBranches}
+          errors={errors}
+          register={register}
+        />
 
         <div className="form-btn-group form-submit-btns">
           <button
