@@ -142,7 +142,7 @@ const OutstandingEditForm = () => {
 
     const branches = selectedBranches?.map((branch) => ({
       branchName: branch,
-      amount: data[`amount_${branch}`],
+      amount: Number(data[`amount_${branch}`]),
     }));
 
     if (!catagory) {
@@ -158,9 +158,8 @@ const OutstandingEditForm = () => {
       particular: curPart._id,
       catagory,
       purpose: data.purpose,
-      amount: data.amount,
+      amount: branches.reduce((acc, branch) => acc + branch.amount, 0),
       remark: data.remark,
-      branches,
       status: data.status,
       date: addCurrentTimeToDate(data.date),
       type: "outstanding",

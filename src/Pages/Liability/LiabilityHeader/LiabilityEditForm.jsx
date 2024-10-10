@@ -138,8 +138,10 @@ const LiabilityEditForm = () => {
 
     const branches = selectedBranches?.map((branch) => ({
       branchName: branch,
-      amount: data[`amount_${branch}`],
+      amount: Number(data[`amount_${branch}`]),
     }));
+
+    console.log(branches, "brances");
 
     if (!catagory) {
       toast.error("Select a Catagory");
@@ -158,14 +160,14 @@ const LiabilityEditForm = () => {
     const formData = {
       date: addCurrentTimeToDate(data.date),
       purpose: data.purpose,
-      amount: data.amount,
+      amount: branches.reduce((acc, branch) => acc + branch.amount, 0),
       remark: data.remark,
-      branches,
       status: data.status,
       particular: curPart._id,
       catagory,
       type: "liability",
     };
+
     await handleCreateTransaction(formData);
   };
 

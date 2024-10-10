@@ -12,16 +12,16 @@ export const login = createAsyncThunk(
         withCredentials: true,
       });
 
-      return response.data;
+      console.log(response.data, "data");
+      return response?.data?.envelop?.currentUser;
     } catch (error) {
-      console.log(error);
       if (error.response) {
         if (error.response.status === 429) {
           return thunkAPI.rejectWithValue(
             "Too many requests. Please try again later."
           );
         } else {
-          return thunkAPI.rejectWithValue(error.response.data.message);
+          return thunkAPI.rejectWithValue(error?.response?.data?.message);
         }
       } else {
         return thunkAPI.rejectWithValue("Check you email or password");
@@ -50,6 +50,7 @@ const initialState = {
   loading: false,
   error: null,
   user: null,
+  email: null,
   isNewPassword: false,
   logs: [],
   logsLoading: false,
@@ -81,10 +82,12 @@ const authSlice = createSlice({
         state.loading = true;
         state.error = null; // Clear any previous errors
       })
-      .addCase(login.fulfilled, (state) => {
+      .addCase(login.fulfilled, (state, action) => {
         state.loading = false;
-        state.isLoggedIn = true; // Assuming the login was successful
-        state.error = null; // Clear error on success
+        state.user = action.payload?.name;
+        state.email = action.payload?.email;
+        state.isLoggedIn = true;
+        state.error = null;
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;

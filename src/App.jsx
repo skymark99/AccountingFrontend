@@ -17,7 +17,7 @@ import { useLogoutOnWindowClose } from "./Hooks/useLogoutOnWindowClose";
 function App() {
   const loaderData = useLoaderData();
   const { isLoggedIn, isNewPassword } = useSelector((state) => state.auth);
-
+  console.log();
   // useAllFetch();
   useAuthLoader(loaderData);
   useFetchCategories();

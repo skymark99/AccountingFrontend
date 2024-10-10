@@ -25,6 +25,7 @@ import { validateBranches } from "../../../../Components/Form/HelperFunctions";
 import BranchGroup from "../../../../Components/Form/BranchGroup";
 import {
   Bank,
+  BranchComponent,
   DateSel,
   Purpose,
   Radio,
@@ -39,6 +40,9 @@ const DaybookForm = () => {
   const [catagory, setCatagory] = useState("");
   const [particular, setParticular] = useState("");
   const [loading, setLoading] = useState(false);
+
+  console.log(user, "user");
+
   const {
     register,
     handleSubmit,
@@ -91,7 +95,7 @@ const DaybookForm = () => {
       catagory: catagory,
       particular: curPart._id,
     };
-
+    console.log(formData, "tests");
     // Here you would typically send the formData to your backend using an API call.
     await handleCreateTransaction(formData);
   };
@@ -103,10 +107,11 @@ const DaybookForm = () => {
 
   const handleCreateTransaction = async (formData) => {
     setLoading(true);
+
     try {
       await create_daybook(formData);
       await create_log(
-        `${combineDateWithCurrentTime(new Date())} ${user.name} created a ${
+        `${combineDateWithCurrentTime(new Date())} ${user} created a ${
           formData.type
         } transaction of ${formData.amount} in ${
           formData.bank
@@ -167,36 +172,13 @@ const DaybookForm = () => {
             <DateSel register={register} errors={errors} />
           </div>
         </div>
-
-        <div className="form-section">
-          <div className="form-row">
-            <BranchGroup
-              setSelectedBranches={setSelectedBranches}
-              clearErrors={clearErrors}
-              selectedBranches={selectedBranches}
-            />
-          </div>
-          {errors.branches && (
-            <span className="form-group-error">{errors.branches.message}</span>
-          )}
-          <div className="form-section">
-            {selectedBranches.length > 0 && (
-              <>
-                <h5>Selected Branches and Amounts</h5>
-                <div className="grid-container">
-                  {selectedBranches.map((branch) => (
-                    <Branches
-                      key={branch}
-                      branch={branch}
-                      register={register}
-                      errors={errors}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
-        </div>
+        <BranchComponent
+          setSelectedBranches={setSelectedBranches}
+          clearErrors={clearErrors}
+          selectedBranches={selectedBranches}
+          errors={errors}
+          register={register}
+        />
 
         <div className="form-btn-group form-submit-btns">
           <button
@@ -212,7 +194,7 @@ const DaybookForm = () => {
             className={`btn primary-blue-btn form-submit`}
             disabled={loading}
           >
-            {loading ? "Submitting..." : "Submit"}{" "}
+            {loading ? "Submitting..." : "Submit"}
           </button>
         </div>
       </form>
