@@ -31,7 +31,6 @@ const RemindersForm = () => {
     reset,
   } = useForm({
     defaultValues: {
-      name: "",
       date: "",
       amount: "",
       remark: "",
