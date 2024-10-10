@@ -66,6 +66,7 @@ const LiabilityEditForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    clearErrors,
   } = useForm({
     defaultValues: {
       date: values?.date
@@ -198,7 +199,14 @@ const LiabilityEditForm = () => {
                   <BranchesSelector
                     key={branch}
                     isActive={selectedBranches?.includes(branch)}
-                    onClick={() => toggleBranch(branch)}
+                    onClick={() =>
+                      toggleBranch(
+                        branch,
+                        setSelectedBranches,
+                        clearErrors,
+                        selectedBranches.length
+                      )
+                    }
                   >
                     {branch}
                   </BranchesSelector>

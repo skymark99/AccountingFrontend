@@ -69,6 +69,7 @@ const OutstandingEditForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    clearErrors,
   } = useForm({
     defaultValues: {
       date: values?.date
@@ -200,7 +201,14 @@ const OutstandingEditForm = () => {
                   <BranchesSelector
                     key={branch}
                     isActive={selectedBranches?.includes(branch)}
-                    onClick={() => toggleBranch(branch)}
+                    onClick={() =>
+                      toggleBranch(
+                        branch,
+                        setSelectedBranches,
+                        clearErrors,
+                        selectedBranches.length
+                      )
+                    }
                   >
                     {branch}
                   </BranchesSelector>

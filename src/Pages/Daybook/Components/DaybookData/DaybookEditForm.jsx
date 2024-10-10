@@ -19,11 +19,6 @@ import {
 import { fetchBankDetails } from "../../../../Global-Variables/fetch/details";
 import { fetchDashboardData } from "../../../../Global-Variables/features/dashBoardSlice/dashBoardSlice";
 import {
-  addTimer,
-  getInitialTime,
-} from "../../../../Components/Coundown/countdownActions";
-import { setTime } from "../../../../Global-Variables/features/auth/authSlice";
-import {
   Bank,
   DateSel,
   Purpose,
@@ -246,7 +241,14 @@ const DaybookEditForm = () => {
                   <BranchesSelector
                     key={branch}
                     isActive={selectedBranches?.includes(branch)}
-                    onClick={() => toggleBranch(branch)}
+                    onClick={() =>
+                      toggleBranch(
+                        branch,
+                        setSelectedBranches,
+                        clearErrors,
+                        selectedBranches.length
+                      )
+                    }
                   >
                     {branch}
                   </BranchesSelector>

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 function Percentage({ children, size = "1rem", percent = false }) {
-  const type = useRef(null);
+  const type = useRef(Number(children) < 0 ? "neg" : "pos");
 
   useEffect(() => {
     if (Number(children) < 0) type.current = "neg";
@@ -17,8 +17,7 @@ function Percentage({ children, size = "1rem", percent = false }) {
     <div>
       <span
         style={{
-          color: type.current === "pos" ? "green" : "red", // Color based on the type
-          fontSize: size,
+          color: type.current === "pos" ? "green" : "red",
           fontWeight: "100",
           fontFamily: "Inter",
         }}
@@ -30,7 +29,7 @@ function Percentage({ children, size = "1rem", percent = false }) {
           color: "black",
           fontSize: size,
           fontWeight: "100",
-          paddingLeft: paddingSize / 2 + "rem", // Dynamically adjust padding
+          paddingLeft: paddingSize / 2 + "rem",
         }}
       >
         {tail}
