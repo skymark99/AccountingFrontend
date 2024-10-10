@@ -10,7 +10,9 @@ export const fetchUnivTotals = createAsyncThunk(
   "university/totals",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`${URL}/v1/university/totals`);
+      const res = await axios.get(`${URL}/v1/university/totals`, {
+        withCredentials: true,
+      });
       return res?.data?.data;
     } catch (error) {
       if (axios.isCancel(error)) {

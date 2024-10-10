@@ -12,10 +12,12 @@ export const useLogoutOnWindowClose = () => {
       }
     };
 
-    const handleUnload = (event) => {
+    const handleUnload = async (event) => {
       // Only logout if it's not a refresh
+      alert("hey there");
+      console.log("is unload");
       if (!isRefreshing) {
-        logout();
+        await logout();
       }
     };
 

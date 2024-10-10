@@ -13,7 +13,6 @@ import Countdown from "./Components/Coundown/Countdown";
 import { useEffect } from "react";
 import { getInitialTime } from "./Components/Coundown/countdownActions";
 import { useLogoutOnWindowClose } from "./Hooks/useLogoutOnWindowClose";
-import { useAllFetch } from "./Hooks/useAllFetch/useAllFetch";
 
 function App() {
   const loaderData = useLoaderData();

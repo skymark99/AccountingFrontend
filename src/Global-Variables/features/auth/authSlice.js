@@ -14,6 +14,7 @@ export const login = createAsyncThunk(
 
       return response.data;
     } catch (error) {
+      console.log(error);
       if (error.response) {
         if (error.response.status === 429) {
           return thunkAPI.rejectWithValue(
@@ -23,9 +24,7 @@ export const login = createAsyncThunk(
           return thunkAPI.rejectWithValue(error.response.data.message);
         }
       } else {
-        return thunkAPI.rejectWithValue(
-          "Too many requests. Please try again in one hour.."
-        );
+        return thunkAPI.rejectWithValue("Check you email or password");
       }
     }
   }
