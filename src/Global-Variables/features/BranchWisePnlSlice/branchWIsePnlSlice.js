@@ -109,7 +109,7 @@ const initialState = {
   dateOptions,
   branchWiseStartDate: formatDate(new Date(new Date().getFullYear(), 0, 1)),
   branchWiseEndDate: today(),
-  curBranch: "Kozhikode",
+  curBranch: "Kochi",
   branches,
   temp: 1,
 
