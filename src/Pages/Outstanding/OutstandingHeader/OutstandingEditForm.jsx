@@ -71,6 +71,7 @@ const OutstandingEditForm = () => {
     formState: { errors },
     reset,
     clearErrors,
+    setError,
   } = useForm({
     defaultValues: {
       date: values?.date
@@ -140,7 +141,7 @@ const OutstandingEditForm = () => {
 
   // Submit handler
   const handleReminderSubmit = async (data) => {
-    if (!validateBranches()) return;
+    if (!validateBranches(selectedBranches.length, setError)) return;
 
     const branches = selectedBranches?.map((branch) => ({
       branchName: branch,

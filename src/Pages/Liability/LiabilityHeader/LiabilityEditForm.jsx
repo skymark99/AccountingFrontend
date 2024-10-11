@@ -68,6 +68,7 @@ const LiabilityEditForm = () => {
     formState: { errors },
     reset,
     clearErrors,
+    setError,
   } = useForm({
     defaultValues: {
       date: values?.date
@@ -137,7 +138,7 @@ const LiabilityEditForm = () => {
   // Submit handler
   const onSubmit = async (data) => {
     // Building the branches array
-    if (!validateBranches()) return;
+    if (!validateBranches(selectedBranches.length, setError)) return;
 
     const branches = selectedBranches?.map((branch) => ({
       branchName: branch,

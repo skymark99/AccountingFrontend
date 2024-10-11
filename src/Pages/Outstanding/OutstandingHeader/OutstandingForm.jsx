@@ -53,7 +53,7 @@ const OutstandingForm = () => {
   });
   // Submit handler
   const handleOutstandingSubmit = async (data) => {
-    if (!validateBranches(selectedBranches.length, setError));
+    if (!validateBranches(selectedBranches.length, setError)) return;
 
     const branches = selectedBranches.map((branch) => ({
       branchName: branch,
