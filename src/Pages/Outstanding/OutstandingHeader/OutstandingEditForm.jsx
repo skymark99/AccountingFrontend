@@ -81,6 +81,7 @@ const OutstandingEditForm = () => {
       purpose: values?.purpose,
     },
   });
+
   useFormReset(reset, values);
 
   const filterBranchName = values?.branches?.map(
@@ -104,7 +105,6 @@ const OutstandingEditForm = () => {
       dispatch(fetchTotal());
       dispatch(fetchBalanceSheet());
 
-      reset();
       toast.success("Updated outstanding ✅", {
         duration: 3000,
         position: "top-center",

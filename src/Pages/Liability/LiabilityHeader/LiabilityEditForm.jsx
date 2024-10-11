@@ -100,6 +100,7 @@ const LiabilityEditForm = () => {
       dispatch(resetLiability());
       dispatch(fetchTotal());
       dispatch(fetchBalanceSheet());
+
       toast.success("Liability updated✅", {
         duration: 3000,
         position: "top-center",
