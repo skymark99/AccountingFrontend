@@ -102,7 +102,7 @@ export default function ComData() {
               justifyContent: "center",
             }}
           >
-            {totalsLoading ? "..." : totalReceived.toFixed(2)}
+            {totalsLoading ? "..." : (Number(totalReceived) || 0).toFixed(2)}
             <span style={{ fontSize: "1.2rem", opacity: "0.5" }}>Received</span>
           </ThertiaryBtn>
           <ThertiaryBtn
@@ -113,7 +113,7 @@ export default function ComData() {
               justifyContent: "center",
             }}
           >
-            {totalsLoading ? "..." : totalPending.toFixed(2)}
+            {totalsLoading ? "..." : (Number(totalPending) || 0).toFixed(2)}
             <span style={{ fontSize: "1.2rem", opacity: "0.5" }}>Pendings</span>
           </ThertiaryBtn>
         </div>
