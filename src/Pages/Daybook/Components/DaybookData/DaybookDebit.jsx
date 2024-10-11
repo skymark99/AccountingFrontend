@@ -6,6 +6,7 @@ import { setDebitsCurrentPage } from "../../../../Global-Variables/features/dayB
 import DataHeader from "../../../../Components/DataHeader";
 import { useDebitsManagement } from "../../../../Hooks/debitsHooks/useDebitsManagement";
 import { NoData } from "../../../../assets/images";
+
 function DaybookDebit({ onSetTotal }) {
   const { currentPage, loading, error, viewSix } =
     useDebitsManagement(onSetTotal);

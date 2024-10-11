@@ -20,7 +20,11 @@ function BankToBankForm() {
       return toast.error("Please Select Different Branches", { id: toastId });
     try {
       setLoading(true);
-      await axios.post(`${URL}/v1/bank/bank-transfer`, { from, to, amount });
+      await axios.post(
+        `${URL}/v1/bank/bank-transfer`,
+        { from, to, amount },
+        { withCredentials: true }
+      );
       dispatch(fetchBankDetails());
       toast.success("Succesfully transfered", { id: toastId });
     } catch (err) {

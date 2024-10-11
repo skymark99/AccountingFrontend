@@ -5,6 +5,14 @@ import { fetchCatagory } from "../../../Global-Variables/features/catagorySlice/
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { truncateText } from "../../../Services/truncateFormatter";
+import { fetchTransaction } from "../../../Global-Variables/fetch/details";
+import { fetchCredits } from "../../../Global-Variables/features/dayBookSlice/creditSlice";
+import { fetchDebits } from "../../../Global-Variables/features/dayBookSlice/debitSlice";
+import { resetAll } from "../../../Services/useDayBookActions";
+import { resetBranchWise } from "../../../Global-Variables/features/BranchWisePnlSlice/branchWIsePnlSlice";
+import { resetLiability } from "../../../Global-Variables/features/liabilitySlice/liabilitySlice";
+import { resetOutStanding } from "../../../Global-Variables/features/liabilitySlice/outstandingSlice";
+import { resetReminders } from "../../../Global-Variables/features/remindersSlice/remindersSlice.";
 
 function ParticularItemBox({
   value,
@@ -39,9 +47,13 @@ function ParticularItemBox({
       });
       setCurValue(res.data.name);
       setPastValue(localCurValue);
-
       dispatch(fetchCatagory());
       toast.success("updated successfully");
+      resetAll(dispatch);
+      dispatch(resetBranchWise());
+      dispatch(resetLiability());
+      dispatch(resetOutStanding());
+      dispatch(resetReminders());
     } catch (err) {
       setLocalCurValue(pastValue);
       setCurValue(pastValue);

@@ -7,6 +7,7 @@ import { NoData } from "../../../assets/images";
 
 const OutstandingTable = ({ data, currentPage }) => {
   const [loading, error] = useOutStandings();
+
   return (
     <div className="table-container">
       <OutstandingTableHeader>

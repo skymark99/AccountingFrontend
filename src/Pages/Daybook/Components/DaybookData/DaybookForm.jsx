@@ -20,9 +20,7 @@ import {
 } from "../../../../Global-Variables/features/BranchWisePnlSlice/branchWIsePnlSlice";
 import { fetchBankDetails } from "../../../../Global-Variables/fetch/details";
 import { fetchDashboardData } from "../../../../Global-Variables/features/dashBoardSlice/dashBoardSlice";
-import Branches from "../../../../Components/Form/Branches";
 import { validateBranches } from "../../../../Components/Form/HelperFunctions";
-import BranchGroup from "../../../../Components/Form/BranchGroup";
 import {
   Bank,
   BranchComponent,
@@ -40,8 +38,6 @@ const DaybookForm = () => {
   const [catagory, setCatagory] = useState("");
   const [particular, setParticular] = useState("");
   const [loading, setLoading] = useState(false);
-
-  console.log(user, "user");
 
   const {
     register,
@@ -64,9 +60,11 @@ const DaybookForm = () => {
   const onSubmit = async (data) => {
     if (!validateBranches(selectedBranches.length, setError)) return;
 
+    console.log("Corporate" === selectedBranches[0].branchName);
+
     // Building the branches array
     const branches = selectedBranches.map((branch) => ({
-      branchName: branch,
+      branchName: branch.trim(),
       amount: data[`amount_${branch}`],
     }));
 
@@ -95,7 +93,7 @@ const DaybookForm = () => {
       catagory: catagory,
       particular: curPart._id,
     };
-    console.log(formData, "tests");
+    console.log(formData, "testsssss");
     // Here you would typically send the formData to your backend using an API call.
     await handleCreateTransaction(formData);
   };
@@ -109,15 +107,17 @@ const DaybookForm = () => {
     setLoading(true);
 
     try {
-      await create_daybook(formData);
-      await create_log(
-        `${combineDateWithCurrentTime(new Date())} ${user} created a ${
-          formData.type
-        } transaction of ${formData.amount} in ${
-          formData.bank
-        } bank for ${particular} with purpose of ${formData.purpose}`,
-        user._id
-      );
+      const res = await create_daybook(formData);
+      console.log(res, "res");
+
+      // await create_log(
+      //   `${combineDateWithCurrentTime(new Date())} ${user.name} created a ${
+      //     formData.type
+      //   } transaction of ${formData.amount} in ${
+      //     formData.bank
+      //   } bank for ${particular} with purpose of ${formData.purpose}`,
+      //   user._id
+      // );
       reset();
       dispatch(fetchBalanceSheet());
       dispatch(fetchBranchTransaction());

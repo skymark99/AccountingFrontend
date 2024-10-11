@@ -22,8 +22,8 @@ export const fetchReminders = createAsyncThunk(
       let endpoint;
       endpoint =
         status === "Status"
-          ? `/v1/reminders?sort=-createdAt&page=${page}&startDate=${startDate}&endDate=${endDate}`
-          : `/v1/reminders?sort=-createdAt&page=${page}&startDate=${startDate}&endDate=${endDate}&status=${status}`;
+          ? `/v1/reminders?sort=-date&page=${page}&startDate=${startDate}&endDate=${endDate}`
+          : `/v1/reminders?sort=-date&page=${page}&startDate=${startDate}&endDate=${endDate}&status=${status}`;
 
       if (query) {
         endpoint += `&search=${query}`;
@@ -63,8 +63,8 @@ const initialState = {
   error: null,
   selectedDate: "All",
   dateOptions: ["All", "Today", "Yesterday", "Last 30 Days", "Last 60 Days"],
-  reminderStartDate: formatDate(new Date(new Date().getFullYear(), 0, 1)),
-  reminderEndDate: today(),
+  reminderStartDate: today(),
+  reminderEndDate: formatDate(new Date(new Date().getFullYear(), 11, 0)),
   status: "Status",
   temp: 1,
   reminderSelectedItems: [],

@@ -95,8 +95,10 @@ const LiabilityEditForm = () => {
     setLoading(true);
 
     try {
-      await edit_liability(values._id, formData);
+      const res = await edit_liability(values._id, formData);
+      console.log(res, "res");
       dispatch(resetLiability());
+      dispatch(fetchTotal());
       toast.success("Liability updated✅", {
         duration: 3000,
         position: "top-center",
@@ -106,7 +108,6 @@ const LiabilityEditForm = () => {
           fontSize: "1.5rem",
         },
       });
-      dispatch(fetchTotal());
     } catch (err) {
       // Extract the error message, defaulting to a generic one if necessary
       const errorMessage =
@@ -141,8 +142,6 @@ const LiabilityEditForm = () => {
       amount: Number(data[`amount_${branch}`]),
     }));
 
-    console.log(branches, "brances");
-
     if (!catagory) {
       toast.error("Select a Catagory");
       return;
@@ -162,6 +161,7 @@ const LiabilityEditForm = () => {
       purpose: data.purpose,
       amount: branches.reduce((acc, branch) => acc + branch.amount, 0),
       remark: data.remark,
+      branches,
       status: data.status,
       particular: curPart._id,
       catagory,

@@ -103,7 +103,7 @@ const OutstandingEditForm = () => {
       dispatch(fetchTotal());
 
       reset();
-      toast.success("New outstanding added✅", {
+      toast.success("Updated outstanding ✅", {
         duration: 3000,
         position: "top-center",
         style: {
@@ -161,6 +161,7 @@ const OutstandingEditForm = () => {
       amount: branches.reduce((acc, branch) => acc + branch.amount, 0),
       remark: data.remark,
       status: data.status,
+      branches,
       date: addCurrentTimeToDate(data.date),
       type: "outstanding",
     };
