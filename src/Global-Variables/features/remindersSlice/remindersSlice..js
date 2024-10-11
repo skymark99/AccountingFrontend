@@ -22,8 +22,8 @@ export const fetchReminders = createAsyncThunk(
       let endpoint;
       endpoint =
         status === "Status"
-          ? `/v1/reminders?sort=date&page=${page}&startDate=${startDate}&endDate=${endDate}`
-          : `/v1/reminders?sort=date&page=${page}&startDate=${startDate}&endDate=${endDate}&status=${status}`;
+          ? `/v1/reminders?sort=date,-updatedAt&page=${page}&startDate=${startDate}&endDate=${endDate}`
+          : `/v1/reminders?sort=date,-updatedAt&page=${page}&startDate=${startDate}&endDate=${endDate}&status=${status}`;
 
       if (query) {
         endpoint += `&search=${query}`;

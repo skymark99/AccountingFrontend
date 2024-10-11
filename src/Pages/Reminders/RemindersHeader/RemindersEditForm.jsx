@@ -86,8 +86,8 @@ const RemindersForm = () => {
     try {
       await edit_reminder(values?._id, formData);
       dispatch(resetReminders());
-      reset();
-      toast.success("New reminder added✅", {
+
+      toast.success("Updated reminder✅", {
         duration: 3000,
         position: "top-center",
         style: {
