@@ -50,7 +50,7 @@ const TotAvailableBalance = () => {
       ) : (
         <>
           <div className="balance-item">
-            <div className="balance-name balance-name-rbl">RBI</div>
+            <div className="balance-name balance-name-rbl">RBL</div>
             <div className="balance-amount">{formatCurrency(rbiBalance)}</div>
           </div>
           <div className="underline-balance"></div>

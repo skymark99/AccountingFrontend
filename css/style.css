@@ -1431,7 +1431,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   padding-top: 1.4rem;
-  width: 20rem;
+  width: 25rem;
 }
 .balance_card .balance-name {
   font-weight: 500;
@@ -1439,7 +1439,7 @@ ul {
   border-radius: 5px;
   color: white;
   font-size: 14px;
-  width: 7rem;
+  width: 10rem;
 }
 .balance_card .balance-amount {
   font-weight: 500;
@@ -2116,7 +2116,7 @@ ul {
 .property-form .property-fields .budget-form-group {
   flex: 1;
 }
-.property-form button[type=submit] {
+.property-form button[type="submit"] {
   width: 100%;
   padding: 10px;
   background-color: rgb(39, 1, 100);
@@ -2127,7 +2127,7 @@ ul {
   font-weight: 600;
   cursor: pointer;
 }
-.property-form button[type=submit]:disabled {
+.property-form button[type="submit"]:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -2412,6 +2412,9 @@ ul {
 .balance-container .balance-name-cash {
   background-color: black;
 }
+.balance-container .balance-name-bandan {
+  background-color: black;
+}
 
 /*apply date selector and filter  */
 .date-section {
@@ -2674,7 +2677,11 @@ ul {
 }
 
 .screen {
-  background: linear-gradient(90deg, #adabd7, #3928c0); /* Updated background gradient */
+  background: linear-gradient(
+    90deg,
+    #adabd7,
+    #3928c0
+  ); /* Updated background gradient */
   position: relative;
   height: 600px;
   width: 360px;
@@ -2754,7 +2761,9 @@ ul {
   width: 75%;
   transition: 0.2s;
 }
-.login__field .login__input:active, .login__field .login__input:focus, .login__field .login__input:hover {
+.login__field .login__input:active,
+.login__field .login__input:focus,
+.login__field .login__input:hover {
   outline: none;
   border-bottom-color: #3b34c1;
 }
@@ -2775,7 +2784,9 @@ ul {
   cursor: pointer;
   transition: 0.2s;
 }
-.login__submit:active, .login__submit:focus, .login__submit:hover {
+.login__submit:active,
+.login__submit:focus,
+.login__submit:hover {
   border-color: #29238e;
   outline: none;
 }
@@ -3202,7 +3213,8 @@ ul {
   height: 4rem;
   transition: transform 0.3s ease;
 }
-.search:active, .search:focus {
+.search:active,
+.search:focus {
   transform: scale(1.1);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
@@ -3706,7 +3718,8 @@ ul {
 }
 
 @keyframes spinner-dot-animation {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }
@@ -3836,47 +3849,58 @@ ul {
   }
 }
 
-.long-table .table-head, .table .table-head {
+.long-table .table-head,
+.table .table-head {
   background-color: rgb(201, 212, 202);
   text-wrap: nowrap;
   font-size: 1.2rem;
   color: rgb(129, 129, 129);
 }
-.long-table .table-head th, .table .table-head th {
+.long-table .table-head th,
+.table .table-head th {
   padding: 0.5rem;
   width: 8rem;
   text-align: left;
   font-weight: 500;
 }
-.long-table .table-head .transaction-name-column, .table .table-head .transaction-name-column {
+.long-table .table-head .transaction-name-column,
+.table .table-head .transaction-name-column {
   width: 17% !important;
 }
-.long-table .table-head .date-name-column, .table .table-head .date-name-column {
+.long-table .table-head .date-name-column,
+.table .table-head .date-name-column {
   width: 10% !important;
 }
-.long-table .table-head .amount-name-column, .table .table-head .amount-name-column {
+.long-table .table-head .amount-name-column,
+.table .table-head .amount-name-column {
   width: 8% !important;
 }
-.long-table .table-head .remark-name-column, .table .table-head .remark-name-column {
+.long-table .table-head .remark-name-column,
+.table .table-head .remark-name-column {
   width: 17% !important;
 }
-.long-table .table-head .type-name-column, .table .table-head .type-name-column {
+.long-table .table-head .type-name-column,
+.table .table-head .type-name-column {
   width: 12% !important;
 }
-.long-table .table-head .branch-name-column, .table .table-head .branch-name-column {
+.long-table .table-head .branch-name-column,
+.table .table-head .branch-name-column {
   width: 15% !important;
 }
-.long-table .table-head .header-checkbox-cell, .table .table-head .header-checkbox-cell {
+.long-table .table-head .header-checkbox-cell,
+.table .table-head .header-checkbox-cell {
   text-align: center;
   vertical-align: middle;
   width: 6% !important;
 }
-.long-table .table-head .header-check, .table .table-head .header-check {
+.long-table .table-head .header-check,
+.table .table-head .header-check {
   text-align: center;
   transform: scale(1.2);
   vertical-align: middle;
 }
-.long-table .long-table-head, .table .long-table-head {
+.long-table .long-table-head,
+.table .long-table-head {
   background-color: rgb(201, 212, 202);
   text-wrap: nowrap;
   font-size: 1.2rem !important;
@@ -3885,102 +3909,124 @@ ul {
   transition: none;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  .long-table .long-table-head, .table .long-table-head {
+  .long-table .long-table-head,
+  .table .long-table-head {
     font-size: 10px;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .long-table .long-table-head, .table .long-table-head {
+  .long-table .long-table-head,
+  .table .long-table-head {
     font-size: 10px;
   }
 }
-.long-table .long-table-head th, .table .long-table-head th {
+.long-table .long-table-head th,
+.table .long-table-head th {
   text-align: left;
   font-weight: 500 !important;
   transition: none;
 }
-.long-table .long-table-head .header-checkbox-cell, .table .long-table-head .header-checkbox-cell {
+.long-table .long-table-head .header-checkbox-cell,
+.table .long-table-head .header-checkbox-cell {
   text-align: center;
   vertical-align: middle;
   transition: none;
   animation: none;
 }
-.long-table .long-table-head .header-check, .table .long-table-head .header-check {
+.long-table .long-table-head .header-check,
+.table .long-table-head .header-check {
   text-align: center;
   vertical-align: middle;
 }
-.long-table tbody .table-items-container, .table tbody .table-items-container {
+.long-table tbody .table-items-container,
+.table tbody .table-items-container {
   background-color: #ffffff;
   border-bottom: 1px solid rgb(173, 167, 167);
   height: 5rem;
 }
-.long-table tbody .table-checkbox-cell, .table tbody .table-checkbox-cell {
+.long-table tbody .table-checkbox-cell,
+.table tbody .table-checkbox-cell {
   text-align: center;
   vertical-align: middle;
 }
-.long-table tbody .table-check, .table tbody .table-check {
+.long-table tbody .table-check,
+.table tbody .table-check {
   margin: 2.5rem 0;
 }
-.long-table tbody .table-no-check, .table tbody .table-no-check {
+.long-table tbody .table-no-check,
+.table tbody .table-no-check {
   padding-left: 1.5rem;
 }
-.long-table tbody .reminder-no-check, .table tbody .reminder-no-check {
+.long-table tbody .reminder-no-check,
+.table tbody .reminder-no-check {
   padding-left: 2.5rem;
 }
-.long-table tbody .row_line, .table tbody .row_line {
+.long-table tbody .row_line,
+.table tbody .row_line {
   margin-top: 1.2rem;
   margin-bottom: 1.2rem;
 }
-.long-table tbody .table-items, .table tbody .table-items {
+.long-table tbody .table-items,
+.table tbody .table-items {
   position: relative;
   overflow: visible;
 }
-.long-table tbody .table-items h4, .table tbody .table-items h4 {
+.long-table tbody .table-items h4,
+.table tbody .table-items h4 {
   font-weight: 500;
   font-size: 1.3rem;
   line-height: 6rem;
 }
-.long-table tbody .table-items h5, .table tbody .table-items h5 {
+.long-table tbody .table-items h5,
+.table tbody .table-items h5 {
   font-weight: 500;
   font-size: 1.3rem;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  .long-table tbody .table-items h5, .table tbody .table-items h5 {
+  .long-table tbody .table-items h5,
+  .table tbody .table-items h5 {
     font-size: 1rem;
   }
 }
-.long-table tbody .table-items .sub-property, .table tbody .table-items .sub-property {
+.long-table tbody .table-items .sub-property,
+.table tbody .table-items .sub-property {
   display: block;
   text-wrap: nowrap;
   font-size: 1.2rem;
   color: rgb(129, 129, 129);
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  .long-table tbody .table-items .sub-property, .table tbody .table-items .sub-property {
+  .long-table tbody .table-items .sub-property,
+  .table tbody .table-items .sub-property {
     font-size: 1rem;
   }
 }
-.long-table tbody .long-table-items, .table tbody .long-table-items {
+.long-table tbody .long-table-items,
+.table tbody .long-table-items {
   text-align: left;
   height: 100%;
   vertical-align: middle;
 }
-.long-table tbody .long-table-items h4, .table tbody .long-table-items h4 {
+.long-table tbody .long-table-items h4,
+.table tbody .long-table-items h4 {
   font-weight: 500;
   font-size: 1.3rem;
   line-height: 6rem;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  .long-table tbody .long-table-items h4, .table tbody .long-table-items h4 {
+  .long-table tbody .long-table-items h4,
+  .table tbody .long-table-items h4 {
     font-size: 11px;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .long-table tbody .long-table-items h4, .table tbody .long-table-items h4 {
+  .long-table tbody .long-table-items h4,
+  .table tbody .long-table-items h4 {
     font-size: 11px;
   }
 }
-.long-table tbody .long-table-items h5, .table tbody .long-table-items h5 {
+.long-table tbody .long-table-items h5,
+.table tbody .long-table-items h5 {
   font-weight: 500;
   font-size: 1.3rem;
   display: inline-block;
@@ -3990,16 +4036,19 @@ ul {
   text-overflow: ellipsis;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  .long-table tbody .long-table-items h5, .table tbody .long-table-items h5 {
+  .long-table tbody .long-table-items h5,
+  .table tbody .long-table-items h5 {
     font-size: 11px;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .long-table tbody .long-table-items h5, .table tbody .long-table-items h5 {
+  .long-table tbody .long-table-items h5,
+  .table tbody .long-table-items h5 {
     font-size: 11px;
   }
 }
-.long-table tbody .long-table-items .sub-property, .table tbody .long-table-items .sub-property {
+.long-table tbody .long-table-items .sub-property,
+.table tbody .long-table-items .sub-property {
   display: block;
   font-size: 1.2rem;
   color: rgb(129, 129, 129);
@@ -4010,19 +4059,23 @@ ul {
   text-overflow: ellipsis;
 }
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
-  .long-table tbody .long-table-items .sub-property, .table tbody .long-table-items .sub-property {
+  .long-table tbody .long-table-items .sub-property,
+  .table tbody .long-table-items .sub-property {
     font-size: 11px;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
-  .long-table tbody .long-table-items .sub-property, .table tbody .long-table-items .sub-property {
+  .long-table tbody .long-table-items .sub-property,
+  .table tbody .long-table-items .sub-property {
     font-size: 11px;
   }
 }
-.long-table tbody .long-table-items .transaction-name, .table tbody .long-table-items .transaction-name {
+.long-table tbody .long-table-items .transaction-name,
+.table tbody .long-table-items .transaction-name {
   width: 80%;
 }
-.long-table tbody .no-data-4pack, .table tbody .no-data-4pack {
+.long-table tbody .no-data-4pack,
+.table tbody .no-data-4pack {
   text-align: center;
   padding: 1rem;
   font-size: 1.3rem;
@@ -4116,7 +4169,8 @@ ul {
 .pagination .button:hover {
   background-color: #f0f0f0;
 }
-.pagination .button.disabled, .pagination .button:disabled {
+.pagination .button.disabled,
+.pagination .button:disabled {
   background-color: rgb(204, 204, 204);
   color: #ffffff;
   cursor: not-allowed;
@@ -4161,7 +4215,11 @@ ul {
 /* General DayPicker Styling */
 .my-daypicker .rdp {
   font-family: "Arial", sans-serif; /* Change font to give it a premium look */
-  background: linear-gradient(145deg, #e2e8f0, #f9fafb); /* Background gradient */
+  background: linear-gradient(
+    145deg,
+    #e2e8f0,
+    #f9fafb
+  ); /* Background gradient */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow around the calendar */
   border-radius: 12px;
   padding: 16px;

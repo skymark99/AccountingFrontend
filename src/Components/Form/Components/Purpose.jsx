@@ -45,6 +45,7 @@ export function Bank({ register, errors }) {
         <option value="ICICI">ICICI</option>
         <option value="RBL">RBL</option>
         <option value="CASH">CASH</option>
+        <option value="BANDAN">BANDAN</option>
       </select>
       {errors.bank && (
         <span className="form-group-error">{errors.bank.message}</span>

@@ -11,6 +11,7 @@ const BalanceSheet = ({ title, balances }) => {
     RAK: "balance-name-rak",
     HDFC: "balance-name-hdfc",
     CASH: "balance-name-cash",
+    BANDAN: "balance-name-bandan",
   };
 
   const sortedOrder = Object.keys(balanceCardclassNamees);
@@ -48,12 +49,14 @@ const BalanceSheet = ({ title, balances }) => {
               <div className="balance_card">
                 <div
                   className={`balance-name ${
-                    balanceCardclassNamees[balance.name]
+                    balanceCardclassNamees[balance?.name]
                   }`}
                 >
-                  {balance.name}
+                  {balance?.name}
                 </div>
-                <div className="balance-amount">{balance.balance}</div>
+                <div className="balance-amount">
+                  {balance?.balance?.toFixed(2)}
+                </div>
               </div>
               <div className="underline-balance"></div>
             </React.Fragment>

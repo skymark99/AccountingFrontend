@@ -7,6 +7,7 @@ function BranchDetails({ title }) {
     (state) => state.branchwise
   );
   const [data] = branchData;
+  console.log(branchData, "data");
 
   return (
     <div className="balance-container">
@@ -35,35 +36,42 @@ function BranchDetails({ title }) {
           <React.Fragment>
             <div className="balance_card">
               <div className={`balance-name balance-name-rbl`}>RBL</div>
-              <div className="balance-amount">{data?.RBL}</div>
+              <div className="balance-amount">{data?.RBL?.toFixed(2)}</div>
             </div>
             <div className="underline-balance"></div>
           </React.Fragment>
           <React.Fragment>
             <div className="balance_card">
               <div className={`balance-name balance-name-icici`}>ICICI</div>
-              <div className="balance-amount">{data?.ICICI}</div>
+              <div className="balance-amount">{data?.ICICI?.toFixed(2)}</div>
             </div>
             <div className="underline-balance"></div>
           </React.Fragment>
           <React.Fragment>
             <div className="balance_card">
               <div className={`balance-name balance-name-rak`}>RAK</div>
-              <div className="balance-amount">{data?.RAK}</div>
+              <div className="balance-amount">{data?.RAK?.toFixed(2)}</div>
             </div>
             <div className="underline-balance"></div>
           </React.Fragment>
           <React.Fragment>
             <div className="balance_card">
               <div className={`balance-name balance-name-hdfc`}>HDFC</div>
-              <div className="balance-amount">{data?.HDFC}</div>
+              <div className="balance-amount">{data?.HDFC?.toFixed(2)}</div>
             </div>
             <div className="underline-balance"></div>
           </React.Fragment>
           <React.Fragment>
             <div className="balance_card">
               <div className={`balance-name balance-name-cash`}>CASH</div>
-              <div className="balance-amount">{data?.CASH}</div>
+              <div className="balance-amount">{data?.CASH?.toFixed(2)}</div>
+            </div>
+            <div className="underline-balance"></div>
+          </React.Fragment>
+          <React.Fragment>
+            <div className="balance_card">
+              <div className={`balance-name balance-name-cash`}>BANDAN</div>
+              <div className="balance-amount">{data?.BANDAN?.toFixed(2)}</div>
             </div>
             <div className="underline-balance"></div>
           </React.Fragment>
