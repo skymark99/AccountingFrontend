@@ -52,7 +52,7 @@ function BankToBankForm() {
               value={from}
               onChange={(e) => setFrom(e.target.value)}
             >
-              <option value="">Select a branch</option>
+              <option value="">Select a Bank</option>
               {bank.map((branch, index) => (
                 <option key={index} value={branch}>
                   {branch}

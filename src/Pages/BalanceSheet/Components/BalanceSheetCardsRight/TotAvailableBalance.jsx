@@ -19,6 +19,7 @@ const TotAvailableBalance = () => {
   const rakBalance = banks.find((bank) => bank.name === "RAK")?.balance;
   const hdfcBalance = banks.find((bank) => bank.name === "HDFC")?.balance;
   const cashBalance = banks.find((bank) => bank.name === "CASH")?.balance;
+  const bundanBalance = banks.find((bank) => bank.name === "BANDAN")?.balance;
 
   return (
     <div
@@ -76,6 +77,13 @@ const TotAvailableBalance = () => {
           <div className="balance-item">
             <div className="balance-name balance-name-cash">Cash</div>
             <div className="balance-amount">{formatCurrency(cashBalance)}</div>
+          </div>
+          <div className="underline-balance"></div>
+          <div className="balance-item">
+            <div className="balance-name balance-name-bandan">BANDAN</div>
+            <div className="balance-amount">
+              {formatCurrency(bundanBalance)}
+            </div>
           </div>
           <div className="underline-balance"></div>
         </>
