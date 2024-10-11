@@ -1,28 +1,25 @@
 import { useEffect } from "react";
-import { logout } from "../Services/AxiosService";
 
+const URL = import.meta.env.VITE_URL;
 export const useLogoutOnWindowClose = () => {
   useEffect(() => {
     let isRefreshing = false;
 
     const handleBeforeUnload = (event) => {
-      // Set a flag to track if this is a refresh
       if (event.persisted) {
         isRefreshing = true;
       }
     };
 
-    const handleUnload = async (event) => {
-      // Only logout if it's not a refresh
-      alert("hey there");
+    const handleUnload = (event) => {
       if (!isRefreshing) {
-        await logout();
+        const url = `${URL}/v1/user/logout`;
+        const data = new Blob([], { type: "application/json" });
+        navigator.sendBeacon(url, data);
       }
     };
 
-    // Listen for page hide event which fires when the window is closed
     window.addEventListener("pagehide", handleUnload);
-    // Listen for beforeunload to detect refresh
     window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
