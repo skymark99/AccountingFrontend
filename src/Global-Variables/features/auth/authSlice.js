@@ -12,7 +12,6 @@ export const login = createAsyncThunk(
         withCredentials: true,
       });
 
-      console.log(response.data, "data");
       return response?.data?.envelop?.currentUser;
     } catch (error) {
       if (error.response) {

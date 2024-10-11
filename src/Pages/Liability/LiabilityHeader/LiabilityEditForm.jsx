@@ -96,7 +96,6 @@ const LiabilityEditForm = () => {
 
     try {
       const res = await edit_liability(values._id, formData);
-      console.log(res, "res");
       dispatch(resetLiability());
       dispatch(fetchTotal());
       toast.success("Liability updated✅", {

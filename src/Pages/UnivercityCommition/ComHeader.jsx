@@ -21,8 +21,9 @@ export default function ComHeader() {
     "Received",
   ];
   const Intakes = ["All Intakes", "April-October", "November-March"];
-  const { query, intake, universitySelectedItems, status, curBranch } =
-    useSelector((state) => state.university);
+  const { query, intake, status, curBranch } = useSelector(
+    (state) => state.university
+  );
   const dispatch = useDispatch();
 
   // Search Section

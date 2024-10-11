@@ -36,7 +36,7 @@ function ComActionsBtns() {
     const toastId = toast.loading("Deleting item...");
 
     try {
-      await delete_commition(item?._id);
+      const res = await delete_commition(item?._id);
 
       dispatch(resetUniversity());
       dispatch(setUniversitySelectedItems([]));

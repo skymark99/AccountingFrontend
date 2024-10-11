@@ -124,11 +124,7 @@ export const update_commition = async (id, formData) => {
   });
 };
 export const delete_commition = async (id) => {
-  return await axios.delete(
-    `${URL}/v1/university/${id}`,
-    {},
-    {
-      withCredentials: true,
-    }
-  );
+  return await axios.delete(`${URL}/v1/university/${id}`, {
+    withCredentials: true,
+  });
 };

@@ -60,8 +60,6 @@ const DaybookForm = () => {
   const onSubmit = async (data) => {
     if (!validateBranches(selectedBranches.length, setError)) return;
 
-    console.log("Corporate" === selectedBranches[0].branchName);
-
     // Building the branches array
     const branches = selectedBranches.map((branch) => ({
       branchName: branch.trim(),
@@ -93,7 +91,6 @@ const DaybookForm = () => {
       catagory: catagory,
       particular: curPart._id,
     };
-    console.log(formData, "testsssss");
     // Here you would typically send the formData to your backend using an API call.
     await handleCreateTransaction(formData);
   };
@@ -108,16 +105,15 @@ const DaybookForm = () => {
 
     try {
       const res = await create_daybook(formData);
-      console.log(res, "res");
 
-      // await create_log(
-      //   `${combineDateWithCurrentTime(new Date())} ${user.name} created a ${
-      //     formData.type
-      //   } transaction of ${formData.amount} in ${
-      //     formData.bank
-      //   } bank for ${particular} with purpose of ${formData.purpose}`,
-      //   user._id
-      // );
+      await create_log(
+        `${combineDateWithCurrentTime(new Date())} ${user.name} created a ${
+          formData.type
+        } transaction of ${formData.amount} in ${
+          formData.bank
+        } bank for ${particular} with purpose of ${formData.purpose}`,
+        user._id
+      );
       reset();
       dispatch(fetchBalanceSheet());
       dispatch(fetchBranchTransaction());
