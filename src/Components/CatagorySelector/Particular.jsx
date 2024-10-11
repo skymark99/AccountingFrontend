@@ -154,7 +154,7 @@ function Particular({
                 onClick={handleSaveParticular}
                 fontSize="medium"
                 className="show-cat-save-icon"
-                disabled={isLoading} // Disable Check button while loading
+                disabled={isLoading}
               />
             )}
             <Close
@@ -166,7 +166,7 @@ function Particular({
                 strokeWidth: "4",
               }}
               onClick={handleDiscard}
-              disabled={isLoading} // Disable Close button while loading
+              disabled={isLoading}
             />
           </div>
         )}

@@ -21,7 +21,7 @@ function ParticularSelector({
   const [particulars, setParticulars] = useState(["All Particulars"]);
 
   useEffect(() => {
-    if (selectedCat === "All Catagories") {
+    if (selectedCat === "All Categories") {
       setParticulars(["All Particulars", ...allParticular(catagories)]);
     } else {
       const selectedCategory = catagories.find(
@@ -42,10 +42,19 @@ function ParticularSelector({
     dispatch(setSelectedParticular(e.target.value));
   };
 
+  const disabled = selectedCat === "All Categories";
+
   return (
-    <div className="catagory-selector" style={style}>
+    <div
+      className="catagory-selector"
+      style={disabled ? { opacity: "0.5", ...style } : style}
+    >
       <div className="cat-custom-dropdown">
-        <select value={selectedParticular} onChange={handleSelected}>
+        <select
+          value={selectedParticular}
+          onChange={handleSelected}
+          disabled={disabled}
+        >
           {particulars.map((particular, i) => (
             <option key={i} value={particular}>
               {truncateText(particular, 15)}
