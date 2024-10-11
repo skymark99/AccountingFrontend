@@ -23,6 +23,7 @@ import {
   StatusSel,
 } from "../../../Components/Form/Components/Purpose";
 import { ErrorOutline } from "@mui/icons-material";
+import { fetchBalanceSheet } from "../../../Global-Variables/features/BalancesheetSlice/balanceSheetSlice";
 
 const OutstandingForm = () => {
   const [loading, setLoading] = useState(false);
@@ -100,6 +101,7 @@ const OutstandingForm = () => {
         } branch for ${particular} with purpose of ${formData.purpose}`,
         user._id
       );
+      dispatch(fetchBalanceSheet());
       dispatch(resetOutStanding());
       dispatch(fetchTotal());
 

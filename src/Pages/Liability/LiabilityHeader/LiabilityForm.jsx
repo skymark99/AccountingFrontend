@@ -22,6 +22,7 @@ import {
   Remark,
   StatusSel,
 } from "../../../Components/Form/Components/Purpose";
+import { fetchBalanceSheet } from "../../../Global-Variables/features/BalancesheetSlice/balanceSheetSlice";
 
 const LiabilityForm = () => {
   const [loading, setLoading] = useState(false);
@@ -92,6 +93,7 @@ const LiabilityForm = () => {
       await create_liability(formData);
       reset();
       dispatch(resetLiability());
+      dispatch(fetchBalanceSheet());
 
       toast.success("New liability added✅", {
         duration: 3000,

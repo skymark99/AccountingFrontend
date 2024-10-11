@@ -24,6 +24,7 @@ import {
 import { branches } from "../../../data/generalDatas";
 import BranchesSelector from "../../../Components/Buttons/BranchesSelector";
 import Branches from "../../../Components/Form/Branches";
+import { fetchBalanceSheet } from "../../../Global-Variables/features/BalancesheetSlice/balanceSheetSlice";
 
 const LiabilityEditForm = () => {
   const dispatch = useDispatch();
@@ -95,9 +96,10 @@ const LiabilityEditForm = () => {
     setLoading(true);
 
     try {
-      const res = await edit_liability(values._id, formData);
+      await edit_liability(values._id, formData);
       dispatch(resetLiability());
       dispatch(fetchTotal());
+      dispatch(fetchBalanceSheet());
       toast.success("Liability updated✅", {
         duration: 3000,
         position: "top-center",

@@ -23,6 +23,7 @@ import {
 import Branches from "../../../Components/Form/Branches";
 import { branches } from "../../../data/generalDatas";
 import BranchesSelector from "../../../Components/Buttons/BranchesSelector";
+import { fetchBalanceSheet } from "../../../Global-Variables/features/BalancesheetSlice/balanceSheetSlice";
 
 const OutstandingEditForm = () => {
   const { outstandingSelectedItems: selected } = useSelector(
@@ -101,6 +102,7 @@ const OutstandingEditForm = () => {
       await edit_liability(values._id, formData);
       dispatch(resetOutStanding());
       dispatch(fetchTotal());
+      dispatch(fetchBalanceSheet());
 
       reset();
       toast.success("Updated outstanding ✅", {
