@@ -16,31 +16,31 @@ const BalanceSheetTable = ({ data, width }) => {
             className="table-items balance-sheet-data-items"
             style={{ paddingLeft: "3rem" }}
           >
-            <h4>{item.month}</h4>
+            <h4>{item?.month}</h4>
           </td>
         );
       case "Income":
         return (
           <td className="table-items balance-sheet-data-items">
-            <h4>{item.income}</h4>
+            <h4>{item?.income?.toFixed(2)}</h4>
           </td>
         );
       case "Expense":
         return (
           <td className="table-items balance-sheet-data-items">
-            <h4>{item.expense}</h4>
+            <h4>{item?.expense?.toFixed(2)}</h4>
           </td>
         );
       case "Liability":
         return (
           <td className="table-items balance-sheet-data-items">
-            <h4>{item.liability}</h4>
+            <h4>{item?.liability?.toFixed(2)}</h4>
           </td>
         );
       case "Outstanding":
         return (
           <td className="table-items balance-sheet-data-items">
-            <h4>{item.outstanding}</h4>
+            <h4>{item?.outstanding?.toFixed(2)}</h4>
           </td>
         );
       case "Profit":
@@ -51,7 +51,7 @@ const BalanceSheetTable = ({ data, width }) => {
                 color: item.profit < 0 ? "red" : "green",
               }}
             >
-              {item.profit}
+              {item?.profit?.toFixed(2)}
             </h4>
           </td>
         );

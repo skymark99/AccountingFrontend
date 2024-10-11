@@ -43,10 +43,10 @@ function ParticularItemBox({
 
     try {
       const res = await updateParticular(catName, pastValue, {
-        name: localCurValue,
+        name: localCurValue?.trim(),
       });
-      setCurValue(res.data.name);
-      setPastValue(localCurValue);
+      setCurValue(res.data.name?.trim());
+      setPastValue(localCurValue?.trim());
       dispatch(fetchCatagory());
       toast.success("updated successfully");
       resetAll(dispatch);

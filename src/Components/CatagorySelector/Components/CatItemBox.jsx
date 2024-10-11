@@ -27,9 +27,9 @@ function CatItemBox({ value, onClick, setStopDropdown, setCurValue, id }) {
     if (localCurValue === pastValue) return; // If no changes, do nothing
 
     try {
-      const response = await editCatagory(id, { name: localCurValue });
+      const response = await editCatagory(id, { name: localCurValue.trim() });
       setCurValue(response.envelop.data.name); // Set updated value after saving
-      setPastValue(localCurValue); // Update the past value to the new saved value
+      setPastValue(localCurValue.trim()); // Update the past value to the new saved value
       dispatch(fetchCatagory()); // Refetch the categories
       toast.success("Category updated successfully");
     } catch (err) {
