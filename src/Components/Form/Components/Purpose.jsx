@@ -116,6 +116,7 @@ export function StatusSel({ register, errors }) {
         <option value="Paid">Paid</option>
         <option value="Unpaid">Unpaid</option>
         <option value="Postponed">Postponed</option>
+        <option value="Postponed">Pending</option>
       </select>
       {errors.status && (
         <span className="form-group-error">{errors.status.message}</span>
