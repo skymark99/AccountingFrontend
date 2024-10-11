@@ -30,6 +30,7 @@ const BranchPNL_Header = ({ width }) => {
     branchWiseStartDate,
     branchWiseEndDate,
     selectedDate,
+    curBranch,
     query,
   } = useSelector((state) => state.branchwise);
 
@@ -100,7 +101,7 @@ const BranchPNL_Header = ({ width }) => {
                   resetter="none"
                   setter={setCurBranch}
                   options={branches.slice(1)}
-                  buttonText="Branch"
+                  buttonText={curBranch}
                 />
                 <CatagorySelector
                   selectedCat={selectedCategory}
