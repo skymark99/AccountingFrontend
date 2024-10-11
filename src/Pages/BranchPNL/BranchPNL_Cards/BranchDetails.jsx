@@ -7,7 +7,6 @@ function BranchDetails({ title }) {
     (state) => state.branchwise
   );
   const [data] = branchData;
-  console.log(branchData, "data");
 
   return (
     <div className="balance-container">

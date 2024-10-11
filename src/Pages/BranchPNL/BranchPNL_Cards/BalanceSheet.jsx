@@ -20,8 +20,6 @@ const BalanceSheet = ({ title, balances }) => {
     return sortedOrder.indexOf(a.name) - sortedOrder.indexOf(b.name);
   });
 
-  console.log(sortedBalances, "sorted balances");
-
   return (
     <div className="balance-container">
       <h4 className="balance-title">{title}</h4>

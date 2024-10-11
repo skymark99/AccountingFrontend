@@ -10,7 +10,6 @@ export const fetchTotal = createAsyncThunk("liability/fetchTotal", async () => {
   const response = await axios.get(`${URL}/v1/liability/total`, {
     withCredentials: true,
   });
-  console.log(response.data, "data");
   return response.data;
 });
 
