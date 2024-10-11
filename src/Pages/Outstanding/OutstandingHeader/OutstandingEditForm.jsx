@@ -24,6 +24,7 @@ import Branches from "../../../Components/Form/Branches";
 import { branches } from "../../../data/generalDatas";
 import BranchesSelector from "../../../Components/Buttons/BranchesSelector";
 import { fetchBalanceSheet } from "../../../Global-Variables/features/BalancesheetSlice/balanceSheetSlice";
+import { fetchDashboardData } from "../../../Global-Variables/features/dashBoardSlice/dashBoardSlice";
 
 const OutstandingEditForm = () => {
   const { outstandingSelectedItems: selected } = useSelector(
@@ -105,6 +106,7 @@ const OutstandingEditForm = () => {
       dispatch(resetOutStanding());
       dispatch(fetchTotal());
       dispatch(fetchBalanceSheet());
+      dispatch(fetchDashboardData());
 
       toast.success("Updated outstanding ✅", {
         duration: 3000,

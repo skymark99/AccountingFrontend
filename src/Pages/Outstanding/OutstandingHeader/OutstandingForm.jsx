@@ -24,6 +24,7 @@ import {
 } from "../../../Components/Form/Components/Purpose";
 import { ErrorOutline } from "@mui/icons-material";
 import { fetchBalanceSheet } from "../../../Global-Variables/features/BalancesheetSlice/balanceSheetSlice";
+import { fetchDashboardData } from "../../../Global-Variables/features/dashBoardSlice/dashBoardSlice";
 
 const OutstandingForm = () => {
   const [loading, setLoading] = useState(false);
@@ -104,6 +105,7 @@ const OutstandingForm = () => {
       dispatch(fetchBalanceSheet());
       dispatch(resetOutStanding());
       dispatch(fetchTotal());
+      dispatch(fetchDashboardData());
 
       reset();
       toast.success("New outstanding added✅", {
