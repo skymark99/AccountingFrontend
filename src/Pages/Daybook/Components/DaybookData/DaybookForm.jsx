@@ -105,7 +105,6 @@ const DaybookForm = () => {
 
     try {
       const res = await create_daybook(formData);
-
       await create_log(
         `${combineDateWithCurrentTime(new Date())} ${user.name} created a ${
           formData.type
@@ -114,6 +113,7 @@ const DaybookForm = () => {
         } bank for ${particular} with purpose of ${formData.purpose}`,
         user._id
       );
+
       reset();
       dispatch(fetchBalanceSheet());
       dispatch(fetchBranchTransaction());

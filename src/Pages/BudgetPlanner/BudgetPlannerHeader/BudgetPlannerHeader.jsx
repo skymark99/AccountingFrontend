@@ -101,7 +101,7 @@ const BudgetPlannerHeader = () => {
               padding: "1rem 3rem",
             }}
           >
-            ₹ {total}
+            ₹ {total?.toFixed(2)}
           </PrimaryBlueBtn>
         </div>
         <BudgetPlannerHeaderRight
