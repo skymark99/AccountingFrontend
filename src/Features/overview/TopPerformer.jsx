@@ -41,7 +41,7 @@ function TopPerformer() {
           >
             {topPerformer}
           </span>
-          <Percentage>{topPerformerProfit}</Percentage>
+          <Percentage>{topPerformerProfit?.toFixed(2)}</Percentage>
         </>
       )}
     </div>

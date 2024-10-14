@@ -81,7 +81,7 @@ function DaybookDataItems({ transaction }) {
         </div>
       </div>
       <div className="data-items Amount">
-        <h4>{amount}</h4>
+        <h4>{amount?.toFixed(2)}</h4>
       </div>
 
       <div className="data-items remark-container">
