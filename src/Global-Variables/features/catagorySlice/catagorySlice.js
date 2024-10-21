@@ -6,7 +6,7 @@ const URL = import.meta.env.VITE_URL;
 export const fetchCatagory = createAsyncThunk(
   "catagory/fetchCatagory",
   async () => {
-    const response = await axios.get(`${URL}/v1/catagory`, {
+    const response = await axios.get(`${URL}/v1/catagory?limit=500`, {
       withCredentials: true,
     });
     return response.data.docs;
