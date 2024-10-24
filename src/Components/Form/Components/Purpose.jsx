@@ -94,7 +94,6 @@ export function DateSel({ register, errors }) {
       <input
         type="date"
         id="date"
-        max={new Date().toISOString().split("T")[0]}
         {...register("date", { required: "Date is required" })}
       />
       {errors.date && (

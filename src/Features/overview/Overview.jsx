@@ -5,16 +5,18 @@ import TopPerformer from "./TopPerformer";
 import TotalExpense from "./TotalExpense";
 import TotalIncome from "./TotalIncome";
 import GraphSkelton from "../../Components/GraphSkelton";
+import { branches } from "../../data/generalDatas";
 
-const labels = [
-  "Kannur",
-  "Manjeri",
-  "Kochi",
-  "Kottayam",
-  "Calicut",
-  "Directors",
-  "Corporate",
-];
+// const labels = [
+//   "Kannur",
+//   "Manjeri",
+//   "Kochi",
+//   "Kottayam",
+//   "Calicut",
+//   "Directors",
+//   "Corporate",
+// ];
+const labels = branches.slice(1);
 const monthNames = [
   "January",
   "February",

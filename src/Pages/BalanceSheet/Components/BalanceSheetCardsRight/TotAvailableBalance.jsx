@@ -14,12 +14,14 @@ const TotAvailableBalance = () => {
     }
   }, [dispatch, banks.length]);
 
-  const rbiBalance = banks.find((bank) => bank.name === "RBL")?.balance;
-  const iciciBalance = banks.find((bank) => bank.name === "ICICI")?.balance;
-  const rakBalance = banks.find((bank) => bank.name === "RAK")?.balance;
-  const hdfcBalance = banks.find((bank) => bank.name === "HDFC")?.balance;
-  const cashBalance = banks.find((bank) => bank.name === "CASH")?.balance;
-  const bundanBalance = banks.find((bank) => bank.name === "BANDAN")?.balance;
+  const rbiBalance = banks.find((bank) => bank.name === "RBL")?.balance || 0;
+  const iciciBalance =
+    banks.find((bank) => bank.name === "ICICI")?.balance || 0;
+  const rakBalance = banks.find((bank) => bank.name === "RAK")?.balance || 0;
+  const hdfcBalance = banks.find((bank) => bank.name === "HDFC")?.balance || 0;
+  const cashBalance = banks.find((bank) => bank.name === "CASH")?.balance || 0;
+  const bundanBalance =
+    banks.find((bank) => bank.name === "BANDAN")?.balance || 0;
 
   return (
     <div

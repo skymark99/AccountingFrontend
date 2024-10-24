@@ -6,6 +6,7 @@ export const branches = [
   "Manjeri",
   "Kannur",
   "Directors",
+  "Trivandrum",
   "Corporate",
 ];
 

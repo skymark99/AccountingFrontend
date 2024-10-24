@@ -8,16 +8,7 @@ import {
 import { useDispatch } from "react-redux";
 import { getInitialTime } from "../../../Components/Coundown/countdownActions";
 import { setTime } from "../../../Global-Variables/features/auth/authSlice";
-
-const branches = [
-  "Kozhikode",
-  "Kochi",
-  "Manjeri",
-  "Kottayam",
-  "Kannur",
-  "Directors",
-  "Corporate",
-];
+import { branches } from "../../../data/generalDatas";
 
 const NewProperty = () => {
   const [amount, setAmount] = useState("");
@@ -109,7 +100,7 @@ const NewProperty = () => {
               required
             >
               <option value="">Select a branch</option>
-              {branches.map((branch, index) => (
+              {branches.slice(1).map((branch, index) => (
                 <option key={index} value={branch}>
                   {branch}
                 </option>

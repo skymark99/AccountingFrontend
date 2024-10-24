@@ -1,3 +1,4 @@
+import { branches } from "../../data/generalDatas";
 import BranchesSelector from "../Buttons/BranchesSelector";
 import { toggleBranch } from "./HelperFunctions";
 
@@ -8,15 +9,7 @@ function BranchGroup({ setSelectedBranches, clearErrors, selectedBranches }) {
         Branches
       </div>
       <div className="branch-group">
-        {[
-          "Kochi",
-          "Kozhikode",
-          "Kottayam",
-          "Manjeri",
-          "Kannur",
-          "Corporate",
-          "Directors",
-        ].map((branch) => (
+        {branches.slice(1).map((branch) => (
           <BranchesSelector
             key={branch}
             isActive={selectedBranches.includes(branch)}

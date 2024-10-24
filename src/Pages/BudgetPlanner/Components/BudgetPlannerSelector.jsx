@@ -1,9 +1,10 @@
 import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurSelectedBranch } from "../../../Global-Variables/features/BudgetPlannerSlice/budgetPlannerSlice";
+import { branches } from "../../../data/generalDatas";
 
 function BudgetPlannerSelector({ disabled }) {
-  const { allBranch, curSelectedBranch } = useSelector((state) => state.budget);
+  const { curSelectedBranch } = useSelector((state) => state.budget);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -21,7 +22,7 @@ function BudgetPlannerSelector({ disabled }) {
           value={curSelectedBranch}
           onChange={handleChange}
         >
-          {allBranch?.map((branch) => (
+          {branches?.map((branch) => (
             <option key={branch} value={branch}>
               {branch}
             </option>

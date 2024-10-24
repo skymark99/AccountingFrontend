@@ -13,6 +13,7 @@ import {
 } from "../../../Services/dateFormatter";
 import { getInitialTime } from "../../../Components/Coundown/countdownActions";
 import { setTime } from "../../../Global-Variables/features/auth/authSlice";
+import { branches } from "../../../data/generalDatas";
 
 const RemindersForm = () => {
   const [loading, setLoading] = useState(false);
@@ -180,13 +181,11 @@ const RemindersForm = () => {
                 {...register("branch", { required: "Select a branch" })}
               >
                 <option value="">Select branch</option>
-                <option value="Kochi">Kochi</option>
-                <option value="Kozhikode">Kozhikode</option>
-                <option value="Kottayam">Kottayam</option>
-                <option value="Manjeri">Manjeri</option>
-                <option value="Kannur">Kannur</option>
-                <option value="Corporate">Corporate</option>
-                <option value="Directors">Directors</option>
+                {branches.slice(1).map((branch) => (
+                  <option key={branch} value={branch}>
+                    {branch}
+                  </option>
+                ))}
               </select>
               {errors.branch && (
                 <span className="form-group-error">
