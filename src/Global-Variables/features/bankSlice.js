@@ -11,6 +11,7 @@ const balanceSlice = createSlice({
     percentageHike: 0,
     loading: false,
     error: null,
+    bankBalances: {},
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -24,6 +25,7 @@ const balanceSlice = createSlice({
         const { banks, stats } = action.payload;
 
         state.banks = banks;
+        state.bankBalances = stats.bankBalances;
         state.totalBalance = stats.totalBalance;
         state.percentageHike = stats.percentageHike;
         state.initialStatus = "Success";

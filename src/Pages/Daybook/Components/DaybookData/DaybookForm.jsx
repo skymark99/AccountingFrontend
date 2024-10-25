@@ -60,12 +60,6 @@ const DaybookForm = () => {
   const onSubmit = async (data) => {
     if (!validateBranches(selectedBranches.length, setError)) return;
 
-    // Building the branches array
-    const branches = selectedBranches.map((branch) => ({
-      branchName: branch.trim(),
-      amount: data[`amount_${branch}`],
-    }));
-
     if (!catagory) {
       toast.error("Select a Catagory");
       return;
@@ -74,6 +68,12 @@ const DaybookForm = () => {
       toast.error("Select a Particular");
       return;
     }
+
+    // Building the branches array
+    const branches = selectedBranches.map((branch) => ({
+      branchName: branch.trim(),
+      amount: data[`amount_${branch}`],
+    }));
 
     const curPart = particularFinder(catagories, particular, catagory);
     // Constructing the final data object
@@ -104,7 +104,7 @@ const DaybookForm = () => {
     setLoading(true);
 
     try {
-      const res = await create_daybook(formData);
+      await create_daybook(formData);
       await create_log(
         `${combineDateWithCurrentTime(new Date())} ${user.name} created a ${
           formData.type

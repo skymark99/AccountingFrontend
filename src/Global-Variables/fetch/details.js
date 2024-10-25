@@ -13,6 +13,7 @@ export const fetchBankDetails = createAsyncThunk(
       const res = await axios.get(`${URL}/v1/bank/balance`, {
         withCredentials: true,
       });
+
       return { banks: response.data.docs, stats: res.data };
     } catch (error) {
       return rejectWithValue(error.message);

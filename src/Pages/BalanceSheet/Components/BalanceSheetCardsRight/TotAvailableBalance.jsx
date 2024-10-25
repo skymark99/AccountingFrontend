@@ -5,7 +5,9 @@ import { formatCurrency } from "../../../../Services/amountFormatter";
 import { Skeleton } from "antd"; // Import Ant Design Skeleton
 
 const TotAvailableBalance = () => {
-  const { banks, loading, error } = useSelector((state) => state.bank);
+  const { banks, loading, error, bankBalances } = useSelector(
+    (state) => state.bank
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,14 +16,21 @@ const TotAvailableBalance = () => {
     }
   }, [dispatch, banks.length]);
 
-  const rbiBalance = banks.find((bank) => bank.name === "RBL")?.balance || 0;
-  const iciciBalance =
-    banks.find((bank) => bank.name === "ICICI")?.balance || 0;
-  const rakBalance = banks.find((bank) => bank.name === "RAK")?.balance || 0;
-  const hdfcBalance = banks.find((bank) => bank.name === "HDFC")?.balance || 0;
-  const cashBalance = banks.find((bank) => bank.name === "CASH")?.balance || 0;
-  const bundanBalance =
-    banks.find((bank) => bank.name === "BANDAN")?.balance || 0;
+  // const rbiBalance = banks.find((bank) => bank.name === "RBL")?.balance || 0;
+  // const iciciBalance =
+  //   banks.find((bank) => bank.name === "ICICI")?.balance || 0;
+  // const rakBalance = banks.find((bank) => bank.name === "RAK")?.balance || 0;
+  // const hdfcBalance = banks.find((bank) => bank.name === "HDFC")?.balance || 0;
+  // const cashBalance = banks.find((bank) => bank.name === "CASH")?.balance || 0;
+  // const bundanBalance =
+  //   banks.find((bank) => bank.name === "BANDAN")?.balance || 0;
+
+  const rbiBalance = bankBalances?.RBL?.balance || 0;
+  const iciciBalance = bankBalances?.ICICI?.balance || 0;
+  const rakBalance = bankBalances?.RAK?.balance || 0;
+  const hdfcBalance = bankBalances?.HDFC?.balance || 0;
+  const cashBalance = bankBalances?.CASH?.balance || 0;
+  const bundanBalance = bankBalances?.BANDAN?.balance || 0;
 
   return (
     <div

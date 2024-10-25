@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchBankDetails } from "../../../Global-Variables/fetch/details";
 import { fetchBranchWise } from "../../../Global-Variables/features/BranchWisePnlSlice/branchWIsePnlSlice";
 import BranchDetails from "./BranchDetails";
+import TotAvailableBalance from "../../BalanceSheet/Components/BalanceSheetCardsRight/TotAvailableBalance";
 
 const BranchPNL_Cards = () => {
   const { banks } = useSelector((state) => state.bank);
@@ -26,7 +27,8 @@ const BranchPNL_Cards = () => {
       <div className="branch_card_group">
         <div className="balance_sheet_group">
           <BranchDetails title={`${curBranch} Branch Balance`} />
-          <BalanceSheet title="Total Balance" balances={banks} />
+          {/* <BalanceSheet title="Total Balance" balances={banks} /> */}
+          <TotAvailableBalance />
         </div>
         <BranchesYearlyPNL />
       </div>
