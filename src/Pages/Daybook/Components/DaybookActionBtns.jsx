@@ -52,7 +52,7 @@ function DaybookActionBtns() {
       >
         + New Entry
       </PrimaryBlueBtn>
-      <PrimaryBlueBtn
+      {/* <PrimaryBlueBtn
         onClick={handleBankToBank}
         style={{
           fontWeight: "700",
@@ -62,7 +62,7 @@ function DaybookActionBtns() {
         }}
       >
         Bank to Bank
-      </PrimaryBlueBtn>
+      </PrimaryBlueBtn> */}
 
       <Modal open={isBankToBank} onCancel={handleBankToBank} footer={null}>
         <h4 className="form-head">Self Transaction</h4>
