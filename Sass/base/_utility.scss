@@ -1,0 +1,89 @@
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+.active li {
+  background-color: $primary-color;
+  color: $white !important;
+  font-weight: 700;
+}
+
+.active span {
+  background-color: $primary-color;
+  color: $white !important;
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+.header {
+  padding: $header-padding;
+  height: $header-height;
+
+  @include respond(smallPhone) {
+    padding: 2rem;
+    height: 8rem;
+  }
+  @include respond(tablets) {
+    padding: 0.4rem;
+    font-size: 1.8rem;
+    height: 6rem;
+  }
+  @include respond(bigTablets) {
+    padding: 0.4rem;
+    font-size: 1.8rem;
+    height: 6rem;
+  }
+}
+
+.body {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll-body {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.arrow-down-btn,
+.arrow-up-btn {
+  color: $white;
+  background-color: $btn-green;
+  @include flex(center);
+  border-radius: 8px;
+  padding: 0.5rem;
+  font-weight: 500;
+  overflow: hidden;
+}
+.arrow-down-btn {
+  background-color: $primary-color;
+  transform: rotate(270deg);
+}
+.shadow-box {
+  width: 100%;
+  background-color: $box-color;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  overflow: hidden;
+}
+
+.totals {
+  height: 5rem;
+  background-color: $primary-color;
+  margin-top: 1rem;
+  border-radius: 5px;
+  @include flex(center);
+  font-weight: 500;
+  color: white;
+}

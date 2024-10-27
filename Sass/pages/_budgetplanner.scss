@@ -1,0 +1,494 @@
+.budgetplanner {
+  @include respond(smallPhone) {
+    display: none;
+  }
+  @include respond(tablets, bigTablets) {
+    padding: 3rem;
+  }
+}
+
+.bp-table-card {
+  border-radius: 5px;
+  padding: 4rem;
+  background-color: $white;
+  margin-left: 6rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 95%;
+
+  @include respond(tablets, bigTablets) {
+    padding: 3rem;
+    margin-left: 2rem;
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  th {
+    text-align: left;
+    font-weight: 500;
+    color: $primary-gray;
+  }
+
+  td {
+    font-size: 17px;
+    font-weight: 500;
+
+    input {
+      width: 90%;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1.3rem;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      border-color: $target;
+      outline: none;
+    }
+
+    .bp-table-container {
+      display: flex;
+      align-items: center;
+      width: 20rem;
+    }
+
+    .bp-table-icon {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(to bottom, $white, $primary-color);
+      border-radius: 2px;
+      margin-right: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .bp-table-text {
+      padding-left: 1rem;
+    }
+
+    .color-circle {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+
+    .data-name {
+      margin-right: 10px;
+    }
+
+    .change {
+      font-weight: bold;
+
+      &.positive {
+        color: $dark-green;
+      }
+
+      &.negative {
+        color: $btn-red;
+      }
+    }
+  }
+
+  .budget_planner_right {
+    grid-row: 2;
+  }
+
+  .bp_right {
+    display: flex;
+    justify-content: end;
+    width: 93%;
+    margin-top: -4rem;
+
+    @include respond(tablets, bigTablets) {
+      width: 103%;
+      margin-top: 1rem;
+    }
+  }
+
+  .bp-head {
+    background-color: $mild-gray;
+  }
+
+  .bp-th-tag {
+    padding: 1rem;
+    padding-left: 2rem;
+  }
+
+  .bp-btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+  }
+  .bp-sub-btn-container {
+    display: flex;
+    gap: 10px;
+  }
+  .bp-btn {
+    padding: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: $white;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+
+  .bp-btn-property {
+    background-color: $primary-color;
+    color: $white;
+  }
+  .bp-dropdown-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex-shrink: 1;
+  }
+
+  .bp-select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .bp-select {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: $white;
+    cursor: pointer;
+    font-weight: bold;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    padding-right: 4rem;
+  }
+
+  .bp-select-icon {
+    position: absolute;
+    right: 1.5rem;
+    font-size: 1.3rem;
+    color: $dark-gray;
+    pointer-events: none;
+  }
+
+  .bp-select:focus {
+    border: 1px solid $primary-color;
+    outline: none;
+  }
+
+  .bp-td-tag {
+    padding: 2rem;
+    padding-right: 8rem;
+    text-align: left;
+    font-size: 17px;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  .bp-td-branch {
+    padding-left: 0;
+    margin-right: 2rem;
+    font-size: 1.5rem !important;
+    color: $primary-gray;
+  }
+
+  .up-icon {
+    color: $dark-green;
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  .down-icon {
+    color: $btn-red;
+    font-size: 25px;
+  }
+
+  .bp-change {
+    display: flex;
+  }
+
+  .amount-edit-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .discard-btn,
+  .save-btn {
+    padding: 0rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    color: $white;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    background-color: $btn-green;
+  }
+  .discard-btn {
+    background-color: $btn-red;
+  }
+  .discard-btn:hover {
+    opacity: 0.8;
+  }
+  .save-btn:hover {
+    background-color: $dark-green;
+  }
+
+  .delete-planner {
+    color: $btn-red;
+    font-size: 2rem;
+    // margin-left: 1rem;
+    cursor: pointer;
+  }
+
+  .bp-table-container {
+    position: relative;
+    height: max-content;
+  }
+  .t-body-container {
+    height: 60vh;
+    overflow: scroll;
+  }
+  .scrollable-tbody {
+    display: block;
+
+    width: 100%;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $primary-gray;
+      border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  }
+
+  .budgetplanner table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead,
+  tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  tbody {
+    display: block;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  th,
+  td {
+    padding: 1rem 0;
+    padding-left: 2rem !important;
+    text-align: left;
+  }
+
+  th {
+    background-color: $mild-gray;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  th:first-child,
+  td:first-child {
+    width: 40%;
+  }
+
+  th:last-child,
+  td:last-child {
+    width: 15%;
+  }
+
+  th:not(:first-child):not(:last-child),
+  td:not(:first-child):not(:last-child) {
+    width: 20%;
+  }
+
+  // td:nth-child(5) {
+  //   padding-left: 5rem;
+  //   width: 19% !important;
+  // }
+
+  // td:nth-child(4) {
+  //   padding-left: 5rem;
+  //   width: 22% !important;
+  // }
+
+  // td:nth-child(5),
+  // th:nth-child(5) {
+  //   text-align: center !important;
+  // }
+
+  .delete-action {
+    text-align: center;
+  }
+}
+
+.property-form {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.property-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.budget-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.property-name-group {
+  margin-bottom: 1rem;
+}
+
+.property-form label {
+  font-weight: 600;
+  color: #333333;
+}
+
+.property-form input,
+.property-form select {
+  padding: 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+// Variables
+$white: #ffffff;
+$border-color: #e0e0e0;
+$text-color: #333333;
+
+.property-form {
+  background-color: $white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+
+  .budget-form-group {
+    margin-bottom: 15px;
+
+    &.property-name-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      font-size: 14px;
+
+      &:focus {
+        border-color: $primary-color;
+        outline: none;
+      }
+    }
+  }
+
+  .property-fields {
+    display: flex;
+    gap: 15px;
+
+    .budget-form-group {
+      flex: 1;
+    }
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: $primary-color;
+    color: $white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+.total-planner-budget {
+  &-title {
+    font-weight: 700;
+    color: $mid-gray;
+  }
+}
+
+.budgetplanner-content-row {
+  & td {
+    font-size: 1.5rem;
+  }
+}
+.budget-properties {
+  width: 38% !important;
+}
+.budget-Branch {
+  width: 10% !important;
+}
+
+.budget-td-branch {
+  width: 10% !important;
+}
+.budget-Amount {
+  text-align: center !important;
+}
+.budget-td-amount {
+  text-align: center !important;
+}
+.budget-Change {
+  width: 13% !important;
+}
+.budget-td-change {
+  width: 13% !important;
+}
+.budget-td-total {
+  text-align: center !important;
+  width: 20% !important;
+}
+.budget-Total {
+  text-align: center !important;
+  width: 20% !important;
+}
+.budget-Actions {
+  text-align: center !important;
+  padding-right: 2rem !important;
+}

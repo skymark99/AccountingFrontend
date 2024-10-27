@@ -1,0 +1,8 @@
+.outstanding {
+  @include respond(smallPhone) {
+    display: none;
+  }
+  @include respond(tablets, bigTablets) {
+    padding: 3rem;
+  }
+}

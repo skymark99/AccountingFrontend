@@ -1,0 +1,301 @@
+.branchwise {
+  @include respond(smallPhone) {
+    display: none;
+  }
+  @include respond(tablets, bigTablets) {
+    padding: 3rem;
+  }
+}
+
+.branch_sub_body {
+  grid-row: 2;
+  margin-bottom: 7rem;
+}
+
+.branch_wise_footer {
+  display: flex;
+  justify-content: end;
+  padding-top: 2rem;
+  width: 89%;
+}
+
+.branch_card_group {
+  display: flex;
+  width: 100%;
+  gap: 5rem;
+
+  @include respond(tablets, bigTablets) {
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .balance_sheet_group {
+    display: flex;
+    gap: 2rem;
+    @include respond(tablets, bigTablets) {
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+  }
+}
+
+.branch-card-header {
+  margin-top: 5rem;
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.balance_card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.4rem;
+  width: 100%;
+
+  .balance-name {
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: $white;
+    font-size: 14px;
+    width: 10rem;
+  }
+
+  .balance-amount {
+    font-weight: 500;
+    font-size: 14px;
+  }
+}
+
+.pnl_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  @include respond(tablets, bigTablets) {
+    margin-top: 1.5rem;
+    padding: 0.5rem;
+  }
+}
+
+.pnl-title {
+  font-weight: bold;
+  color: $mid-gray;
+  margin-bottom: 4px;
+}
+
+.sub-titles {
+  font-weight: 500;
+  font-size: 14px;
+  color: $light-violet;
+}
+
+.pnl_amount {
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.pnl_header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 2rem;
+  padding-top: 2rem;
+  @include respond(tablets, bigTablets) {
+    padding: 0rem 1rem;
+    padding-top: 0rem;
+  }
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.pnlpage_width {
+  grid-row: 1;
+  margin-top: 8rem;
+  @include respond(tablets, bigTablets) {
+    margin-top: 1rem;
+  }
+}
+
+.pnlcontent_cards {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  @include respond(tablets, bigTablets) {
+    gap: 5px;
+  }
+}
+
+//yearly round graph
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  @include respond(tablets, bigTablets) {
+    padding: 1rem;
+  }
+}
+
+.circle-align {
+  width: 100px;
+  height: 100px;
+  @include respond(tablets, bigTablets) {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.chart-container {
+  width: 120px;
+  height: 120px;
+  overflow: visible;
+  @include respond(tablets, bigTablets) {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+.chart-container .chartjs-render-monitor {
+  transition: transform 0.3s ease;
+}
+
+.chart-container:hover .chartjs-render-monitor {
+  transform: scale(1.1);
+}
+
+.circle-content {
+  margin-top: -7rem;
+  @include respond(tablets, bigTablets) {
+    margin-top: -6.3rem;
+  }
+}
+
+.circle-description {
+  margin-top: 4rem;
+}
+
+.graph-container {
+  width: 100%;
+  border-radius: 10px;
+  padding: 1rem;
+  background-color: $white;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin-top: 2rem;
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.graph-head {
+  font-weight: 500;
+  font-size: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.chart-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+//skelton
+.bar-chart-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  height: 300px;
+  padding: 16px;
+  background-color: #f5f5f5;
+
+  .chart-title {
+    width: 40%;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 4px;
+    margin: 0 auto;
+    animation: skeleton-loading 1.2s ease-in-out infinite;
+  }
+
+  .bars-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Ensure bars are aligned to the bottom */
+    gap: 12px;
+    height: 100%;
+  }
+
+  .bar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    animation: skeleton-loading 1.2s ease-in-out infinite;
+    position: relative;
+
+    &:nth-child(odd) {
+      height: 60%;
+    }
+
+    &:nth-child(even) {
+      height: 80%;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      height: 10px;
+      margin-top: 8px;
+      background-color: #ddd;
+      border-radius: 4px;
+      animation: skeleton-loading 1.2s ease-in-out infinite;
+    }
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-color: #e0e0e0;
+    }
+    50% {
+      background-color: #f0f0f0;
+    }
+    100% {
+      background-color: #e0e0e0;
+    }
+  }
+}
+
+.circle-description {
+  display: flex;
+  flex-direction: column;
+}
+
+.branchwise-items-selected {
+  display: flex;
+  flex-direction: column;
+  margin-top: -2.1rem;
+  @include respond(tablets, bigTablets) {
+    margin-bottom: 0rem;
+    display: none;
+  }
+  span {
+    font-size: 1.2rem;
+    width: 10rem;
+    height: 2rem;
+  }
+}

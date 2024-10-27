@@ -1,0 +1,74 @@
+.pagination {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+
+  .button {
+    border: 1px solid $light-gray;
+    border-radius: 7px;
+    padding: 0.7rem;
+    background-color: $white;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    border-color: $primary-color;
+    font-weight: 720;
+    color: $primary-color;
+    border-width: 1px;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      background-color: $light-mid-gray;
+    }
+
+    &.disabled,
+    &:disabled {
+      background-color: $light-gray;
+      color: $white;
+      cursor: not-allowed;
+      border-color: $light-gray;
+    }
+
+    .next-icon-span {
+      margin-left: 0.8rem;
+    }
+    .prev-icon-span {
+      margin-right: 0.8rem;
+    }
+    .icons {
+      font-size: 1.7rem;
+    }
+  }
+
+  .page-numbers {
+    display: flex;
+    background-color: $pagination-bg;
+    height: 3.7rem;
+    border-radius: 7px;
+    color: #333;
+    align-items: center;
+    border: 1px solid $primary-color;
+
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 4rem;
+      height: 100%;
+    }
+
+    .current {
+      background-color: $primary-color;
+      color: $white;
+      width: 4rem;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

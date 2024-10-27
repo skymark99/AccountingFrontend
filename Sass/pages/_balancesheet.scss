@@ -1,0 +1,243 @@
+.balancesheet {
+  @include respond(smallPhone) {
+    display: none;
+  }
+  @include respond(tablets, bigTablets) {
+    padding: 3rem;
+  }
+}
+.data-header-no-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  padding: 1rem 0;
+  background-color: $light-green;
+  text-wrap: nowrap;
+  font-size: 1.2rem;
+  color: $mid-gray;
+
+  span {
+    padding-left: 1rem;
+    width: 10rem;
+    flex: 1;
+  }
+}
+
+.data-items-no-check-container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 2.5rem 0;
+  background-color: $white;
+  width: 90%;
+}
+
+.data-items-no-check {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
+.data-items-no-check h4 {
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 1rem;
+}
+
+.underline-row {
+  border-bottom: 1px solid rgb(173, 167, 167);
+  width: 90%;
+}
+
+.profit {
+  &.low-profit {
+    color: $btn-red;
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1rem;
+  }
+
+  &.high-profit {
+    color: $dark-green;
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 1rem;
+  }
+}
+
+.balance-sheet-header {
+  display: flex;
+  width: 60%;
+  align-items: center;
+  justify-content: space-between;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+/* Balance sheet right side cards  */
+.balance-sheet-card {
+  background-color: $white;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(22, 19, 19, 0.1);
+  border-radius: 9px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  width: 21rem;
+  @include respond(tablets, bigTablets) {
+    width: 30rem;
+  }
+}
+.overview-content span {
+  font-size: 2.2rem;
+}
+.small-bold-title {
+  font-size: 12px;
+  font-weight: bolder;
+  color: $mid-gray;
+  @include respond(tablets, bigTablets) {
+    font-size: 17px;
+  }
+}
+.medium-money {
+  margin-top: 1rem;
+  font-family: "Inter", "Open Sans", "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.9rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  @include respond(tablets, bigTablets) {
+    font-size: 2.5rem;
+    gap: 1.5rem;
+  }
+}
+
+/* Total available balance at balance sheet  */
+.balance-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0rem 2rem;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(22, 19, 19, 0.1);
+  border-radius: 5px;
+  padding-bottom: 2rem;
+  @include respond(tablets, bigTablets) {
+    padding: 0rem 3rem;
+    padding-bottom: 2rem;
+  }
+
+  .balance-title {
+    font-weight: 500;
+    color: $mid-gray;
+    padding-top: 2rem;
+    margin-bottom: 4px;
+    font-size: 1.4rem;
+    text-align: start;
+    @include respond(tablets, bigTablets) {
+      font-size: 1.5rem;
+    }
+  }
+
+  .balance-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2.1rem;
+
+    .balance-name {
+      font-weight: 500;
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: $white;
+      font-size: 14px;
+      width: 10rem;
+    }
+
+    .balance-amount {
+      font-weight: 500;
+      font-size: 14px;
+    }
+  }
+  .underline-balance {
+    border-bottom: 1px solid rgb(173, 167, 167);
+  }
+  .underline-balance-heading {
+    border-bottom: 2px solid rgb(206, 198, 198);
+    margin-bottom: 10px;
+  }
+  .balance-name-rbl {
+    background-color: $rbl-tag;
+  }
+
+  .balance-name-icici {
+    background-color: $icici-tag;
+  }
+
+  .balance-name-rak {
+    background-color: $rak-tag;
+  }
+
+  .balance-name-hdfc {
+    background-color: $hdfc-tag;
+  }
+
+  .balance-name-cash {
+    background-color: $cash-tag;
+  }
+}
+
+/*apply date selector and filter  */
+.date-section {
+  width: 17rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Balance sheet body  */
+.balance_sheet_body {
+  width: 90%;
+  margin-left: 5rem;
+  display: grid;
+  grid-template-columns: 1fr 30rem;
+  grid-template-rows: 8rem 1fr;
+  position: relative;
+
+  @include respond(tablets, bigTablets) {
+    width: 100%;
+    margin-left: 3rem;
+    display: block;
+    margin-top: 2rem;
+    grid-template-columns: unset;
+    grid-template-rows: unset;
+  }
+}
+
+.balance_sheet_data {
+  grid-row: 2;
+  margin-top: 2rem;
+}
+
+.balance_sheet_cards_group {
+  margin-top: -9rem;
+  grid-row: 2;
+  margin-right: 2rem;
+
+  @include respond(tablets, bigTablets) {
+    margin-top: 3rem;
+    grid-row: 1;
+    display: flex;
+    gap: 3rem;
+  }
+
+  .income-cards {
+    margin-left: 7rem;
+    @include respond(tablets, bigTablets) {
+      margin-left: 0rem;
+    }
+  }
+}

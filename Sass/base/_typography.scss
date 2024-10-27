@@ -1,0 +1,85 @@
+/* Import all weights for Open Sans */
+
+@import "@fontsource/open-sans/300.css"; /* Light */
+@import "@fontsource/open-sans/400.css"; /* Regular */
+@import "@fontsource/open-sans/500.css"; /* Medium */
+@import "@fontsource/open-sans/600.css"; /* SemiBold */
+@import "@fontsource/open-sans/700.css"; /* Bold */
+@import "@fontsource/open-sans/800.css"; /* ExtraBold */
+
+/* Import all weights for Poppins */
+
+@import "@fontsource/poppins/300.css"; /* Light */
+@import "@fontsource/poppins/400.css"; /* Regular */
+@import "@fontsource/poppins/500.css"; /* Medium */
+@import "@fontsource/poppins/600.css"; /* SemiBold */
+@import "@fontsource/poppins/700.css"; /* Bold */
+@import "@fontsource/poppins/800.css"; /* ExtraBold */
+
+@import "@fontsource/roboto/index.css";
+@import "@fontsource/inter/index.css";
+@import "@fontsource/poppins/900.css"; /* ExtraBold */
+
+ul {
+  font-weight: 500;
+}
+
+.title-blue-span {
+  color: $primary-color;
+  font-family: "inter", "Open Sans", "Poppins", sans-serif;
+  margin-left: $body-margin;
+  font-weight: 500;
+  margin-top: -2rem;
+  margin-bottom: 1rem;
+
+  @include respond(smallPhone) {
+    margin-left: 2rem;
+    font-size: 12px;
+  }
+  @include respond(tablets) {
+    margin-left: 0.4rem;
+    font-weight: 500;
+    font-size: 20px;
+    margin-top: 0rem;
+  }
+  @include respond(bigTablets) {
+    margin-left: 0.4rem;
+    font-weight: 500;
+    font-size: 20px;
+    margin-top: 0rem;
+  }
+}
+
+.small-bold-title {
+  font-size: 12px;
+  font-weight: bolder;
+  color: $mid-gray;
+}
+
+.medium-money {
+  margin-top: 1rem;
+  display: block;
+  font-family: "inter", "Open Sans", "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.9rem;
+}
+
+.text {
+  font-family: "Poppins", "Roboto";
+  font-size: 1.6rem;
+  color: $mid-gray;
+}
+.small-text {
+  font-size: 1rem;
+  color: $mid-gray;
+}
+.currentbalance .text {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+.currentbalance h2 {
+  font-family: "inter", "Roboto", "Popins";
+  letter-spacing: 2px;
+  font-size: 3rem;
+}

@@ -27,7 +27,6 @@ const BranchPNL_Cards = () => {
       <div className="branch_card_group">
         <div className="balance_sheet_group">
           <BranchDetails title={`${curBranch} Branch Balance`} />
-          {/* <BalanceSheet title="Total Balance" balances={banks} /> */}
           <TotAvailableBalance />
         </div>
         <BranchesYearlyPNL />

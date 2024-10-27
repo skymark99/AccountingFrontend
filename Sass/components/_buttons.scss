@@ -1,0 +1,301 @@
+.btn {
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  border-radius: 5px;
+  text-wrap: nowrap;
+  border: none;
+}
+.primary-blue-btn {
+  padding: 0.6rem 1rem;
+  font-weight: 500;
+  color: $white;
+  background-color: $primary-color;
+}
+
+.notify-btn {
+  padding: 0.6rem;
+  font-weight: 400;
+  color: $white;
+  font-size: 10px;
+  border-radius: 7px;
+}
+
+.secondary-blue-btn {
+  border: 1px solid transparent; /* Make border transparent */
+  font-family: "Roboto", "Open Sans";
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  color: $secondary-color;
+  position: relative; /* Needed for the pseudo-element */
+  background-color: #fff; /* Set a background color */
+  overflow: hidden; /* Hide overflow for the inner border */
+}
+
+.secondary-blue-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px;
+  border: 1px solid $primary-color; /* Use the primary color for the border */
+  pointer-events: none; /* Allow clicks to pass through */
+  box-sizing: border-box; /* Ensure proper sizing */
+  z-index: 1; /* Place it behind the text */
+}
+
+.secondary-blue-btn span {
+  border-radius: 5px;
+  position: relative; /* Ensure text is above the border */
+  z-index: 2; /* Place text above the border */
+}
+
+.thertiary-blue-btn {
+  font-family: "Roboto", "Open Sans";
+  font-weight: 500;
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  background-color: $secondary-color;
+  color: $white;
+}
+.delete-btn {
+  font-family: "Roboto", "Open Sans";
+  font-weight: 500;
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  background-color: $delete-color;
+  color: $white;
+}
+.more-btn-wrapper {
+  text-align: right;
+}
+
+// chameleon button
+.chameleon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.chameleon-btn .icon {
+  margin-right: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.chameleon-btn.no-icon {
+  justify-content: center;
+}
+.sheet__buttons {
+  display: flex; /* Align buttons horizontally */
+  justify-content: space-between; /* Center buttons within the container */
+  gap: 20px; /* Space between buttons */
+  margin: 20px 0; /* Add some margin for spacing */
+  position: fixed;
+  bottom: 10%;
+  left: 60%;
+  transform: translateX(-50%);
+  transition: all 0.3s ease-in-out;
+}
+
+.pagination-group {
+  display: flex; /* Align buttons horizontally */
+  width: 100%;
+  gap: 5px;
+}
+.sheet-btn {
+  display: flex; /* Make the button content flex */
+  align-items: center; /* Center-align icon and text */
+  justify-content: center; /* Center content */
+  padding: 8px 15px; /* Add padding for a better click area */
+  background-color: $white; /* Button background color */
+  color: $primary-color; /* Text color */
+  border-radius: 5px; /* Rounded corners */
+  border-color: $primary-color;
+  border: 1px;
+  font-size: 16px; /* Font size for the button text */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effects */
+  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.1); /* Add a subtle shadow */
+}
+
+.sheet-btn:hover {
+  background-color: $white; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.sheet-btn:active {
+  background-color: #004494; /* Even darker blue on active */
+  transform: translateY(0); /* Reset transform on click */
+}
+
+.prev-icon-span,
+.next-icon-span {
+  display: flex; /* Ensure icons are centered within their spans */
+  align-items: center; /* Center align vertically */
+  margin: 0 5px; /* Space between text and icon */
+}
+
+.icons {
+  font-size: 20px; /* Adjust icon size */
+}
+
+/* common button  */
+.common-btn {
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  padding: 0.9rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-radius: 7px;
+  border-color: $primary-color;
+  font-weight: 720;
+  color: $primary-color;
+  border-width: 1px;
+  background-color: $white;
+}
+
+// target button like download , total amount ..(table)
+.target_info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  background-color: $target;
+  color: $white;
+}
+
+// branch selecting button
+.branches-selector {
+  background-color: $primary-opacity;
+  border-color: $target;
+  border-width: 1px;
+  color: $target;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.branches-selector.active {
+  background-color: $secondary-color;
+  color: white;
+  border-color: $secondary-color;
+}
+
+.disabledBtn {
+  background-color: $disabled-color;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+//pagination - balance sheet
+.pagination-btn {
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  padding: 0.9rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  border-radius: 7px;
+  border-color: $primary-color;
+  font-weight: 720;
+  color: $primary-color;
+  border-width: 1px;
+  background-color: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* date button */
+.date-clicker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.styled-button {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
+  border-color: $primary-color;
+  border-radius: 7px;
+  padding: 0.8rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: $primary-color;
+  width: 100%;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  border-width: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+
+  .icon {
+    margin-left: 1rem;
+    font-size: 1.8rem;
+  }
+
+  &:focus {
+    border-color: $primary-color;
+    outline: none;
+  }
+
+  @include respond(tablets, bigTablets) {
+    padding: 0.3rem;
+    font-size: 0.8rem;
+
+    .icon {
+      font-size: 1rem;
+    }
+  }
+
+  @include respond(smallPhone, phone) {
+    padding: 0.2rem;
+    font-size: 0.6rem;
+
+    .icon {
+      font-size: 1rem;
+    }
+  }
+}
+
+.styled-button:focus {
+  border-color: $primary-color;
+  outline: none;
+}
+
+.styled-button.active {
+  background-color: $primary-color;
+  color: white;
+}
+.budget-planner-download-btn {
+  position: absolute;
+  top: 80vh;
+  right: 5rem;
+  font-size: 1.2rem;
+}

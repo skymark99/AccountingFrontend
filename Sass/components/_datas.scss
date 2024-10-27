@@ -1,0 +1,165 @@
+.data-header {
+  @include flex(center);
+
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: $light-green;
+  justify-content: start;
+  text-wrap: nowrap;
+  font-size: 1.2rem;
+
+  input {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+}
+
+.datas__container {
+  margin-top: 1rem;
+  min-height: 40rem;
+}
+
+.data-items-container {
+  @include flex(center);
+  justify-content: start;
+  height: 6.5rem;
+  border-bottom: 1px solid $light-gray;
+  input {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+}
+
+.data-items {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  h4 {
+    font-weight: 500;
+    font-size: 1.4rem;
+    text-wrap: nowrap;
+    line-height: 1.4rem;
+  }
+
+  .text {
+    font-size: 1.2rem;
+  }
+
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip {
+    display: none;
+    position: absolute;
+    left: 50%; /* Center the tooltip */
+    transform: translateX(-50%); /* Adjust the alignment */
+    top: -100%; /* Place it above the element */
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 4px;
+    z-index: 10;
+    font-size: 1rem;
+    white-space: normal;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-wrap: nowrap;
+  }
+
+  .further-details {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #bbb;
+    text-align: left;
+  }
+
+  .tooltip-container:hover .tooltip {
+    display: block;
+  }
+  .big-tooltip {
+    display: none;
+    position: absolute;
+    left: 10%;
+    top: -30%;
+    background-color: #333;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 4px;
+    white-space: wrap;
+    z-index: 10;
+    font-size: 1rem;
+    width: 100%;
+  }
+  .tooltip-container:hover .tooltip {
+    display: block;
+  }
+}
+
+.particulars {
+  width: 15%;
+  margin-right: 2rem;
+  // text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.particulars-sub {
+  display: block;
+  // width: 70%;
+  overflow: hidden;
+  // text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.date-time {
+  width: 15%;
+}
+
+.Amount {
+  width: 10%;
+}
+
+.Status {
+  width: 10%;
+}
+
+.Branch {
+  width: 14%;
+  padding-right: 3rem;
+}
+
+.remark-container {
+  display: flex;
+  align-items: center;
+  width: 15%;
+}
+
+.remark {
+  width: 100%;
+  padding-right: 1rem;
+  overflow: hidden;
+  display: block;
+  cursor: pointer;
+}
+.header-remark {
+  width: 15%;
+}
+
+.credited {
+  width: 10%;
+}
+
+.debited {
+  width: 10%;
+}
+
+.daybook__selected {
+  background-color: $selection-color;
+}
+
+.header-checkbox-cell {
+  padding-top: 1rem;
+}
