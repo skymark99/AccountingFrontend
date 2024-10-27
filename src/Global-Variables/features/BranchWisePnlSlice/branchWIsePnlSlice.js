@@ -137,12 +137,17 @@ const initialState = {
 
   branchwisePNLSelectedItems: [],
   branchWisePNLAllSelected: false,
+
+  branchWiseShowTotal: false,
 };
 
 const branchwiseSlice = createSlice({
   name: "branchwise",
   initialState,
   reducers: {
+    setBranchWiseShowTotal(state, action) {
+      state.branchWiseShowTotal = action.payload;
+    },
     setBranchQuery(state, action) {
       state.query = action.payload;
     },
@@ -311,6 +316,7 @@ const branchwiseSlice = createSlice({
 });
 
 export const {
+  setBranchWiseShowTotal,
   setBranchData,
   setBranchCurrentPage,
   resetBranchWise,

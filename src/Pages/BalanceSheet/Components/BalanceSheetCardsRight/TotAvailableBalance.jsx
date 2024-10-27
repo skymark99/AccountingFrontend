@@ -2,13 +2,20 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBankDetails } from "../../../../Global-Variables/fetch/details";
 import { formatCurrency } from "../../../../Services/amountFormatter";
-import { Skeleton } from "antd"; // Import Ant Design Skeleton
+import { Skeleton } from "antd";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { setBranchWiseShowTotal } from "../../../../Global-Variables/features/BranchWisePnlSlice/branchWIsePnlSlice";
 
 const TotAvailableBalance = () => {
   const { banks, loading, error, bankBalances } = useSelector(
     (state) => state.bank
   );
+  const { branchWiseShowTotal } = useSelector((state) => state.branchwise);
   const dispatch = useDispatch();
+
+  const handleShow = () => {
+    dispatch(setBranchWiseShowTotal(!branchWiseShowTotal));
+  };
 
   useEffect(() => {
     if (!banks.length) {
@@ -16,20 +23,22 @@ const TotAvailableBalance = () => {
     }
   }, [dispatch, banks.length]);
 
-  const rbiBalance = bankBalances?.RBL?.balance || 0;
-  const iciciBalance = bankBalances?.ICICI?.balance || 0;
-  const rakBalance = bankBalances?.RAK?.balance || 0;
-  const hdfcBalance = bankBalances?.HDFC?.balance || 0;
-  const cashBalance = bankBalances?.CASH?.balance || 0;
-  const bundanBalance = bankBalances?.BANDAN?.balance || 0;
+  const balances = {
+    RBL: bankBalances?.RBL?.balance || 0,
+    ICICI: bankBalances?.ICICI?.balance || 0,
+    RAK: bankBalances?.RAK?.balance || 0,
+    HDFC: bankBalances?.HDFC?.balance || 0,
+    CASH: bankBalances?.CASH?.balance || 0,
+    BANDAN: bankBalances?.BANDAN?.balance || 0,
+  };
 
-  const totals =
-    rbiBalance +
-    iciciBalance +
-    rakBalance +
-    hdfcBalance +
-    cashBalance +
-    bundanBalance;
+  const totals = Object.values(balances).reduce(
+    (acc, balance) => acc + balance,
+    0
+  );
+
+  const renderBalance = (balance) =>
+    branchWiseShowTotal ? formatCurrency(balance) : "****";
 
   return (
     <div
@@ -39,62 +48,45 @@ const TotAvailableBalance = () => {
       <h4 className="balance-title">Total Available Balance</h4>
       <div className="underline-balance-heading"></div>
 
+      {branchWiseShowTotal ? (
+        <FaEye className="eye-btn" onClick={handleShow} />
+      ) : (
+        <FaEyeSlash className="eye-btn" onClick={handleShow} />
+      )}
+
       {loading ? (
-        <>
-          {Array(5)
-            .fill()
-            .map((_, index) => (
-              <div className="balance_card" key={index}>
-                <Skeleton.Input
-                  key={index}
-                  active
-                  style={{ height: "25px", width: 238 }}
-                />
-              </div>
-            ))}
-        </>
+        Array(5)
+          .fill()
+          .map((_, index) => (
+            <div className="balance_card" key={index}>
+              <Skeleton.Input
+                key={index}
+                active
+                style={{ height: "25px", width: 238 }}
+              />
+            </div>
+          ))
       ) : error ? (
         <div className="error">
           <span>{error}</span>
         </div>
       ) : (
         <>
-          <div className="balance_card">
-            <div className="balance-name balance-name-rbl">RBL</div>
-            <div className="balance-amount">{formatCurrency(rbiBalance)}</div>
-          </div>
-          <div className="underline-balance"></div>
-
-          <div className="balance_card">
-            <div className="balance-name balance-name-icici">ICICI</div>
-            <div className="balance-amount">{formatCurrency(iciciBalance)}</div>
-          </div>
-          <div className="underline-balance"></div>
-
-          <div className="balance_card">
-            <div className="balance-name balance-name-rak">RAK</div>
-            <div className="balance-amount">{formatCurrency(rakBalance)}</div>
-          </div>
-          <div className="underline-balance"></div>
-
-          <div className="balance_card">
-            <div className="balance-name balance-name-hdfc">HDFC</div>
-            <div className="balance-amount">{formatCurrency(hdfcBalance)}</div>
-          </div>
-          <div className="underline-balance"></div>
-
-          <div className="balance_card">
-            <div className="balance-name balance-name-cash">CASH</div>
-            <div className="balance-amount">{formatCurrency(cashBalance)}</div>
-          </div>
-          <div className="underline-balance"></div>
-          <div className="balance_card">
-            <div className="balance-name balance-name-bandan">BANDAN</div>
-            <div className="balance-amount">
-              {formatCurrency(bundanBalance)}
-            </div>
-          </div>
-          <div className="underline-balance"></div>
+          {Object.entries(balances).map(([bank, balance], index) => (
+            <React.Fragment key={bank}>
+              <div className="balance_card">
+                <div
+                  className={`balance-name balance-name-${bank.toLowerCase()}`}
+                >
+                  {bank}
+                </div>
+                <div className="balance-amount">{renderBalance(balance)}</div>
+              </div>
+              {index < Object.entries(balances).length - 1 && (
+                <div className="underline-balance"></div>
+              )}
+            </React.Fragment>
+          ))}
           <div
             className="totals"
             style={
@@ -103,7 +95,7 @@ const TotAvailableBalance = () => {
                 : null
             }
           >
-            {totals?.toFixed(2)}
+            {branchWiseShowTotal ? totals.toFixed(2) : "****"}
           </div>
         </>
       )}

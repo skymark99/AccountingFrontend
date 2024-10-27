@@ -205,6 +205,16 @@ a {
   color: white;
 }
 
+.balance-container {
+  position: relative;
+}
+
+.eye-btn {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+}
+
 * {
   padding: 0;
   margin: 0;
