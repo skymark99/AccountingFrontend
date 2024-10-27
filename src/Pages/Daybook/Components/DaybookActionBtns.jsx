@@ -12,7 +12,8 @@ import {
 } from "../../../Global-Variables/features/dayBookSlice/dayBookSlice";
 import ParticularSelector from "../../../Components/CatagorySelector/ParticularSelector";
 import LogModal from "../../../Features/LogModal/LogModal";
-import BankToBankForm from "./DaybookData/BankToBankForm";
+import BankToBankForm from "./DaybookData/BankToBank/BankToBankForm";
+import toast from "react-hot-toast";
 
 function DaybookActionBtns() {
   const { selected, selectedCatagory, selectedParticular } = useSelector(
@@ -52,7 +53,7 @@ function DaybookActionBtns() {
       >
         + New Entry
       </PrimaryBlueBtn>
-      {/* <PrimaryBlueBtn
+      <PrimaryBlueBtn
         onClick={handleBankToBank}
         style={{
           fontWeight: "700",
@@ -62,7 +63,7 @@ function DaybookActionBtns() {
         }}
       >
         Bank to Bank
-      </PrimaryBlueBtn> */}
+      </PrimaryBlueBtn>
 
       <Modal open={isBankToBank} onCancel={handleBankToBank} footer={null}>
         <h4 className="form-head">Self Transaction</h4>
