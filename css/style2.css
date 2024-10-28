@@ -695,6 +695,10 @@ ul {
     padding: 3rem;
   }
 }
+.daybook__right-head {
+  display: flex;
+  gap: 1rem;
+}
 .daybook__body {
   height: 100%;
   margin-bottom: 5rem;
@@ -954,18 +958,6 @@ ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.daybook-form .form-section .form-row .form-group .type-options {
-  display: flex;
-  gap: 4rem;
-  width: 20%;
-  padding-bottom: 0.4rem;
-  padding-top: 0.8rem;
-}
-.daybook-form .form-section .form-row .form-group .type-option {
-  display: flex;
-  margin-left: 0.5rem;
-  gap: 0.5rem;
 }
 .daybook-form .form-section .form-row .form-group-error {
   font-size: 1.3rem;

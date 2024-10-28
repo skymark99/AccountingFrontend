@@ -5,7 +5,10 @@
   @include respond(tablets, bigTablets) {
     padding: 3rem;
   }
-
+  &__right-head {
+    display: flex;
+    gap: 1rem;
+  }
   // &__catagory-selectors {
   //   @include flex(center);
   //   flex-direction: column;
@@ -61,6 +64,7 @@
     grid-column: 1;
     @include flex(between);
     justify-content: space-between;
+
     gap: 1rem;
     width: 100%;
 
@@ -207,20 +211,6 @@
         text-align: center;
         .branch-group {
           @include flex(between);
-        }
-
-        .type-options {
-          display: flex;
-          gap: 4rem;
-          width: 20%;
-          padding-bottom: 0.4rem;
-          padding-top: 0.8rem;
-        }
-
-        .type-option {
-          display: flex;
-          margin-left: 0.5rem;
-          gap: 0.5rem;
         }
 
         &-error {

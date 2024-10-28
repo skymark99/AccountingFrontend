@@ -1,17 +1,13 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { resetTransactions } from "../../../Global-Variables/features/dayBookSlice/transactionSlice";
 import { setCurrentDayBookBranch } from "../../../Global-Variables/features/dayBookSlice/dayBookSlice";
 import { resetDebits } from "../../../Global-Variables/features/dayBookSlice/debitSlice";
 import { resetCredits } from "../../../Global-Variables/features/dayBookSlice/creditSlice";
 import { BsChevronDown } from "react-icons/bs";
 
-function Select({ style }) {
+function Select({ style, options, value }) {
   const dispatch = useDispatch();
-
-  const { branches, currentDayBookBranch } = useSelector(
-    (state) => state.daybook
-  );
 
   const handleChange = (event) => {
     dispatch(resetTransactions());
@@ -23,8 +19,8 @@ function Select({ style }) {
   return (
     <div className="catagory-selector" style={style}>
       <div className="custom-dropdown">
-        <select value={currentDayBookBranch} onChange={handleChange}>
-          {branches.map((val, i) => (
+        <select value={value} onChange={handleChange}>
+          {options.map((val, i) => (
             <option key={i} value={val}>
               {val}
             </option>

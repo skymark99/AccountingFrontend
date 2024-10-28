@@ -17,8 +17,15 @@ import { useKey } from "../../../../Hooks/Gen/useKey";
 import SettinsButton from "../../../../Components/Buttons/Download/SettinsButton";
 
 function DayBookHeader({ width }) {
-  const { dayBookStartDate, dayBookEndDate, dateOptions, selectedDate, query } =
-    useSelector((state) => state.daybook);
+  const {
+    dayBookStartDate,
+    dayBookEndDate,
+    dateOptions,
+    selectedDate,
+    query,
+    branches,
+    currentDayBookBranch,
+  } = useSelector((state) => state.daybook);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -79,11 +86,19 @@ function DayBookHeader({ width }) {
         />
       </div>
       {/* <div className="select__container"> */}
-      <div className="date-section">
+      <div className="daybook__right-head">
         <div className="header-catagory-selectors">
-          <Select style={{ width: "12rem" }} />
+          <Select
+            style={{ width: "12rem" }}
+            options={branches}
+            value={currentDayBookBranch}
+          />
+          {/* <Select
+            style={{ width: "12rem" }}
+            options={branches}
+            value={currentDayBookBranch}
+          /> */}
         </div>
-
         {/* <DayBookDateSelector onClick={handleCancel} /> */}
         <SettinsButton onClick={handleCancel} />
 
