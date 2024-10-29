@@ -244,6 +244,7 @@ const UniversityEditForm = () => {
                 <input
                   type="number"
                   id="courseFee"
+                  step="any"
                   {...register("courseFee", {
                     required: "Course Fee is required",
                     min: { value: 0, message: "Course Fee must be positive" },
@@ -272,6 +273,7 @@ const UniversityEditForm = () => {
               <input
                 type="number"
                 id="commition"
+                step="any"
                 {...register("commition", {
                   required: "Commition is required",
                 })}
@@ -287,6 +289,7 @@ const UniversityEditForm = () => {
               <input
                 type="number"
                 id="inr"
+                step="any"
                 {...register("inr", {
                   required: "INR is required",
                 })}

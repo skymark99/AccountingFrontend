@@ -11,7 +11,7 @@ import {
   today,
 } from "../../../Services/dateFormatter";
 import { resetUniversity } from "../../../Global-Variables/features/university/universitySlice";
-import { currencies } from "../../../data/generalDatas";
+import { branches, currencies } from "../../../data/generalDatas";
 
 const aprilIntake = ["May", "June", "July", "August", "September", "October"];
 const novemberIntake = ["November", "December", "January", "February", "March"];
@@ -104,14 +104,14 @@ const UniversityForm = () => {
       intakeMonth: data.intakeMonth,
       country: data.country,
       university: data.university,
-      commition: data.commition,
+      commition: Number(data.commition),
       student: data.student,
       agent: data.agent,
       status: data.status,
       counsillor: data.counsillor,
       courseFee: data.courseFee,
       branchName: data.branchName,
-      inr: data.inr,
+      inr: Number(data.inr),
       currency: data.currency,
     };
     await handleCreateTransaction(formData);
@@ -150,13 +150,11 @@ const UniversityForm = () => {
                 {...register("branchName", { required: "Select a branch" })}
               >
                 <option value="">Select branch</option>
-                <option value="Kochi">Kochi</option>
-                <option value="Kozhikode">Kozhikode</option>
-                <option value="Kottayam">Kottayam</option>
-                <option value="Manjeri">Manjeri</option>
-                <option value="Kannur">Kannur</option>
-                <option value="Corporate">Corporate</option>
-                <option value="Directors">Directors</option>
+                {branches.slice(1).map((val) => (
+                  <option value={val} key={val}>
+                    {val}
+                  </option>
+                ))}
               </select>
               {errors.branchName && (
                 <span className="form-group-error">
@@ -235,11 +233,12 @@ const UniversityForm = () => {
         <div className="form-section">
           <div className="form-row">
             <div className="form-group">
-              <label tmlFor="courseFee">Course Fee</label>
+              <label>Course Fee</label>
               <div style={{ display: "flex" }}>
                 <input
                   type="number"
                   id="courseFee"
+                  step="any"
                   {...register("courseFee", {
                     required: "Course Fee is required",
                     min: { value: 0, message: "Course Fee must be positive" },
@@ -252,7 +251,6 @@ const UniversityForm = () => {
                 )}
                 <select
                   style={{ width: "10rem", cursor: "pointer" }}
-                  ißd="currency"
                   {...register("currency", { required: "Select a curreny" })}
                 >
                   {currencies.map((val, i) => (
@@ -268,10 +266,12 @@ const UniversityForm = () => {
               <input
                 type="number"
                 id="commition"
+                step="any"
+                inputMode="decimal"
                 {...register("commition", {
-                  required: "Commition is required",
+                  required: "Commission is required",
                 })}
-              ></input>
+              />
               {errors.commition && (
                 <span className="form-group-error">
                   {errors.commition.message}
@@ -283,16 +283,19 @@ const UniversityForm = () => {
               <input
                 type="number"
                 id="inr"
+                step="any"
+                inputMode="decimal"
                 {...register("inr", {
                   required: "INR is required",
                 })}
-              ></input>
+              />
               {errors.inr && (
                 <span className="form-group-error">{errors.inr.message}</span>
               )}
             </div>
           </div>
         </div>
+
         <div className="form-section">
           <div className="form-row">
             <div className="form-group">
